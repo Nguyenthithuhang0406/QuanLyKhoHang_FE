@@ -1,8 +1,11 @@
-# React + Vite
+# Cài đặt môi trường: nodejs (lên gg search)
+# Cài đặt github desktop và git
+# Cài đặt VS code
+# thư viện icon: fontawesome
+# mở terminal vs code bằng: ctrl + j
+# Cách chạy dự án
+Clone dự án về
+```git clone https://github.com/Nguyenthithuhang0406/QuanLyKhoHang_FE.git```
+chạy package: ```npm i```
+chạy dự án : ```npm run dev```
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
