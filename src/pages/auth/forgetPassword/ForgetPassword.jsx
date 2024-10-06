@@ -3,9 +3,13 @@ import React from 'react'
 
 import './ForgetPassword.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import Header from '../../../components/header/Header';
 
 const ForgetPassword = () => {
   return (
+    <> 
+    <Header/>
+    <div className='s0'>
     <Formik>
       <Form className='s1'> 
        <p htmlFor="email" className='s2'> <b>QUÊN MẬT KHẨU</b></p>
@@ -25,6 +29,8 @@ const ForgetPassword = () => {
           
       </Form>
     </Formik>
+    </div>
+    </>
   )
 }
 
