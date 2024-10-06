@@ -1,0 +1,109 @@
+.Frame{
+    width: 20%;
+    height: 920px;
+    margin-top: 98px;
+    background-color: #ffffff;
+}
+.Content{
+    color:#0B08AB;
+}
+.Avatar{
+   
+    width:  87px ;
+    display: flex;
+}
+.Avatar img{
+    background-color: aqua;
+    border-radius: 50%;
+    clip-path: circle(78px at 50% 50%);
+    margin-top: 21px;
+    margin-left: 25px;
+}
+.Avatar p{
+    width: 171px;
+    height: 20px;
+    margin-top: 51px;
+    margin-left: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 20.06px;
+    font-weight: 400;
+}
+.Separate hr{
+    border-width: 1.5px;
+    border-collapse: collapse;
+    border-color: #0B08AB;
+    margin: 25px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.Menu {
+    width: 200px;
+    
+}
+
+.Menu > li {
+    position: relative;
+
+}
+
+.Menu > li > a {
+    display: block;
+    padding: 10px 15px;
+    color: #0B08AB;
+    text-decoration: none;
+}
+
+.Menu > li > a:focus {
+    background-color: white;
+}
+
+.Menu .subMenu, .Menu > li ul {
+    display: none;
+    position: relative;
+    padding: 0;
+}
+
+.Menu > li:focus-within > .subMenu,
+.Menu > li:focus-within > ul {
+    display: block;
+}
+
+
+.Menu li ul li {
+    position: relative;
+}
+
+.Menu li ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #0B08AB;;
+    text-decoration: none;
+}
+
+.Menu li ul li a:focus {
+    background-color: white;
+}
+
+.Menu li ul li ul {
+    display: none;
+}
+
+.Menu li ul li:focus-within > ul {
+    display: block;
+}
+
+.Menu li ul li ul li a {
+    color: #0B08AB;;
+    padding: 10px 30px;
+}
+
+.Menu li ul li ul li a:focus {
+    background-color:white;
+}
+
+
