@@ -32,7 +32,7 @@ const App = () => {
       element: <ForgetPassword/>
     },
     {
-      path: '/resetPassword',
+      path: '/reset-password',
       element: <ResetPassword/>
     },
     {
