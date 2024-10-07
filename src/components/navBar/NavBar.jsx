@@ -2,92 +2,106 @@
 import React from 'react'
 
 import './NavBar.css';
+import Header from '../header/Header';
+import accountImage from '../../assets/images/account.png'
 const NavBar = () => {
-  return (
+  return ( 
+    <>
+    <Header/>
     <div className='Frame'>
       <div className='Content'>
 
         <div className='Avatar'>
-          <img src="img_avatar.png" alt="avatar" />
-          <p>abcd</p>
+          <img src={accountImage} alt="avatar" />
+          <p>Lương Thị Phượng</p>
         </div>
 
         <div className='Separate'>
           <hr />
         </div>
 
-        <div>
-        <ul className='Menu'>
-        <li><a href="#">Tổng quan</a></li>
-        <li><a href="#">Nhập - xuất với NCC</a>
-        <ul className='subMenu'>
-          <li><a href="#">Xuất hàng</a>
-          <ul>
-            <li><a href="#">Phiếu xuất hàng</a></li>
-          </ul>
-          </li>
-          <li><a href="#">Nhập hàng</a>
-          <ul>
-            <li><a href="#">Phiếu nhập hàng</a></li>
-          </ul>
-          </li>
-        </ul>
-        </li>
+        <div className='Menu'>
 
-        <li><a href="#">Nhập - xuất với Nội Bộ</a>
-        <ul>
-        <li><a href="#">Xuất hàng</a>
-          <ul>
-            <li><a href="#">Lệnh xuất hàng</a></li>
-            <li><a href="#">Phiếu xuất hàng</a></li>
-          </ul>
-          </li>
-          <li><a href="#">Nhập hàng</a>
-          <ul>
-            <li><a href="#">Lệnh nhập hàng</a></li>
-            <li><a href="#">Phiếu nhập hàng</a></li>
-          </ul>
-          </li>
-          </ul>
-        </li>
-        
-        <li><a href="#">Nhập - xuất với NVBH</a>
-        <ul>
-        <li><a href="#">Xuất hàng</a>
-          <ul>
-            <li><a href="#">Phiếu xuất hàng</a></li>
-          </ul>
-          </li>
-          <li><a href="#">Nhập hàng</a>
-          <ul>
-            <li><a href="#">Phiếu nhập hàng</a></li>
-          </ul>
-          </li>
-          </ul>
-        </li>
+           <div className='p1'>
+           <p><i class="fa-solid fa-chart-pie"></i>Tổng quan</p>
+           </div>
 
-        <li><a href="#">Quản lý kiểm kê</a></li>
+          <div className='p1'>
+          <p><i class="fa-solid fa-clipboard"></i>Xuất - nhập với NCC</p>
+          <div className='p2'>
+            <p> <i class="fa-solid fa-chevron-right"></i>Xuất kho  <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+            <div className='p3'>
+              <p>Phiếu xuất kho</p>
+            </div>
+          </div>
+          <div className='p2'>
+            <p> <i class="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+            <div className='p3'>
+              <p>Phiếu nhập kho</p>
+            </div>
+          </div>
+          </div>
 
-        <li><a href="#">Báo cáo thống kê</a>
-        <ul>
-          <li><a href="#">Báo cáo nhập kho</a></li>
-          <li><a href="#">Báo cáo tồn kho</a></li>
-          <li><a href="#">Báo cáo xuất nhập tồn</a></li>
-        </ul>
-        </li>
-
-        <li><a href="#">Danh mục</a>
-        <ul>
-          <li><a href="#">Nguồn hàng xuất/nhập</a></li>
-          <li><a href="#">Danh mục hàng hoá</a></li>
-          <li><a href="#">Hợp đồng</a></li>
-        </ul>
-        </li>
-        </ul>
-        </div>
+          <div className='p1'>
+          <p><i class="fa-solid fa-clipboard"></i>Xuất - nhập với Nội bộ</p>
+          <div className='p2'>
+            <p> <i class="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+            <div className='p3'>
+              <p>Lệnh xuất kho</p>
+              <p>Phiếu xuất kho</p>
+            </div>
+          </div>
+          <div className='p2'>
+            <p> <i class="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+            <div className='p3'>
+              <p>Lệnh nhập kho</p>
+              <p>Phiếu nhập kho</p>
+            </div>
+          </div>
+          </div>
+          
+          <div className='p1'>
+          <p><i class="fa-solid fa-clipboard"></i>Xuất - nhập với NVBH</p>
+          <div className='p2'>
+            <p> <i class="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+            <div className='p3'>
+              <p>Phiếu xuất kho</p>
+            </div>
+          </div>
+          <div className='p2'>
+            <p> <i class="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+            <div className='p3'>
+              <p>Phiếu nhập kho</p>
+            </div>
+          </div>
+          </div>
+            
+          <div className='p1'>
+           <p><i class="fa-solid fa-check"></i>Quản lý kiểm kê</p>
+           </div>
       
+           <div className='p1'>
+          <p><i class="fa-solid fa-chart-simple"></i>Báo cáo thống kê</p>
+          <div className='p2'>
+            <p> <i class="fa-solid fa-chevron-right"></i>Báo cáo nhập kho</p>
+            <p> <i class="fa-solid fa-chevron-right"></i>Báo cáo xuất kho</p>
+            <p> <i class="fa-solid fa-chevron-right"></i>Báo cáo xuất nhập tồn</p>
+          </div>        
+           </div>
+          
+           <div className='p1'>
+          <p><i class="fa-solid fa-book"></i>Danh mục</p>
+          <div className='p2'>
+            <p> <i class="fa-solid fa-chevron-right"></i>Nguồn hàng xuất/nhập</p>
+            <p> <i class="fa-solid fa-chevron-right"></i>Danh mục hàng hoá</p>
+            <p> <i class="fa-solid fa-chevron-right"></i>Hợp đồng</p>
+          </div>        
+           </div>
+
+        </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

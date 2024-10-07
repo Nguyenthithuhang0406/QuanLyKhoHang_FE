@@ -1,109 +1,77 @@
 .Frame{
-    width: 20%;
-    height: 920px;
-    margin-top: 98px;
+    width: 250px;
     background-color: #ffffff;
+    height: 1100px;
 }
 .Content{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
     color:#0B08AB;
+    
 }
 .Avatar{
-   
-    width:  87px ;
+    width:  100% ;
     display: flex;
 }
 .Avatar img{
     background-color: aqua;
     border-radius: 50%;
-    clip-path: circle(78px at 50% 50%);
     margin-top: 21px;
     margin-left: 25px;
+    height: 70px;
+    width: 70px;
 }
 .Avatar p{
-    width: 171px;
+    width: 100%;
     height: 20px;
     margin-top: 51px;
     margin-left: 22px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    line-height: 20.06px;
-    font-weight: 400;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
 }
 .Separate hr{
     border-width: 1.5px;
     border-collapse: collapse;
     border-color: #0B08AB;
-    margin: 25px;
+    margin: 30px 0px 25px 20px;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.Menu .p1{
+    width: 100%;
+    margin-left: 30px;
+    margin-top: 17px;
 }
-.Menu {
-    width: 200px;
+.Menu .p1 p i{
+    margin-right: 20px;
+    font-size: 20px;
+}
+.Menu .p1 .p2{
+    margin-left: 20px;
+    margin-top: 15px;
+}
+.Menu .p1 .p2 p{
+    margin-left: 0px;
+    margin-top: 15px;
+}
+.Menu .p1 .p2 .p3{
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.Menu .p1 .p2 .p3 p{
+    margin-left: 20px;
+    margin-top: 8px;
     
 }
 
-.Menu > li {
-    position: relative;
-
+.Menu .p1 .p2 p i{
+    margin-right: 20px;
+    font-size: 15px;
+    
 }
 
-.Menu > li > a {
-    display: block;
-    padding: 10px 15px;
-    color: #0B08AB;
-    text-decoration: none;
+.p4 i{
+    float: right;
 }
 
-.Menu > li > a:focus {
-    background-color: white;
-}
-
-.Menu .subMenu, .Menu > li ul {
-    display: none;
-    position: relative;
-    padding: 0;
-}
-
-.Menu > li:focus-within > .subMenu,
-.Menu > li:focus-within > ul {
-    display: block;
-}
-
-
-.Menu li ul li {
-    position: relative;
-}
-
-.Menu li ul li a {
-    display: block;
-    padding: 10px 20px;
-    color: #0B08AB;;
-    text-decoration: none;
-}
-
-.Menu li ul li a:focus {
-    background-color: white;
-}
-
-.Menu li ul li ul {
-    display: none;
-}
-
-.Menu li ul li:focus-within > ul {
-    display: block;
-}
-
-.Menu li ul li ul li a {
-    color: #0B08AB;;
-    padding: 10px 30px;
-}
-
-.Menu li ul li ul li a:focus {
-    background-color:white;
-}
 
 
