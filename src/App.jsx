@@ -34,10 +34,6 @@ const App = () => {
     {
       path: '/reset-password',
       element: <ResetPassword/>
-    },
-    {
-      path: '/header',
-      element: <Header/>
     }
   ]);
   return (

@@ -1,0 +1,75 @@
+.otp-container {
+    position: relative; /* Để nút Gửi lại OTP có thể định vị theo container này */
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    
+    margin: auto;
+    
+}
+
+.otp-container img {
+    width: 100px;
+}
+.otp-container img {
+    width: 90px; /* Đặt chiều rộng cố định cho hình ảnh */
+    height: auto; /* Giữ tỉ lệ của hình ảnh */
+    display: block;
+    margin: 0 auto 20px; /* Căn giữa hình ảnh và thêm khoảng cách dưới */
+}
+
+.otp-container h2 {
+    color: #1a1aaf;
+    font-size: 30px; /* Giảm kích thước font chữ */
+    line-height: 0.5; /* Tăng khoảng cách dòng để dễ đọc */
+    word-wrap: break-word; /* Tự động ngắt dòng nếu cần */
+    margin-bottom: 20px;
+}
+
+.otp-container input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.otp-container button {
+    margin-top: 20px;
+    background-color: #1a1aaf;
+    color: white;
+    padding: 15px 0;
+    width: 100%;
+    font-size: 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.otp-container button:hover {
+    background-color: #0d0d84;
+}
+
+.otp-container .resend-otp, .otp-container button {
+    width: 80%; /* Giảm chiều rộng để vừa với nội dung chính */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.otp-container a {
+    position: absolute; /* Định vị vị trí nút */
+    top: 10px;
+    right: 20px; /* Canh phải của container */
+    color: #1a1aaf;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.otp-container a:hover {
+    text-decoration: underline;
+}
