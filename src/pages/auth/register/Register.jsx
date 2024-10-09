@@ -1,103 +1,125 @@
 /* eslint-disable */
-import React from "react";
+import React, { useState } from "react";
 
 import "./Register.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Header from "../../../components/header/Header";
 
 const Register = () => {
+  const [user, setUser] = useState({
+    fullName: "",
+    email: "",
+    staffCode: "",
+    userName: "",
+    passWord: "",
+    role: "staff",
+  });
+
+  const handleSubmit = async (values) => {
+  };
+
   return (
     <>
       <Header />
       <div className="register-body">
         <div className="register-container">
           <div className="register-form">
-            <Formik>
-              <Form>
-                <h2 className="register-h2">ĐĂNG KÝ TÀI KHOẢN</h2>
-                <div className="register-group-field">
-                  <label htmlFor="fullNameLabel" className="register-label">
-                    Họ tên đầy đủ
-                  </label>{" "}
-                  <br />
-                  <Field
-                    className="register-Field"
-                    name="fullName"
-                    type="text"
-                  />
-                  <ErrorMessage name="fullName" />
-                </div>
-
-                <div className="register-group-field">
-                  <label className="register-label" htmlFor="email">
-                    Email
-                  </label>{" "}
-                  <br />
-                  <Field className="register-Field" name="email" type="text" />
-                  <ErrorMessage name="email" />
-                </div>
-
-                <div className="register-group-field">
-                  <label className="register-label" htmlFor="staffCode">
-                    Mã nhân viên
-                  </label>{" "}
-                  <br />
-                  <Field
-                    className="register-Field"
-                    name="staffCode"
-                    type="text"
-                  />
-                  <ErrorMessage name="staffCode" />
-                </div>
-
-                <div className="register-group-field">
-                  <label className="register-label" htmlFor="loginName">
-                    Tên đăng nhập
-                  </label>{" "}
-                  <br />
-                  <Field
-                    className="register-Field"
-                    name="loginName"
-                    type="text"
-                  />
-                  <ErrorMessage name="loginName" />
-                </div>
-
-                <div className="register-group-field">
-                  <label className="register-label" htmlFor="passWord">
-                    Mật khẩu
-                  </label>{" "}
-                  <br />
-                  <Field
-                    className="register-Field"
-                    name="passWord"
-                    type="text"
-                  />
-                  <ErrorMessage name="passWord" />
-                </div>
-
-                <div className="register-role">
-                  <div className="register-role-group">
-                    <p>Nhân viên</p>
-                    <div className="register-check"></div>
+            <Formik
+              initialValues={user}
+              // validationSchema={}
+              onSubmit={handleSubmit}
+            >
+              {({ handleSubmit, isSubmitting, touched, errors }) => (
+                <Form onSubmit={handleSubmit}>
+                  <h2 className="register-h2">ĐĂNG KÝ TÀI KHOẢN</h2>
+                  <div className="register-group-field">
+                    <label htmlFor="fullNameLabel" className="register-label">
+                      Họ tên đầy đủ
+                    </label>
+                    <br />
+                    <Field
+                      className="register-Field"
+                      name="fullName"
+                      type="text"
+                      placeholder=""
+                    />
+                    <ErrorMessage name="fullName" component='div' />
+              
                   </div>
-                  <div className="register-role-group">
-                    <p>Quản lý</p>
-                    <div className="register-check"></div>
+
+                  <div className="register-group-field">
+                    <label className="register-label" htmlFor="email">
+                      Email
+                    </label>
+                    <br />
+                    <Field className="register-Field" name="email" type="email" placeholder="" />
+                    <ErrorMessage name="email"  component='div'/>
                   </div>
-                </div>
 
-                <button className="register-button" type="submit">
-                  Đăng ký
-                </button>
+                  <div className="register-group-field">
+                    <label className="register-label" htmlFor="staffCode">
+                      Mã nhân viên
+                    </label>
+                    <br />
+                    <Field
+                      className="register-Field"
+                      name="staffCode"
+                      type="text"
+                      placeholder=""
+                    />
+                    <ErrorMessage name="staffCode" component='div'/>
+                  </div>
 
-                <div className="register-bonus">
-                  <p>
-                    Bạn đã có tài khoản?{" "}
-                    <span className="register-span"> Đăng nhập</span>
-                  </p>
-                </div>
-              </Form>
+                  <div className="register-group-field">
+                    <label className="register-label" htmlFor="userName">
+                      Tên đăng nhập
+                    </label>
+                    <br />
+                    <Field
+                      className="register-Field"
+                      name="userName"
+                      type="text"
+                      placeholder=""
+                    />
+                    <ErrorMessage name="userName" component='div'/>
+                  </div>
+
+                  <div className="register-group-field">
+                    <label className="register-label" htmlFor="password">
+                      Mật khẩu
+                    </label>
+                    <br />
+                    <Field
+                      className="register-Field"
+                      name="passWord"
+                      type="password"
+                    />
+                    <ErrorMessage name="password" component='div'/>
+                  </div>
+
+                  <div className="register-role">
+                    <div className="register-role-group">
+                      <p>Nhân viên</p>
+                      <div className="register-check"></div>
+                    </div>
+                    <div className="register-role-group">
+                      <p>Quản lý</p>
+                      <div className="register-check"></div>
+                    </div>
+                  </div>
+
+                  <button className="register-button" type="submit">
+                    Đăng ký
+                  </button>
+
+                  <div className="register-bonus">
+                    <p>
+                      Bạn đã có tài khoản?{" "}
+                      <span className="register-span"> Đăng nhập</span>
+                    </p>
+                  </div>
+                </Form>
+              )}
             </Formik>
           </div>
           <div className="imagine">
