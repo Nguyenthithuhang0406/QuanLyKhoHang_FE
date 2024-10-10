@@ -1,11 +1,35 @@
 /* eslint-disable */
-import React from 'react'
+import React, { useState } from 'react'
 
 import './Confirm.css';
 import Header from '../../../components/header/Header';
 import emailIcon from '../../../assets/images/iconEmail.png';
+import { verifyOTP } from '@/api/userApi/user';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const ConfirmOTP = () => {
+  const [otp, setOtp] = useState();
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    const userId = localStorage.getItem('userId');
+    const data = {
+      userId,
+      otp: Number(otp),
+    };
+    try {
+      console.log("data", data);
+      await verifyOTP(data);
+      toast.success('Xác thực OTP thành công');
+      navigate('/login');
+    } catch (error) {
+      console.log(error);
+      toast.error('Xác thực OTP thất bại');
+    }
+  };
+
   return (
     <>
       <Header />
@@ -13,13 +37,11 @@ const ConfirmOTP = () => {
         <div className="otp-container">
           <img src={emailIcon} alt="Email Icon" />
           <h2 className='otp-h2'>Mã OTP gồm 6 chữ số đã được gửi đến bạn qua email</h2>
-          <input type="text" maxLength="6" placeholder="# # # # # #" />
+          <input name='otp' value={otp} type="text" maxLength="6" placeholder="# # # # # #" onChange={(e) => setOtp(e.target.value)}/>
           <p className='otp-p'>Gửi lại OTP</p>
-          <button className='otp-button'>Tiếp</button>
-
+          <button className='otp-button' onClick={handleSubmit}>Tiếp</button>
         </div>
       </div>
-
     </>
   )
 }
