@@ -40,6 +40,24 @@ export const verifyOTP = async (data) => {
   }
 };
 
+export const resendOTP = async (data) => {
+  try {
+    const { userId, email, fullName } = data;
+    await request(publicInstance, {
+      url: "/user/resend-otp",
+      method: "post",
+      data: {
+        userId,
+        email,
+        fullName,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export const login = async (data) => {
   try {
     const { userName, password } = data;

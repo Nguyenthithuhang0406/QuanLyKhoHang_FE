@@ -26,6 +26,8 @@ const Register = () => {
       const user = await registerAPI(values);
       toast.success("Đăng ký thành công");
       localStorage.setItem("userId", user.data.user._id);
+      localStorage.setItem("email", user.data.user.email);
+      localStorage.setItem("fullName", user.data.user.fullName);
       navigate("/confirm-OTP");
     } catch (error) {
       console.log(error);
