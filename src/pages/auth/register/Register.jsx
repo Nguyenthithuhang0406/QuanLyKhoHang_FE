@@ -1,21 +1,42 @@
 /* eslint-disable */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Register.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Header from "../../../components/header/Header";
+import { registerAPI } from "@/api/userApi/user";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { registerValidation } from "@/utils/validation.js/userValidation";
 
 const Register = () => {
-  const [user, setUser] = useState({
+  const initialValues = {
     fullName: "",
     email: "",
     staffCode: "",
     userName: "",
-    passWord: "",
+    password: "",
     role: "staff",
-  });
+  };
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
+    try {
+      const user = await registerAPI(values);
+      toast.success("Đăng ký thành công");
+      localStorage.setItem("userId", user.data.user._id);
+      localStorage.setItem("email", user.data.user.email);
+      localStorage.setItem("fullName", user.data.user.fullName);
+      navigate("/confirm-OTP");
+    } catch (error) {
+      console.log(error);
+      toast.error("Đăng ký thất bại");
+    }
+  };
+
+  const handleClickLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -25,15 +46,15 @@ const Register = () => {
         <div className="register-container">
           <div className="register-form">
             <Formik
-              initialValues={user}
-              // validationSchema={}
+              initialValues={initialValues}
+              validationSchema={registerValidation}
               onSubmit={handleSubmit}
             >
-              {({ handleSubmit, isSubmitting, touched, errors }) => (
+              {({ handleSubmit, errors, setFieldValue, values }) => (
                 <Form onSubmit={handleSubmit}>
                   <h2 className="register-h2">ĐĂNG KÝ TÀI KHOẢN</h2>
                   <div className="register-group-field">
-                    <label htmlFor="fullNameLabel" className="register-label">
+                    <label htmlFor="fullName" className="register-label">
                       Họ tên đầy đủ
                     </label>
                     <br />
@@ -43,8 +64,8 @@ const Register = () => {
                       type="text"
                       placeholder=""
                     />
-                    <ErrorMessage name="fullName" component='div' />
-              
+                    <ErrorMessage name="fullName" component='div' style={{"color": 'red', "fontSize": '12px'}} />
+
                   </div>
 
                   <div className="register-group-field">
@@ -53,7 +74,7 @@ const Register = () => {
                     </label>
                     <br />
                     <Field className="register-Field" name="email" type="email" placeholder="" />
-                    <ErrorMessage name="email"  component='div'/>
+                    <ErrorMessage name="email" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
                   </div>
 
                   <div className="register-group-field">
@@ -67,7 +88,7 @@ const Register = () => {
                       type="text"
                       placeholder=""
                     />
-                    <ErrorMessage name="staffCode" component='div'/>
+                    <ErrorMessage name="staffCode" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
                   </div>
 
                   <div className="register-group-field">
@@ -81,7 +102,7 @@ const Register = () => {
                       type="text"
                       placeholder=""
                     />
-                    <ErrorMessage name="userName" component='div'/>
+                    <ErrorMessage name="userName" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
                   </div>
 
                   <div className="register-group-field">
@@ -91,20 +112,32 @@ const Register = () => {
                     <br />
                     <Field
                       className="register-Field"
-                      name="passWord"
+                      name="password"
                       type="password"
                     />
-                    <ErrorMessage name="password" component='div'/>
+                    <ErrorMessage name="password" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
                   </div>
 
                   <div className="register-role">
                     <div className="register-role-group">
                       <p>Nhân viên</p>
-                      <div className="register-check"></div>
+                        <input
+                          type="radio"
+                          name="role"
+                          value="staff"
+                          onChange={() => setFieldValue("role", "staff")}
+                          checked={values.role === 'staff'}
+                        />
                     </div>
                     <div className="register-role-group">
                       <p>Quản lý</p>
-                      <div className="register-check"></div>
+                        <input
+                          type="radio"
+                          name="role"
+                          value="manager"
+                          onChange={() => setFieldValue("role", "manager")}
+                          checked={values.role === 'manager'}
+                        />
                     </div>
                   </div>
 
@@ -115,7 +148,7 @@ const Register = () => {
                   <div className="register-bonus">
                     <p>
                       Bạn đã có tài khoản?{" "}
-                      <span className="register-span"> Đăng nhập</span>
+                      <span className="register-span" onClick={handleClickLogin}> Đăng nhập</span>
                     </p>
                   </div>
                 </Form>

@@ -1,6 +1,6 @@
 import { authInstance, publicInstance, request, requestWithToken } from "@/utils/axios-http";
 
-export const register = async (data) => {
+export const registerAPI = async (data) => {
   try {
     const { staffCode, fullName, email, userName, password, role } = data;
     const respone = await request(publicInstance, {
@@ -32,6 +32,24 @@ export const verifyOTP = async (data) => {
       data: {
         userId,
         otp,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const resendOTP = async (data) => {
+  try {
+    const { userId, email, fullName } = data;
+    await request(publicInstance, {
+      url: "/user/resend-otp",
+      method: "post",
+      data: {
+        userId,
+        email,
+        fullName,
       },
     });
   } catch (error) {
