@@ -1,6 +1,6 @@
 import { authInstance, publicInstance, request, requestWithToken } from "@/utils/axios-http";
 
-export const register = async (data) => {
+export const registerAPI = async (data) => {
   try {
     const { staffCode, fullName, email, userName, password, role } = data;
     const respone = await request(publicInstance, {
