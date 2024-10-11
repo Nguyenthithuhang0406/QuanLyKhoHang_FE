@@ -24,3 +24,10 @@ export const registerValidation = Yup.object().shape({
     .required('Vui lòng chọn quyền'),
 });
 
+export const loginValidation = Yup.object().shape({
+  userName: Yup.string()
+    .required('Vui lòng nhập tên đăng nhập'),
+  password: Yup.string()
+    .required('Vui lòng nhập mật khẩu'),
+});
+

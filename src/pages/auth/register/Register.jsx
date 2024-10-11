@@ -64,7 +64,7 @@ const Register = () => {
                       type="text"
                       placeholder=""
                     />
-                    <ErrorMessage name="fullName" component='div' style={{"color": 'red', "fontSize": '12px'}} />
+                    <ErrorMessage name="fullName" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
 
                   </div>
 
@@ -121,23 +121,23 @@ const Register = () => {
                   <div className="register-role">
                     <div className="register-role-group">
                       <p>Nhân viên</p>
-                        <input
-                          type="radio"
-                          name="role"
-                          value="staff"
-                          onChange={() => setFieldValue("role", "staff")}
-                          checked={values.role === 'staff'}
-                        />
+                      <input
+                        type="radio"
+                        name="role"
+                        value="staff"
+                        onChange={() => setFieldValue("role", "staff")}
+                        checked={values.role === 'staff'}
+                      />
                     </div>
                     <div className="register-role-group">
                       <p>Quản lý</p>
-                        <input
-                          type="radio"
-                          name="role"
-                          value="manager"
-                          onChange={() => setFieldValue("role", "manager")}
-                          checked={values.role === 'manager'}
-                        />
+                      <input
+                        type="radio"
+                        name="role"
+                        value="manager"
+                        onChange={() => setFieldValue("role", "manager")}
+                        checked={values.role === 'manager'}
+                      />
                     </div>
                   </div>
 
