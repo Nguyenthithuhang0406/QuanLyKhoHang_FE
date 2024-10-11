@@ -70,7 +70,7 @@ export const login = async (data) => {
       },
     });
 
-    const { accessToken, refreshToken, user } = response.data.value;
+    const { accessToken, refreshToken, user } = response.data.data;
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
 

@@ -13,13 +13,13 @@
     width:  100% ;
     display: flex;
 }
-.Avatar img{
-    background-color: aqua;
+.navBar-avatar{
     border-radius: 50%;
     margin-top: 21px;
     margin-left: 25px;
     height: 70px;
     width: 70px;
+    border: 1px solid rgb(202, 200, 200);
 }
 .Avatar p{
     width: 100%;

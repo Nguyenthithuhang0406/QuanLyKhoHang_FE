@@ -10,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 import { registerValidation } from "@/utils/validation.js/userValidation";
 
 const Register = () => {
+
+  const [showPassword, setShowPassword] = useState(false);
+
   const initialValues = {
     fullName: "",
     email: "",
@@ -39,6 +42,10 @@ const Register = () => {
     navigate("/login");
   };
 
+  const tooglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <Header />
@@ -64,7 +71,7 @@ const Register = () => {
                       type="text"
                       placeholder=""
                     />
-                    <ErrorMessage name="fullName" component='div' style={{"color": 'red', "fontSize": '12px'}} />
+                    <ErrorMessage name="fullName" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
 
                   </div>
 
@@ -105,7 +112,7 @@ const Register = () => {
                     <ErrorMessage name="userName" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
                   </div>
 
-                  <div className="register-group-field">
+                  <div className="register-group-field register-eye">
                     <label className="register-label" htmlFor="password">
                       Mật khẩu
                     </label>
@@ -113,31 +120,32 @@ const Register = () => {
                     <Field
                       className="register-Field"
                       name="password"
-                      type="password"
+                      type={showPassword ? 'text' : 'password'}
                     />
+                    <i className={`register-eye-icon ${showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'}`} onClick={tooglePasswordVisibility}></i>
                     <ErrorMessage name="password" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
                   </div>
 
                   <div className="register-role">
                     <div className="register-role-group">
                       <p>Nhân viên</p>
-                        <input
-                          type="radio"
-                          name="role"
-                          value="staff"
-                          onChange={() => setFieldValue("role", "staff")}
-                          checked={values.role === 'staff'}
-                        />
+                      <input
+                        type="radio"
+                        name="role"
+                        value="staff"
+                        onChange={() => setFieldValue("role", "staff")}
+                        checked={values.role === 'staff'}
+                      />
                     </div>
                     <div className="register-role-group">
                       <p>Quản lý</p>
-                        <input
-                          type="radio"
-                          name="role"
-                          value="manager"
-                          onChange={() => setFieldValue("role", "manager")}
-                          checked={values.role === 'manager'}
-                        />
+                      <input
+                        type="radio"
+                        name="role"
+                        value="manager"
+                        onChange={() => setFieldValue("role", "manager")}
+                        checked={values.role === 'manager'}
+                      />
                     </div>
                   </div>
 
