@@ -108,6 +108,11 @@
 }
 
 .eye-icon{
-    margin-top: -27px;
-    margin-left: 90%;
+    position: absolute;
+    top: 52px !important;
+    right: 10px;
+}
+
+.login-eye{
+    position: relative;
 }

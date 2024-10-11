@@ -71,7 +71,7 @@ const Login = () => {
                     <Field name="userName" className="login-boder" type="text" />
                     <ErrorMessage name="userName" style={{ "color": 'red', "fontSize": '12px' }} component='div'/>
                   </div>
-                  <div className="login-s1">
+                  <div className="login-s1 login-eye">
                     <label htmlFor="password" className="login-label">
                       Mật khẩu
                     </label>
