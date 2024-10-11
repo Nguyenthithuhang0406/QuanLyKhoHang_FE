@@ -107,9 +107,9 @@
     font-size: 15px;
 }
 
-.eye-icon{
+.login-eye-icon{
     position: absolute;
-    top: 52px !important;
+    top: 52px ;
     right: 10px;
 }
 

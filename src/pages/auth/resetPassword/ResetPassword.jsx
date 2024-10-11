@@ -86,7 +86,7 @@ const ResetPassword = () => {
                     name="newPassword"
                     type={showPassword ? 'text' : 'password'}
                     />
-                    <i className={`eye-icon ${showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'}`} onClick={tooglePasswordVisibility}></i>
+                    <i className={`reset-eye-icon ${showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'}`} onClick={tooglePasswordVisibility}></i>
                     <ErrorMessage name="newPassword" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
                 </div>
 

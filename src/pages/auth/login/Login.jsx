@@ -80,7 +80,7 @@ const Login = () => {
                       className="login-boder"
                       type={showPassword ? 'text' : 'password'}
                     />
-                    <i className={`eye-icon ${showPassword ?'fa fa-eye' : 'fa fa-eye-slash'}`} onClick={tooglePasswordVisibility}></i>
+                    <i className={`login-eye-icon ${showPassword ?'fa fa-eye' : 'fa fa-eye-slash'}`} onClick={tooglePasswordVisibility}></i>
                     <ErrorMessage name="password" style={{ "color": 'red', "fontSize": '12px' }} component='div'/>
                   </div>
                   <div className="login-s2">

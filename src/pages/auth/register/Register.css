@@ -109,3 +109,13 @@
 .register-span:hover{
     color: rgb(3, 3, 65);
 }
+
+.register-eye{
+  position: relative;
+}
+
+.register-eye-icon{
+    position: absolute;
+    top: 35px ;
+    right: 10px;
+  }

@@ -10,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 import { registerValidation } from "@/utils/validation.js/userValidation";
 
 const Register = () => {
+
+  const [showPassword, setShowPassword] = useState(false);
+
   const initialValues = {
     fullName: "",
     email: "",
@@ -37,6 +40,10 @@ const Register = () => {
 
   const handleClickLogin = () => {
     navigate("/login");
+  };
+
+  const tooglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -105,7 +112,7 @@ const Register = () => {
                     <ErrorMessage name="userName" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
                   </div>
 
-                  <div className="register-group-field">
+                  <div className="register-group-field register-eye">
                     <label className="register-label" htmlFor="password">
                       Mật khẩu
                     </label>
@@ -113,8 +120,9 @@ const Register = () => {
                     <Field
                       className="register-Field"
                       name="password"
-                      type="password"
+                      type={showPassword ? 'text' : 'password'}
                     />
+                    <i className={`register-eye-icon ${showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'}`} onClick={tooglePasswordVisibility}></i>
                     <ErrorMessage name="password" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
                   </div>
 
