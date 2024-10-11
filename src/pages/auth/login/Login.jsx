@@ -69,7 +69,7 @@ const Login = () => {
                       Tên đăng nhập
                     </label>
                     <Field name="userName" className="login-boder" type="text" />
-                    <ErrorMessage name="userName" style={{ "color": 'red', "fontSize": '12px' }} component='div'/>
+                    <ErrorMessage name="userName" style={{ "color": 'red', "fontSize": '12px' }} component='div' />
                   </div>
                   <div className="login-s1 login-eye">
                     <label htmlFor="password" className="login-label">
@@ -80,8 +80,8 @@ const Login = () => {
                       className="login-boder"
                       type={showPassword ? 'text' : 'password'}
                     />
-                    <i className={`login-eye-icon ${showPassword ?'fa fa-eye' : 'fa fa-eye-slash'}`} onClick={tooglePasswordVisibility}></i>
-                    <ErrorMessage name="password" style={{ "color": 'red', "fontSize": '12px' }} component='div'/>
+                    <i className={`login-eye-icon ${showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'}`} onClick={tooglePasswordVisibility}></i>
+                    <ErrorMessage name="password" style={{ "color": 'red', "fontSize": '12px' }} component='div' />
                   </div>
                   <div className="login-s2">
                     <div className="login-check">

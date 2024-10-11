@@ -51,7 +51,7 @@ const ForgetPassword = () => {
 
             </Form>
           )}
-    </Formik>
+        </Formik>
       </div>
     </>
   )

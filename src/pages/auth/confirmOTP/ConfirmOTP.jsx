@@ -55,7 +55,7 @@ const ConfirmOTP = () => {
         <div className="otp-container">
           <img src={emailIcon} alt="Email Icon" />
           <h2 className='otp-h2'>Mã OTP gồm 6 chữ số đã được gửi đến bạn qua email</h2>
-          <input name='otp' value={otp} type="text" maxLength="6" placeholder="# # # # # #" onChange={(e) => setOtp(e.target.value)}/>
+          <input name='otp' value={otp} type="text" maxLength="6" placeholder="# # # # # #" onChange={(e) => setOtp(e.target.value)} />
           <p className='otp-p' onClick={handleResendOTP}>Gửi lại OTP</p>
           <button className='otp-button' onClick={handleSubmit}>Tiếp</button>
         </div>

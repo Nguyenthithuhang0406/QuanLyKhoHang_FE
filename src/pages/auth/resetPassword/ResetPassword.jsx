@@ -48,53 +48,53 @@ const ResetPassword = () => {
               onSubmit={handleSubmit}
             >
               {({ handleSubmit, errors }) => (
-              <Form onSubmit={handleSubmit}>
-                <h2 className="resetPassword-h2">ĐỔI MẬT KHẨU</h2>
-                <div className="resetPassword-group-field">
-                  <label className="resetPassword-Label" htmlFor="email">
-                    Email
-                  </label>{" "}
-                  <br />
-                  <Field
-                    className="resetPassword-Field"
-                    name="email"
-                    type="text"
-                  />
+                <Form onSubmit={handleSubmit}>
+                  <h2 className="resetPassword-h2">ĐỔI MẬT KHẨU</h2>
+                  <div className="resetPassword-group-field">
+                    <label className="resetPassword-Label" htmlFor="email">
+                      Email
+                    </label>{" "}
+                    <br />
+                    <Field
+                      className="resetPassword-Field"
+                      name="email"
+                      type="text"
+                    />
                     <ErrorMessage name="email" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
-                </div>
+                  </div>
 
-                <div className="resetPassword-group-field">
-                  <label className="resetPassword-Label" htmlFor="userName">
-                    Tên đăng nhập
-                  </label>{" "}
-                  <br />
-                  <Field
-                    className="resetPassword-Field"
-                    name="userName"
-                    type="text"
-                  />
+                  <div className="resetPassword-group-field">
+                    <label className="resetPassword-Label" htmlFor="userName">
+                      Tên đăng nhập
+                    </label>{" "}
+                    <br />
+                    <Field
+                      className="resetPassword-Field"
+                      name="userName"
+                      type="text"
+                    />
                     <ErrorMessage name="userName" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
-                </div>
+                  </div>
 
-                <div className="resetPassword-group-field reset-password">
-                  <label className="resetPassword-Label" htmlFor="newPassword">
-                    Mật khẩu mới
-                  </label>{" "}
-                  <br />
-                  <Field
-                    className="resetPassword-Field"
-                    name="newPassword"
-                    type={showPassword ? 'text' : 'password'}
+                  <div className="resetPassword-group-field reset-password">
+                    <label className="resetPassword-Label" htmlFor="newPassword">
+                      Mật khẩu mới
+                    </label>{" "}
+                    <br />
+                    <Field
+                      className="resetPassword-Field"
+                      name="newPassword"
+                      type={showPassword ? 'text' : 'password'}
                     />
                     <i className={`reset-eye-icon ${showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'}`} onClick={tooglePasswordVisibility}></i>
                     <ErrorMessage name="newPassword" component='div' style={{ "color": 'red', "fontSize": '12px' }} />
-                </div>
+                  </div>
 
-                <div>
-                  <button className="resetPassword-button" type="submit">
-                    Xong
-                  </button>
-                </div>
+                  <div>
+                    <button className="resetPassword-button" type="submit">
+                      Xong
+                    </button>
+                  </div>
                 </Form>
               )}
             </Formik>
