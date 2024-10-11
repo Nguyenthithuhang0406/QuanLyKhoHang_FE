@@ -7,7 +7,6 @@ import accountImage from '../../assets/images/account.png'
 const NavBar = () => {
   return ( 
     <>
-    <Header/>
     <div className='Frame'>
       <div className='Content'>
 
