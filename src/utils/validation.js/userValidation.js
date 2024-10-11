@@ -31,3 +31,12 @@ export const loginValidation = Yup.object().shape({
     .required('Vui lòng nhập mật khẩu'),
 });
 
+export const forgetPasswordValidation = Yup.object().shape({
+  email: Yup.string()
+    .email('Email không hợp lệ')
+    .required('Vui lòng nhập email'),
+  userName: Yup.string()
+    .required('Vui lòng nhập tên đăng nhập'),
+});
+
+
