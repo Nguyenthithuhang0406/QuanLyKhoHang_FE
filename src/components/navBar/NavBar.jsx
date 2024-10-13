@@ -29,6 +29,7 @@ const NavBar = () => {
             </div>
 
             <div className='p1'>
+              {/* xuat khi hang loi */}
               <p><i className="fa-solid fa-clipboard"></i>Xuất - nhập với NCC</p>
               <div className='p2'>
                 <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho  <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
@@ -45,6 +46,7 @@ const NavBar = () => {
             </div>
 
             <div className='p1'>
+              {/* xuat khi hang loi */}
               <p><i className="fa-solid fa-clipboard"></i>Xuất - nhập với Nội bộ</p>
               <div className='p2'>
                 <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
