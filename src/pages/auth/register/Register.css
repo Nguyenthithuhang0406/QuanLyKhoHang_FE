@@ -47,6 +47,7 @@
   border: 1px;
   border: 1px solid #dedbdb;
   outline: none;
+  padding: 0 20px;
 }
 
 .imagine {
@@ -74,6 +75,9 @@
   height: 20px;
   border: 1px solid darkgray;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .register-role-group {
@@ -88,6 +92,7 @@
   background: rgb(64, 61, 213);
   color: rgba(255, 255, 255, 1);
   border: none;
+  cursor: pointer;
 }
 
 .register-button:hover {
@@ -104,3 +109,13 @@
 .register-span:hover {
   color: rgb(3, 3, 65);
 }
+
+.register-eye{
+  position: relative;
+}
+
+.register-eye-icon{
+    position: absolute;
+    top: 35px ;
+    right: 10px;
+  }
