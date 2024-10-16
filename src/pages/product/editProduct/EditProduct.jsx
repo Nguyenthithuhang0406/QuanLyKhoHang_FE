@@ -42,10 +42,12 @@ const EditProduct = () => {
             <div className='unit'>
               <label htmlFor="dv">Đơn vị</label>
               <br />
+              <br />
               <input className='input_editPro' type="text" name="dv" id="dv" />
             </div>
             <div className='describe_editPro'> 
                 <label htmlFor="mt">Mô tả hàng hóa</label><br />
+                <br />
                 <textarea className='mota_editpro'/>
             </div>
             </div>
