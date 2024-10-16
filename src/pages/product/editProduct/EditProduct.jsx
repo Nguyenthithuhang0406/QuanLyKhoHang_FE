@@ -21,18 +21,18 @@ const EditProduct = () => {
             <div className='sub2_editPro'>
             <div className='idpro'>
                 <label htmlFor="mh">Mã hàng</label>
-                <div className='input_editPro'>
-                </div>
+                <input className='input_editPro' type="text" name="mh" id="mh"/>
+
             </div>
             <div className='namepro'>
                 <label htmlFor="th">Tên hàng</label>
-                <div className='input_editPro'>
-                </div>
+                <input className='input_editPro' type="text" name="th" id="th"/>
+
             </div>
             <div className='grouppro'>
                 <label htmlFor="nh">Nhóm hàng</label>
-                <div className='input_editPro'>
-                </div>
+                <input className='input_editPro' type="text" name="nh" id="nh"/>
+
             </div>
             <div className='image_prod'>
               <label htmlFor="">Hình ảnh</label> <br/>
@@ -44,14 +44,13 @@ const EditProduct = () => {
               <label htmlFor="dv">Đơn vị</label>
               <br />
               <br />
-              <div className='input_editPro'>
-              </div>
+              <input className='input_editPro' type="text" name="dv" id="dv" />
+
             </div>
             <div className='describe_editPro'> 
                 <label htmlFor="mt">Mô tả hàng hóa</label><br />
                 <br />
-                <div className='mota_editpro'>
-                  </div>
+                <textarea className='mota_editpro'/>
             </div>
             <div className='button_h3'>
               <button className='b1_inf' type="submit">Lưu</button>
