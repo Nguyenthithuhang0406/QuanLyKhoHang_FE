@@ -44,11 +44,13 @@ const InforProduct = () => {
             <div className='unit'>
               <label htmlFor="dv">Đơn vị</label>
               <br />
+              <br />
               <div className='input_editPro'>
               </div>
             </div>
             <div className='describe_editPro'> 
                 <label htmlFor="mt">Mô tả hàng hóa</label><br />
+                <br />
                 <div className='mota_editpro'>
                   </div>
             </div>

@@ -11,6 +11,8 @@
     padding-right: 35px;
     padding-top: 10px;
     /* height: 130vh; */
+    max-height: 90vh;
+    overflow:auto;
 }
 .fa-cloud-arrow-up{
    font-size: 100px;
@@ -112,4 +114,10 @@
 }
 .b2_inf{
     background-color: red;
+}
+.b1_inf:hover{
+    background-color: #08067f;
+}
+.b2_inf:hover{
+    background-color: rgb(201, 23, 23);
 }
