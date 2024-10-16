@@ -11,6 +11,8 @@
   position: absolute;
   top: 50px;
   left: 16%;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 .cABody .address {
   font-weight: bold;
@@ -19,7 +21,7 @@
   margin-top: 30px;
   margin-right: 20px;
   background-color: white;
-  width: 100%;
+  width: 97%;
   height: 95%;
   border-radius: 10px;
   font-size: 15px;
@@ -134,22 +136,21 @@
   background-color: rgb(255, 109, 109);
 }
 
-
-.agency_group{
+.agency_group {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.agency_p{
+.agency_p {
   width: 100px;
 }
 
-.createdAgency_div{
+.createdAgency_div {
   display: flex;
 }
 
-.agency_input{
+.agency_input {
   width: 500px;
   height: 40px;
   padding: 0 20px;
