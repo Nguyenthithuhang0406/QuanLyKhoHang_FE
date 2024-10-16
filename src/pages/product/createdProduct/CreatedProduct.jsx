@@ -6,6 +6,7 @@ import './CreatedProduct.css';
 const CreatedProduct = () => {
   return (
     <div>CreatedProduct</div>
+    
   )
 }
 
