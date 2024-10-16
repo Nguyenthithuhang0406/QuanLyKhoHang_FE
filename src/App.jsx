@@ -16,6 +16,7 @@ import ConfirmDeleteProduct from './components/confirmDeleteProduct/ConfirmDelet
 import ListProduct from './pages/product/listProduct/ListProduct';
 import CreateAgency from './pages/agency/createdAgency/CreateAgency';
 import ListAgency from './pages/agency/listAgency/ListAgency';
+import InforProduct from './pages/product/inforProduct/InforProduct';
 
 const App = () => {
   const routes = useRoutes([
@@ -66,6 +67,10 @@ const App = () => {
     {
       path: '/list-agency',
       element: <ListAgency/>
+    },
+    {
+      path: '/inforProduct',
+      element: <InforProduct/>
     }
   ]);
   return (
