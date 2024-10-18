@@ -16,7 +16,18 @@ import ConfirmDeleteProduct from './components/confirmDeleteProduct/ConfirmDelet
 import ListProduct from './pages/product/listProduct/ListProduct';
 import CreateAgency from './pages/agency/createdAgency/CreateAgency';
 import ListAgency from './pages/agency/listAgency/ListAgency';
-
+import InforProduct from './pages/product/inforProduct/InforProduct';
+import EditAgency from './pages/agency/editAgency/EditAgency';
+import CreatedImportSlip from './pages/importSlip/createdImportSlip/CreatedImportSlip';
+import InforImportSlip from './pages/importSlip/inforImportSlip/InforImportSlip';
+import EditImportSlip from './pages/importSlip/editImportSlip/EditImportSlip';
+import CreatedExportSlip from './pages/exportSlip/createdExportSlip/CreatedExportSlip';
+import EditExportSlip from './pages/exportSlip/editExportSlip/EditExportSlip';
+import InforExportSlip from './pages/exportSlip/inforExportSlip/InforExportSlip';
+import ListImportSlip from './pages/importSlip/listImportSlip/ListImportSlip';
+import ListExportSlip from './pages/exportSlip/listExportSlip/ListExportSlip';
+import UploadProductFromLocal from './components/uploadProduct/uploadProductFromLocal/UploadProductFromLocal';
+import UploadProductFromExcel from './components/uploadProduct/uploadProductFromExcel/UploadProductFromExcel';
 const App = () => {
   const routes = useRoutes([
     {
@@ -33,48 +44,100 @@ const App = () => {
     },
     {
       path: '/forgetPassword',
-      element: <ForgetPassword/>
+      element: <ForgetPassword />
     },
     {
       path: '/reset-password',
-      element: <ResetPassword/>
+      element: <ResetPassword />
     },
     {
       path: '/confirm-OTP',
-      element: <ConfirmOTP/>
+      element: <ConfirmOTP />
     },
     {
       path: '/created-product',
-      element: <CreatedProduct/>
+      element: <CreatedProduct />
     },
     {
       path: '/edit-product',
-      element: <EditProduct/>
+      element: <EditProduct />
     },
     {
       path: '/confirm-delete-product',
-      element: <ConfirmDeleteProduct/>
+      element: <ConfirmDeleteProduct />
     },
     {
       path: '/list-product',
-      element: <ListProduct/>
+      element: <ListProduct />
     },
     {
       path: '/createAgency',
-      element: <CreateAgency/>
+      element: <CreateAgency />
     },
     {
       path: '/list-agency',
-      element: <ListAgency/>
+      element: <ListAgency />
+    },
+    {
+      path: '/inforProduct',
+      element: <InforProduct />
+    },
+    {
+      path: '/edit-agency',
+      element: <EditAgency />
+    },
+    {
+      path: '/created-importSlip',
+      element: <CreatedImportSlip />
+    },
+    {
+      path: '/infor-importSlip',
+      element: <InforImportSlip />
+    },
+    {
+      path: '/edit-importSlip',
+      element: <EditImportSlip />
+    },
+    {
+      path: '/list-importSlip',
+      element: <ListImportSlip />
+    },
+    {
+      path: '/created-exportSlip',
+      element: <CreatedExportSlip />
+    },
+    {
+      path: '/edit-exportSlip',
+      element: <EditExportSlip />
+    },
+    {
+      path: '/infor-exportSlip',
+      element: <InforExportSlip />
+    },
+    {
+      path: '/list-exportSlip',
+      element: <ListExportSlip />
+    },
+    {
+      path: '/upload-local',
+      element: <UploadProductFromLocal />
+    },
+    {
+      path: '/upload-excel',
+      element: <UploadProductFromExcel />
+    },
+    {
+      path: '*',
+      element: <div>404: Page not found</div>
     }
   ]);
   return (
     <>
-      <ToastContainer/>
+      <ToastContainer />
       {
         routes
       }
-  </>
+    </>
   )
 }
 
