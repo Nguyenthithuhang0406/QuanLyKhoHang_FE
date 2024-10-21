@@ -30,12 +30,12 @@ const ListProduct = () => {
       <div className='listTable'>
           <table className='List'>
             <tr>
-              <th>STT</th>
-              <th>Tên hàng</th>
-              <th>Mã hàng</th>
-              <th>Nhóm hàng</th>
-              <th>Đơn vị tính</th>
-              <th>Đơn giá</th>
+              <th className='listProduct_th'>STT</th>
+              <th className='listProduct_th'>Tên hàng</th>
+              <th className='listProduct_th'>Mã hàng</th>
+              <th className='listProduct_th'>Nhóm hàng</th>
+              <th className='listProduct_th'>Đơn vị tính</th>
+              <th className='listProduct_th'>Đơn giá</th>
               <th className='center'>Thao tác</th>
             </tr>
             <tr>
