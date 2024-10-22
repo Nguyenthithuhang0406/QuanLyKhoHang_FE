@@ -33,13 +33,13 @@ const NavBar = () => {
               {/* xuat khi hang loi */}
               <p><i className="fa-solid fa-clipboard"></i>Xuất - nhập với NCC</p>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho  <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+                <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho  <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Phiếu xuất kho</p>
                 </div>
               </div>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+                <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Phiếu nhập kho</p>
                 </div>
@@ -50,14 +50,14 @@ const NavBar = () => {
               {/* xuat khi hang loi */}
               <p><i className="fa-solid fa-clipboard"></i>Xuất - nhập với Nội bộ</p>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+                <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Lệnh xuất kho</p>
                   <p>Phiếu xuất kho</p>
                 </div>
               </div>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+                <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Lệnh nhập kho</p>
                   <p>Phiếu nhập kho</p>
@@ -68,13 +68,13 @@ const NavBar = () => {
             <div className='p1'>
               <p><i className="fa-solid fa-clipboard"></i>Xuất - nhập với NVBH</p>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+                <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Phiếu xuất kho</p>
                 </div>
               </div>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+                <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Phiếu nhập kho</p>
                 </div>

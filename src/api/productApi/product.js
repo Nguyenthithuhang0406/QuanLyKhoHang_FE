@@ -23,7 +23,7 @@ export const createdProduct = async (data) => {
       data: formData,
     });
 
-    return product;
+    return product.data.data;
   } catch (error) {
     console.error(error);
     throw error;
@@ -48,7 +48,7 @@ export const updatedProduct = async (data, productId) => {
       },
     });
 
-    return updateProduct;
+    return updateProduct.data.data;
   } catch (error) {
     console.log(error);
     throw error;
@@ -74,7 +74,7 @@ export const getProductById = async (productId) => {
       method: "get",
     });
 
-    return product;
+    return product.data.data;
   } catch (error) {
     console.error(error);
     throw error;
@@ -88,7 +88,7 @@ export const getProducts = async (page, limit) => {
       method: "get",
     });
 
-    return products;
+    return products.data.data;
   } catch (error) {
     console.error(error);
     throw error;
@@ -102,7 +102,7 @@ export const searchProduct = async (productCode = '', productName = '', page, li
       method: "get",
     });
 
-    return products;
+    return products.data.data;
   } catch (error) {
     console.error(error);
     throw error;

@@ -1,11 +1,14 @@
 .list_body{
     background-color: #c2c2c2;
-    height: 1100px;
+    min-height: 90vh;
+    max-height: 90vh;
+    overflow: auto;
     width: 84%;
     padding: 15px 30px ;
     position: absolute;
     top: 50px;
     left: 16%;
+    padding-bottom: 60px;
 }
 .headerListP{
     position: relative;
@@ -165,7 +168,7 @@
     padding: 10px;
     background-color: #0B08AB;
     color: white;
-    border: 2px solid white;
+    /* border: 2px solid white; */
     text-align: center;
 }
 .list_body .listTable .List tr,td{
@@ -177,8 +180,8 @@
 .list_body .listTable .List .purple{
     background-color: white;
     color: black;
-    border: 1px solid #ff54ee;
-    border-left:1px solid #ff54ee ;
+    /* border: 1px solid #ff54ee; */
+    /* border-left:1px solid #9d9d9d; */
     text-align: center;
 }
 .list_body .listTable .List .purple .pen{
@@ -200,4 +203,9 @@
  }
 .list_body .listTable .List .center{
     text-align: center;
+}
+
+.start-l{
+    text-align: start;
+    padding: 0 10px 0 30px;
 }
