@@ -19,10 +19,10 @@ const ListProduct = () => {
             </div>
             <div className='box'>
             <span className='name'>Tên hàng hoá</span> 
-            < input type="text" className='iName' />
+            <input type="text" className='iName' />
             </div>
           </div>
-          <button className='flpButton'>Tìm kiếm <i class="fa-solid fa-magnifying-glass"></i></button>
+          <button className='flpButton'>Tìm kiếm <i class="fa-solid fa-magnifying-glass" style={{"color": "white"}}></i></button>
         </div>
        
       <button className='addButton'><i class="fa-solid fa-plus"></i>Thêm hàng hoá</button>

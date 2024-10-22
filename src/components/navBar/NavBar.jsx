@@ -1,13 +1,14 @@
 /* eslint-disable */
 import React from 'react'
 import { useSelector } from 'react-redux';
-
-import accountImage from '../../assets/images/account.png';
+import { useNavigate } from 'react-router-dom';
 
 import './NavBar.css';
+
 const NavBar = () => {
   const user = useSelector(state => state.user);
 
+  const navigate = useNavigate();
   return (
     <>
       <div className='Frame'>
@@ -97,7 +98,7 @@ const NavBar = () => {
               <p><i className="fa-solid fa-book"></i>Danh mục</p>
               <div className='p2'>
                 <p> <i className="fa-solid fa-chevron-right"></i>Nguồn hàng xuất/nhập</p>
-                <p> <i className="fa-solid fa-chevron-right"></i>Danh mục hàng hoá</p>
+                <p onClick={() => navigate('/list-product')}> <i className="fa-solid fa-chevron-right"></i>Danh mục hàng hoá</p>
                 <p> <i className="fa-solid fa-chevron-right"></i>Hợp đồng</p>
               </div>
             </div>
