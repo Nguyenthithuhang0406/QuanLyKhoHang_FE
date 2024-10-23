@@ -43,10 +43,13 @@
 }
 .createdProduct-s4{
     background-color: #c2c2c2;
-    width: 200px;
-    height: 200px;
-    text-align: center;
-    line-height: 200px;
+    width: 100px;
+    height: 100px;
+    /* text-align: center;
+    line-height: 200px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
     padding: 10px;
 }
@@ -72,6 +75,7 @@
     border-radius: 8px;
     border:1px solid gray;
     outline: none;
+    padding: 0 20px;
 }
 
 .input1{
@@ -81,6 +85,7 @@
     border-radius: 8px;
     border:1px solid gray;
     outline: none;
+    padding: 0px 20px;
 }
 .input2{
     /* margin-left: 40px; */
@@ -90,6 +95,7 @@
     border:1px solid gray;
     margin-top: 20px;
     outline: none;
+    padding: 0px 20px;
 }
 
 .fa-2xl{
@@ -98,8 +104,16 @@
 .createdProduct-s9{
     max-width: 600px;
     width: 520px;
-    min-height: 200px;
+    min-height: 100px;
     max-height: 300px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.createdProduct-s9:focus{
+    outline: 1px solid rgb(29, 148, 247);
+    border: none;
 }
 
 .createdProduct_description{
@@ -126,6 +140,7 @@
     height: 50px;
     border-radius: 12px;
     color: white;
+    margin-top: 20px;
 }
 .createdProduct-huy:hover{
     background-color: rgb(173, 3, 3);

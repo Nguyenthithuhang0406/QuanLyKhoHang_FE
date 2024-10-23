@@ -6,6 +6,7 @@ import NavBar from '@/components/navBar/NavBar'
 import './ListProduct.css';
 import { getProducts, searchProduct } from '@/api/productApi/product';
 import { Pagination } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const ListProduct = () => {
   const [listProducts, setListProducts] = useState([]);
@@ -14,11 +15,15 @@ const ListProduct = () => {
   const [total, setTotal] = useState(0);
   const [productCode, setProductCode] = useState("");
   const [productName, setProductName] = useState("");
+  const [slProduct, setSlProduct] = useState(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getListProducts = async () => {
       const res = await getProducts(page, limit);
       setTotal(res.totalResult);
+      setSlProduct(res.totalResult);
       setListProducts(res.products);
       localStorage.setItem("slProduct", res.totalResult);
     };
@@ -52,6 +57,11 @@ const ListProduct = () => {
     }
   };
 
+  const handleClickAdd = () => {
+    navigate("/created-product");
+    localStorage.setItem("slProduct", slProduct);
+  };
+
   return (
     <div>
       <Header className='headerListP' />
@@ -71,7 +81,7 @@ const ListProduct = () => {
           <button className='flpButton' onClick={handleSearch}>Tìm kiếm <i className="fa-solid fa-magnifying-glass" style={{ "color": "white" }}></i></button>
         </div>
 
-        <button className='addButton'><i className="fa-solid fa-plus"></i>Thêm hàng hoá</button>
+        <button className='addButton' onClick={handleClickAdd}><i className="fa-solid fa-plus"></i>Thêm hàng hoá</button>
 
         <div className='listTable'>
           <table className='List'>
