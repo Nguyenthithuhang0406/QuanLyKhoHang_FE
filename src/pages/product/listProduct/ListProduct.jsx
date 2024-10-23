@@ -62,6 +62,10 @@ const ListProduct = () => {
     localStorage.setItem("slProduct", slProduct);
   };
 
+  const handleClickPen = (productId) => {
+    navigate(`/inforProduct/${productId}`);
+  };
+
   return (
     <div>
       <Header className='headerListP' />
@@ -75,7 +79,7 @@ const ListProduct = () => {
             </div>
             <div className='box'>
               <span className='name'>Tên hàng hoá</span>
-              <input type="text" className='iName' name='productName' value={productName} onChange={handleChange}/>
+              <input type="text" className='iName' name='productName' value={productName} onChange={handleChange} />
             </div>
           </div>
           <button className='flpButton' onClick={handleSearch}>Tìm kiếm <i className="fa-solid fa-magnifying-glass" style={{ "color": "white" }}></i></button>
@@ -105,7 +109,7 @@ const ListProduct = () => {
                     <td>{product.productDVT}</td>
                     <td>{product.productPrice}</td>
                     <td className='purple'>
-                      <span className='pen'><i className="fa-solid fa-pen"></i></span>
+                      <span className='pen' onClick={() => handleClickPen(product._id)}><i className="fa-solid fa-pen"></i></span>
                       <span className='bin'><i className="fa-solid fa-trash"></i></span></td>
                   </tr>
                 ))

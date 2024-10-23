@@ -79,7 +79,7 @@ const App = () => {
       element: <ListAgency />
     },
     {
-      path: '/inforProduct',
+      path: '/inforProduct/:productId',
       element: <InforProduct />
     },
     {
