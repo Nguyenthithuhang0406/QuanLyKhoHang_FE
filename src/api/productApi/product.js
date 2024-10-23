@@ -35,7 +35,7 @@ export const updatedProduct = async (data, productId) => {
 
   try {
     const updateProduct = await requestWithToken(authInstance, {
-      url: `/product/updateProduct/${productId}`,
+      url: `/product/updatedProduct/${productId}`,
       method: "put",
       data: {
         productName,

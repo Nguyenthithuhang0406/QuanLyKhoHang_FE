@@ -6,12 +6,13 @@ import Header from '@/components/header/Header';
 import NavBar from '@/components/navBar/NavBar';
 import ip from '../../../assets/images/anhip.jpg';
 import { getProductById } from '@/api/productApi/product';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const InforProduct = () => {
 
   const [product, setProduct] = useState({});
   const { productId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getProduct = async () => {
@@ -22,6 +23,10 @@ const InforProduct = () => {
     console.log("product", product);
   }, []);
 
+  const handleClickEdit = () => {
+    navigate(`/edit-product/${productId}`);
+  };
+
   return (
     <>
       <Header className="header_editProd" />
@@ -29,7 +34,7 @@ const InforProduct = () => {
       <div className='container_editPro'>
         <div className='h1_editPro'>
           <p className='text_1'>Quản lí danh mục hàng hóa <span><i className="fa-solid fa-chevron-right"></i></span> <span>Xem hàng hóa</span></p>
-          <button type="submit" className='buton_h1'>Cập nhật thông tin</button>
+          <button type="submit" className='buton_h1' onClick={handleClickEdit}>Cập nhật thông tin</button>
         </div>
         <div className='h2_editPro'>
           <div className='sub1_editPro'>
@@ -57,7 +62,7 @@ const InforProduct = () => {
             </div>
             <div className='image_prod'>
               <label htmlFor="">Hình ảnh</label> <br />
-              <div style={{display: 'flex', flexWrap: 'wrap'}}>
+              <div style={{display: 'flex', flexWrap: 'wrap', gap: '10px'}}>
                 {
                   product.productMedia && product.productMedia.map((item, index) => (
                     <img className='image_ip' src={item} alt="" key={index} style={{width: '200px', height: '200px'}}/>
