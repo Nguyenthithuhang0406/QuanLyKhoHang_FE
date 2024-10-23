@@ -33,7 +33,11 @@ const InforProduct = () => {
       <NavBar />
       <div className='container_editPro'>
         <div className='h1_editPro'>
-          <p className='text_1'>Quản lí danh mục hàng hóa <span><i className="fa-solid fa-chevron-right"></i></span> <span>Xem hàng hóa</span></p>
+          <p className='text_1'>
+            <span onClick={() => navigate('/list-product')}>Quản lí danh mục hàng hóa</span>
+            <span>
+              <i className="fa-solid fa-chevron-right"/>
+              </span> <span>Xem hàng hóa</span></p>
           <button type="submit" className='buton_h1' onClick={handleClickEdit}>Cập nhật thông tin</button>
         </div>
         <div className='h2_editPro'>
@@ -44,7 +48,7 @@ const InforProduct = () => {
           <div className='sub2_editPro'>
             <div className='idpro'>
               <label htmlFor="mh">Mã hàng </label>
-              <div className='input_editPro' style={{display: 'flex', alignItems: 'center'}}>
+              <div className='input_editPro' style={{ display: 'flex', alignItems: 'center' }}>
                 {product.productCode}
               </div>
             </div>
@@ -62,10 +66,10 @@ const InforProduct = () => {
             </div>
             <div className='image_prod'>
               <label htmlFor="">Hình ảnh</label> <br />
-              <div style={{display: 'flex', flexWrap: 'wrap', gap: '10px'}}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                 {
                   product.productMedia && product.productMedia.map((item, index) => (
-                    <img className='image_ip' src={item} alt="" key={index} style={{width: '200px', height: '200px'}}/>
+                    <img className='image_ip' src={item} alt="" key={index} style={{ width: '200px', height: '200px' }} />
                   ))
                 }
               </div>

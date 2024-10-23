@@ -2,11 +2,13 @@
 import React, { useEffect, useState } from 'react'
 import Header from '@/components/header/Header'
 import NavBar from '@/components/navBar/NavBar'
+import { motion } from 'framer-motion'
 
 import './ListProduct.css';
 import { getProducts, searchProduct } from '@/api/productApi/product';
 import { Pagination } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import ConfirmDeleteProduct from '@/components/confirmDeleteProduct/ConfirmDeleteProduct';
 
 const ListProduct = () => {
   const [listProducts, setListProducts] = useState([]);
@@ -16,6 +18,9 @@ const ListProduct = () => {
   const [productCode, setProductCode] = useState("");
   const [productName, setProductName] = useState("");
   const [slProduct, setSlProduct] = useState(0);
+  const [isDeleteProduct, setIsDeleteProduct] = useState(false);
+  const [type, setType] = useState("deletedProduct");
+  const [deletedId, setDeletedId] = useState("");
 
   const navigate = useNavigate();
 
@@ -66,6 +71,15 @@ const ListProduct = () => {
     navigate(`/inforProduct/${productId}`);
   };
 
+  const handleClickBin = (productId) => {
+    setDeletedId(productId);
+    setIsDeleteProduct(true);
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteProduct(false);
+  };
+
   return (
     <div>
       <Header className='headerListP' />
@@ -110,7 +124,7 @@ const ListProduct = () => {
                     <td>{product.productPrice}</td>
                     <td className='purple'>
                       <span className='pen' onClick={() => handleClickPen(product._id)}><i className="fa-solid fa-pen"></i></span>
-                      <span className='bin'><i className="fa-solid fa-trash"></i></span></td>
+                      <span className='bin' onClick={() => handleClickBin(product._id)}><i className="fa-solid fa-trash"></i></span></td>
                   </tr>
                 ))
               }
@@ -126,6 +140,21 @@ const ListProduct = () => {
         </div>
 
       </div>
+      {
+        isDeleteProduct && (
+          <div className='overlay' onClick={handleCancelDelete}>
+            <motion.div
+              className='itemDelete'
+              onClick={(e) => e.stopPropagation()}
+              animate={{ opacity: 1, scal: 1 }}
+              initial={{ opacity: 0, scal: 0.5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ConfirmDeleteProduct type={type} onCancel={handleCancelDelete} id={deletedId} />
+            </motion.div>
+          </div>
+        )
+      }
     </div>
   )
 }

@@ -69,7 +69,8 @@ const EditProduct = () => {
       <NavBar />
       <div className='container_editPro'>
         <div className='h1_editPro'>
-          <p className='text_1'>Quản lí danh mục hàng hóa
+          <p className='text_1'>
+            <span onClick={() => navigate('/list-product')}>Quản lí danh mục hàng hóa</span>
             <span>
               <i className="fa-solid fa-chevron-right"></i>
             </span>

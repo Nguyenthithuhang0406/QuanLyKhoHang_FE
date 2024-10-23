@@ -100,7 +100,10 @@ const CreatedProduct = () => {
       <Header className="createdProduct-s0" />
       <NavBar />
       <div className='createdProduct-ss'>
-        <p className='createdProductheader'>Quản lý danh mục hàng hóa <span><i className="fa-solid fa-chevron-right"></i></span> Thêm hàng hóa</p>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <p className='createdProductheader' onClick={() => navigate('/list-product')} >Quản lý danh mục hàng hóa</p>
+          <p className='createdProductheader' style={{marginLeft: '-20px'}}><i className="fa-solid fa-chevron-right"></i> Thêm hàng hóa</p>
+        </div>
         <div className='createdProduct-s1'>
           <div className='createdProduct-s3'>
             <p>Thêm hàng hóa</p>
@@ -141,7 +144,7 @@ const CreatedProduct = () => {
           </div>
           <div className='createdProduct_description'>
             <p>Mô tả</p>
-            <textarea name="productDescription" id="" className='createdProduct-s9'  value={product.productDescription} onChange={handleChange} />
+            <textarea name="productDescription" id="" className='createdProduct-s9' value={product.productDescription} onChange={handleChange} />
           </div>
           <div className='createdProduct-button'>
             <button type='submit' className='createdProduct-luu' onClick={handleSubmit}>Lưu</button>
