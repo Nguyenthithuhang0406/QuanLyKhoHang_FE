@@ -14,10 +14,12 @@ const createAuthInstance = (baseURL) => {
 
   instance.interceptors.response.use(
     (response) => response, async (error) => {
+      console.log("error", error);
       if (error.response.status === 401) {
         try {
           //api refreshToken
           const data = await getRefreshToken();
+          console.log("data", data);
           localStorage.setItem('accessToken', data.accessToken);
           localStorage.setItem('refreshToken', data.refreshToken);
 

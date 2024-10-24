@@ -62,6 +62,7 @@
 .Menu .p1 .p2 p{
     margin-left: 0px;
     margin-top: 15px;
+    cursor: pointer;
 }
 .Menu .p1 .p2 .p3{
     margin-left: 10px;

@@ -1,13 +1,14 @@
 /* eslint-disable */
 import React from 'react'
 import { useSelector } from 'react-redux';
-
-import accountImage from '../../assets/images/account.png';
+import { useNavigate } from 'react-router-dom';
 
 import './NavBar.css';
+
 const NavBar = () => {
   const user = useSelector(state => state.user);
 
+  const navigate = useNavigate();
   return (
     <>
       <div className='Frame'>
@@ -32,13 +33,13 @@ const NavBar = () => {
               {/* xuat khi hang loi */}
               <p><i className="fa-solid fa-clipboard"></i>Xuất - nhập với NCC</p>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho  <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+                <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho  <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Phiếu xuất kho</p>
                 </div>
               </div>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+                <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Phiếu nhập kho</p>
                 </div>
@@ -49,14 +50,14 @@ const NavBar = () => {
               {/* xuat khi hang loi */}
               <p><i className="fa-solid fa-clipboard"></i>Xuất - nhập với Nội bộ</p>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+                <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Lệnh xuất kho</p>
                   <p>Phiếu xuất kho</p>
                 </div>
               </div>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+                <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Lệnh nhập kho</p>
                   <p>Phiếu nhập kho</p>
@@ -67,13 +68,13 @@ const NavBar = () => {
             <div className='p1'>
               <p><i className="fa-solid fa-clipboard"></i>Xuất - nhập với NVBH</p>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+                <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Phiếu xuất kho</p>
                 </div>
               </div>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i class="fa-solid fa-minus"></i></span></p>
+                <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Phiếu nhập kho</p>
                 </div>
@@ -97,7 +98,7 @@ const NavBar = () => {
               <p><i className="fa-solid fa-book"></i>Danh mục</p>
               <div className='p2'>
                 <p> <i className="fa-solid fa-chevron-right"></i>Nguồn hàng xuất/nhập</p>
-                <p> <i className="fa-solid fa-chevron-right"></i>Danh mục hàng hoá</p>
+                <p onClick={() => navigate('/list-product')}> <i className="fa-solid fa-chevron-right"></i>Danh mục hàng hoá</p>
                 <p> <i className="fa-solid fa-chevron-right"></i>Hợp đồng</p>
               </div>
             </div>
