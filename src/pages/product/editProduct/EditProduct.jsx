@@ -94,7 +94,10 @@ const EditProduct = () => {
             <div className='grouppro'>
               <label htmlFor="nh">Nhóm hàng</label>
               <input className='input_editPro' type="text" name="productGroup" id="nh" value={product.productGroup} onChange={handleChange} />
-
+            </div>
+            <div className='grouppro'>
+              <label htmlFor="nh">Giá</label>
+              <input className='input_editPro' type="number" name="productPrice" id="nh" value={product.productPrice} onChange={handleChange} />
             </div>
             <div className='image_prod'>
               <label htmlFor="">Hình ảnh</label> <br />

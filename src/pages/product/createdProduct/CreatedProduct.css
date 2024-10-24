@@ -4,7 +4,7 @@
 .createdProduct-ss{
     position: absolute;
     background-color: #d7d7d7;
-    height: 120vh;
+    height: 110vh;
     width: 82%;
     top: 50px;
     left: 18%;
@@ -12,7 +12,7 @@
  }
 .createdProduct-s1{
     /* height: 130vh; */
-    max-height: 100vh;
+    max-height: 90vh;
     overflow: auto;
     width: 95%;
     padding-bottom: 30px;

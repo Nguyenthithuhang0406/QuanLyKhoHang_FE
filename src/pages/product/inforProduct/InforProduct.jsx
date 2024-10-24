@@ -43,7 +43,7 @@ const InforProduct = () => {
         <div className='h2_editPro'>
           <div className='sub1_editPro'>
             <p className='text_sub1_editPro'>Thông tin hàng hóa</p>
-            <i className="fa-solid fa-x"></i>
+            <i className="fa-solid fa-x" onClick={() => navigate('/list-product')}></i>
           </div>
           <div className='sub2_editPro'>
             <div className='idpro'>
@@ -62,6 +62,12 @@ const InforProduct = () => {
               <label htmlFor="nh">Nhóm hàng</label>
               <div className='input_editPro' style={{ display: 'flex', alignItems: 'center' }}>
                 {product.productGroup}
+              </div>
+            </div>
+            <div className='grouppro'>
+              <label htmlFor="productPrice">Giá</label>
+              <div className='input_editPro' style={{ display: 'flex', alignItems: 'center' }}>
+                {product.productPrice}
               </div>
             </div>
             <div className='image_prod'>

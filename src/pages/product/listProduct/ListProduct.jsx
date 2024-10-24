@@ -64,7 +64,7 @@ const ListProduct = () => {
 
   const handleClickAdd = () => {
     navigate("/created-product");
-    localStorage.setItem("slProduct", slProduct);
+    // localStorage.setItem("slProduct", slProduct);
   };
 
   const handleClickPen = (productId) => {

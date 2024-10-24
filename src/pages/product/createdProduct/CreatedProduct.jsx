@@ -26,9 +26,11 @@ const CreatedProduct = () => {
 
   useEffect(() => {
     const setP = () => {
-      let code = localStorage.getItem("slProduct");
-      code = parseInt(code, 10) || 0;
-      setProduct({ ...product, productCode: `hang${code + 1}` });
+      // let code = localStorage.getItem("slProduct");
+      // code = parseInt(code, 10) || 0;
+      //mã code tự sinh gồm 6 số
+      let code = Math.floor(Math.random() * 1000000);
+      setProduct({ ...product, productCode: `hang${code}` });
     };
     setP();
   }, []);
@@ -141,6 +143,10 @@ const CreatedProduct = () => {
           <div className='createdProduct-s6'>
             <p className='span'>Đơn vị tính</p>
             <input type="text" className='input2' name='productDVT' value={product.productDVT} onChange={handleChange} />
+          </div>
+          <div className='createdProduct-s6'>
+            <p className='span'>Giá</p>
+            <input type="number" className='input2' name='productPrice' value={product.productPrice} onChange={handleChange} />
           </div>
           <div className='createdProduct_description'>
             <p>Mô tả</p>
