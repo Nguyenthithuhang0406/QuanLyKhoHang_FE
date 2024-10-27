@@ -97,7 +97,7 @@ const NavBar = () => {
             <div className='p1'>
               <p><i className="fa-solid fa-book"></i>Danh mục</p>
               <div className='p2'>
-                <p> <i className="fa-solid fa-chevron-right"></i>Nguồn hàng xuất/nhập</p>
+                <p onClick={() => navigate('/list-agency')}> <i className="fa-solid fa-chevron-right"></i>Nguồn hàng xuất/nhập</p>
                 <p onClick={() => navigate('/list-product')}> <i className="fa-solid fa-chevron-right"></i>Danh mục hàng hoá</p>
                 <p> <i className="fa-solid fa-chevron-right"></i>Hợp đồng</p>
               </div>
