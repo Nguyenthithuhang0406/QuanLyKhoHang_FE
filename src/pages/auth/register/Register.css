@@ -95,8 +95,8 @@
   cursor: pointer;
 }
 
-.register-button:hover{
-    background: rgb(9, 6, 183);
+.register-button:hover {
+  background: rgb(9, 6, 183);
 }
 .register-bonus {
   margin-top: 10px;
@@ -106,8 +106,8 @@
   color: blue;
 }
 
-.register-span:hover{
-    color: rgb(3, 3, 65);
+.register-span:hover {
+  color: rgb(3, 3, 65);
 }
 
 .register-eye{

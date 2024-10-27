@@ -1,0 +1,205 @@
+.header_createdExportSlip{
+    position: relative;
+}
+.container_createdExportSlip{
+    position: absolute;
+    top:50px;
+    left: 18%;
+    width: 80%;
+    background-color: #c2c2c2;
+    padding-left: 25px;
+    padding-right: 35px;
+    padding-top: 10px;
+    /* height: 100%; */
+    max-height: 90vh;
+    overflow:auto;
+}
+.createdExportSlip_0{
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+}
+.sub1_createdExportSlip{
+    background-color: white;
+    border-bottom-left-radius:5px ;
+    border-bottom-right-radius:5px ;
+    padding: 45px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.table_createdExportSlip{
+    border: 5px solid rgb(5, 5, 187);
+    width: 89%;
+    margin: auto;
+    margin-left: 70px;
+}
+.table1_createdExportSlip{
+    border: 5px solid gray;
+    width: 89%;
+    margin: auto;
+    margin-left: 70px;
+    background-color: #c2c2c2;
+    padding-left: 20px;
+}
+.table2_createdExportSlip{
+    border: 5px solid gray;
+    width: 89%;
+    margin: auto;
+    margin-left: 70px;
+    background-color: #c2c2c2;
+    padding-left: 40px;
+}
+.text_sub1_createdExportSlip{
+    text-align: center;
+    font-weight: bold;
+}
+.text_sub2_createdExportSlip{
+    font-weight: bold;
+    padding-left: 5px;
+    padding-bottom: 15px;
+
+}
+.input_createdExportSlip{
+    width: 300px;
+    height: 30px;
+}
+
+.input1_createdExportSlip{
+    max-width: 500px;
+    width: 300px;
+    min-height: 100px;
+    max-height: 200px;
+}
+.buton-createdExportSlip_2{
+    background-color: #0B08AB;
+    margin-left: 10px;
+    width: 120px;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
+}
+.buton-createdExportSlip_2:hover{
+    background-color: rgb(1, 1, 124);
+
+}
+.text_sub4_createdExportSlip{
+    padding-bottom: 70px;
+    padding-right: 90px;
+}
+.text_sub8_createdExportSlip{
+    padding-bottom: 70px;
+}
+.text_sub5_createdExportSlip{
+    padding-right: 50px;
+    padding-bottom: 15px;
+
+}
+.text_sub6_createdExportSlip{
+    padding-right: 65px;
+    padding-bottom: 15px;
+}
+.text_sub7_createdExportSlip{
+    padding-right: 42px;
+    padding-bottom: 15px;
+
+}
+.fa-trash {
+    color: red;
+}
+.fa-cloud-arrow-up{
+    background-color: blue;
+    font-size: 30px;
+    color: white;
+    
+}
+
+.fa-file-pen{
+    color: blue;
+ 
+}
+.fa-qrcode{
+    color: blue;
+}
+.text_sub9_createdExportSlip{
+    padding-left: 7%;
+
+}
+.tong_createdExportSlip{
+    font-weight: bold;
+}
+.input2_createdExportSlip{
+    width: 600px;
+    height: 30px;
+    border: 1px solid blue;
+    margin: 15px;
+}
+.input3_createdExportSlip{
+    font-weight: bold;
+
+}
+.input5_createdExportSlip{
+    font-weight: bold;
+
+}
+.input6_createdExportSlip{
+    width: 300px;
+    height: 30px;
+    border: 1px solid blue;
+    /* margin-left: 15px; */
+    margin-left: 20px;
+}
+.input7_createdExportSlip{
+    width: 600px;
+    height: 30px;
+    border: 1px solid blue;
+    margin: 15px;
+}
+.input4_createdExportSlip{
+    width: 300px;
+    height: 30px;
+    border: 1px solid blue;
+    margin-left: 15px;
+   
+}
+.sub10_createdExportSlip{
+    width: 320px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.createdExportSlip_button{
+    text-align: end;
+    padding-right: 50px;
+    margin-top: 20px;
+}
+.createdExportSlip_luu{
+    width: 150px;
+    margin-right: 50px;
+    background-color: blue;
+    border: none;
+    height: 50px;
+    border-radius: 12px;
+    color: white;
+
+}
+.createdExportSlip_huy{
+    width: 150px;
+    background-color: red;
+    border: none;
+    height: 50px;
+    border-radius: 12px;
+    color: white;
+}
+.createdExportSlip_huy:hover{
+    background-color: rgb(173, 3, 3);
+
+}
+.createdExportSlip_luu:hover{
+    background-color: rgb(4, 4, 168);
+
+}
+.submit_createdExportSlip_0{
+    padding-top: 30px;
+}

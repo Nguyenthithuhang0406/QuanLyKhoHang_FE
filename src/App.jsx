@@ -59,7 +59,7 @@ const App = () => {
       element: <CreatedProduct />
     },
     {
-      path: '/edit-product',
+      path: '/edit-product/:productId',
       element: <EditProduct />
     },
     {
@@ -69,7 +69,7 @@ const App = () => {
     {
       path: '/list-product',
       element: <ListProduct />
-    },
+    },  
     {
       path: '/createAgency',
       element: <CreateAgency />
@@ -79,7 +79,7 @@ const App = () => {
       element: <ListAgency />
     },
     {
-      path: '/inforProduct',
+      path: '/inforProduct/:productId',
       element: <InforProduct />
     },
     {
