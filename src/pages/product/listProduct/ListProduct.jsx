@@ -45,8 +45,8 @@ const ListProduct = () => {
               <td>Điện thoại </td>
               <td>Cái </td>
               <td>30.000.000</td>
-              <td className='purple'>
-              <span className='pen'><i class="fa-solid fa-pen"></i></span>
+              <td className='purple'><i class="fa-solid fa-pen"></i>
+              <span className='pen'></span>
               <span className='bin'><i class="fa-solid fa-trash"></i></span></td>
             </tr>
           </table>
