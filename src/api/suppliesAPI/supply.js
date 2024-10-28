@@ -1,10 +1,11 @@
-import { requestWithToken } from "@/utils/axios-http";
+import { authInstance, requestWithToken } from "@/utils/axios-http";
+
 
 export const createdSupply = async (data) => {
-  const { code, name, address, phone, email, respresentative, type } = data;
+  const { code, name, address, phone, email, representative, type } = data;
   try {
-    const supply = await requestWithToken({
-      url: "/createSupplies",
+    const supply = await requestWithToken(authInstance, {
+      url: "/supplies/createSupplies",
       method: "post",
       data: {
         code,
@@ -12,7 +13,7 @@ export const createdSupply = async (data) => {
         address,
         phone,
         email,
-        respresentative,
+        representative,
         type,
       },
     });
@@ -27,8 +28,8 @@ export const createdSupply = async (data) => {
 export const updatedSupply = async (data, supplyId) => {
   const { code, name, address, phone, email, respresentative, type } = data;
   try {
-    const updateSupply = await requestWithToken({
-      url: `/updateSupplies/${supplyId}`,
+    const updateSupply = await requestWithToken(authInstance, {
+      url: `/supplies/updateSupplies/${supplyId}`,
       method: "put",
       data: {
         code,
@@ -50,8 +51,8 @@ export const updatedSupply = async (data, supplyId) => {
 
 export const deleteSupply = async (type, supplyId) => {
   try {
-    await requestWithToken({
-      url: `/deleteSupplies/${supplyId}`,
+    await requestWithToken(authInstance, {
+      url: `/supplies/deleteSupplies/${supplyId}`,
       method: "delete",
       data: {
         type,
@@ -63,14 +64,11 @@ export const deleteSupply = async (type, supplyId) => {
   }
 };
 
-export const getSupplyById = async (type,supplyId) => {
+export const getSupplyById = async (type, supplyId) => {
   try {
-    const supply = await requestWithToken({
-      url: `/getSupplyById/${supplyId}`,
+    const supply = await requestWithToken(authInstance, {
+      url: `/supplies/getSupplyById/${type}/${supplyId}`,
       method: "get",
-      data: {
-        type,
-      },
     });
 
     return supply.data.data;
@@ -82,8 +80,8 @@ export const getSupplyById = async (type,supplyId) => {
 
 export const getSupplies = async (limit, page) => {
   try {
-    const supplies = await requestWithToken({
-      url: `/getSupplies?page=${page}&limit=${limit}`,
+    const supplies = await requestWithToken(authInstance, {
+      url: `/supplies/getSupplies?page=${page}&limit=${limit}`,
       method: "get",
     });
 
@@ -94,10 +92,10 @@ export const getSupplies = async (limit, page) => {
   }
 }
 
-export const searchSupply = async (code="", name="", phone= "",type,  page, limit) => {
+export const searchSupply = async (code = "", name = "", phone = "", type = "", page, limit) => {
   try {
-    const supplies = await requestWithToken({
-      url: `/searchSupply?code=${code}&name=${name}&phone=${phone}&type=${type}&page=${page}&limit=${limit}`,
+    const supplies = await requestWithToken(authInstance, {
+      url: `/supplies/searchSupply?code=${code}&name=${name}&phone=${phone}&type=${type}&page=${page}&limit=${limit}`,
       method: "get",
     });
 

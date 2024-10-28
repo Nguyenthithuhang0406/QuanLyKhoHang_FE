@@ -4,8 +4,9 @@ import React from 'react'
 import './ConfirmDeleteProduct.css';
 import { deleteProduct } from '@/api/productApi/product';
 import { toast } from 'react-toastify';
+import { deleteSupply } from '@/api/suppliesAPI/supply';
 
-const ConfirmDeleteProduct = ({ type, onCancel, id }) => {
+const ConfirmDeleteProduct = ({ type, onCancel, id, isRefresh, setIsRefresh }) => {
   const handleAgree = async () => {
     if (type === "deletedProduct") {
       try {
@@ -16,6 +17,18 @@ const ConfirmDeleteProduct = ({ type, onCancel, id }) => {
         console.log(error);
       }
     }
+
+    if (type === "agency" || type === "provider") {
+      try {
+        await deleteSupply(type, id);
+        onCancel();
+        toast.success("Xoá nguồn hàng thành công");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    setIsRefresh(!isRefresh);
   };
 
   return (

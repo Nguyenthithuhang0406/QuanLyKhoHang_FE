@@ -17,7 +17,6 @@ import ListProduct from './pages/product/listProduct/ListProduct';
 import CreateAgency from './pages/agency/createdAgency/CreateAgency';
 import ListAgency from './pages/agency/listAgency/ListAgency';
 import InforProduct from './pages/product/inforProduct/InforProduct';
-import EditAgency from './pages/agency/editAgency/EditAgency';
 import CreatedImportSlip from './pages/importSlip/createdImportSlip/CreatedImportSlip';
 import InforImportSlip from './pages/importSlip/inforImportSlip/InforImportSlip';
 import EditImportSlip from './pages/importSlip/editImportSlip/EditImportSlip';
@@ -28,6 +27,7 @@ import ListImportSlip from './pages/importSlip/listImportSlip/ListImportSlip';
 import ListExportSlip from './pages/exportSlip/listExportSlip/ListExportSlip';
 import UploadProductFromLocal from './components/uploadProduct/uploadProductFromLocal/UploadProductFromLocal';
 import UploadProductFromExcel from './components/uploadProduct/uploadProductFromExcel/UploadProductFromExcel';
+import InforAgency from './pages/agency/editAgency/InforAgency';
 const App = () => {
   const routes = useRoutes([
     {
@@ -83,8 +83,8 @@ const App = () => {
       element: <InforProduct />
     },
     {
-      path: '/edit-agency',
-      element: <EditAgency />
+      path: '/infor-agency/:type/:supplyId',
+      element: <InforAgency />
     },
     {
       path: '/created-importSlip',
