@@ -78,7 +78,7 @@ const InforAgency = () => {
                 className="input_editAgency"
                 style={{ display: "flex", alignItems: "center" }}
               >
-                {supply.providerRepresentative || supply.agencyRepresentative}
+                {supply.representative}
               </div>
             </div>
             <div className="groupAgency">
