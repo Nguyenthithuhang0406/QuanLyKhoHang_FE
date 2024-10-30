@@ -49,7 +49,7 @@ export const updateStatusImportSlip = async (importSlipId, status) => {
 
 export const getImportSlipByType = async (type, page, limit) => {
   const res = await requestWithToken(authInstance, {
-    url: `/importSlip/${type}?page=${page}&limit=${limit}`,
+    url: `/importSlip?type=${type}&page=${page}&limit=${limit}`,
     method: "get",
   });
 

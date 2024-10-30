@@ -35,13 +35,13 @@ const NavBar = () => {
               <div className='p2'>
                 <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho  <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
-                  <p>Phiếu xuất kho</p>
+                  <p >Phiếu xuất kho</p>
                 </div>
               </div>
               <div className='p2'>
                 <p> <i className="fa-solid fa-chevron-right"></i>Nhập kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
-                  <p>Phiếu nhập kho</p>
+                  <p onClick={() => navigate(`/list-importSlip/Provider`)}>Phiếu nhập kho</p>
                 </div>
               </div>
             </div>

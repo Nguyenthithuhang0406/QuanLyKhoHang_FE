@@ -1,10 +1,45 @@
 /* eslint-disable */
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./ListImportSlip.css";
 import Header from "@/components/header/Header";
 import NavBar from "@/components/navBar/NavBar";
+import { useParams } from "react-router-dom";
+import { getImportSlipByType } from "@/api/importSlipApi/importSlip";
+import { Pagination } from "antd";
 const ListImportSlip = () => {
+
+  const { type } = useParams();
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [importSlips, setImportSlips] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const getListImportSlip = async () => {
+      const res = await getImportSlipByType(type, page, limit);
+      setImportSlips(res.importSlip);
+      setTotal(res.totalResult);
+      console.log(res.importSlip);
+    };
+    getListImportSlip();
+  }, []);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
+  }
+
+  const handleChangePage = (page) => {
+    setPage(page);
+  };
+
   return (
     <>
       <Header className="ListImportSlip" />
@@ -40,7 +75,7 @@ const ListImportSlip = () => {
           </div>
           <div className="sub_2_ListImportSlip">
             <span>
-              Tìm kiếm <i class="fa fa-search" aria-hidden="true"></i>
+              Tìm kiếm <i className="fa fa-search" aria-hidden="true"></i>
             </span>
           </div>
         </div>
@@ -49,376 +84,59 @@ const ListImportSlip = () => {
         </div>
         <div className="table_ListImportSlip">
           <table className="table2_ListImportSlip">
-            <tr className="ListImportSlip_tr">
-              <th className="ListImportSlip_th_1">STT</th>
-              <th className="ListImportSlip_th">Mã phiếu</th>
-              <th className="ListImportSlip_th">Nguồn nhập</th>
-              <th className="ListImportSlip_th">Giá trị</th>
-              <th className="ListImportSlip_th">Thời gian</th>
-              <th className="ListImportSlip_th">Tình trạng</th>
-              <th className="ListImportSlip_th">Thao tác</th>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp A</td>
-              <td>50.000.000</td>
-              <td>13/11/2022 15:30</td>
-              <td>
-                <span className="button1_ListImportSlip">Chờ duyệt</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp B</td>
-              <td>50.000.000</td>
-              <td>13/11/2022 11:09</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp C</td>
-              <td>50.000.000</td>
-              <td>12/11/2022 14:30</td>
-              <td>
-                <span className="button1_ListImportSlip">Chờ duyệt</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp A</td>
-              <td>50.000.000</td>
-              <td>12/11/2022 12:30</td>
-              <td>
-                <span className="button3_ListImportSlip">Từ chối</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp D</td>
-              <td>50.000.000</td>
-              <td>12/11/2022 09:30</td>
-              <td>
-                <span className="button_ListImportSlip">Đã duyệt</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp B</td>
-              <td>50.000.000</td>
-              <td>11/11/2022 15:30</td>
-              <td>
-                <span className="button_ListImportSlip">Đã duyệt</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp A</td>
-              <td>50.000.000</td>
-              <td>10/11/2022 16:08</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp E</td>
-              <td>50.000.000</td>
-              <td>10/11/2022 15:05</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>9</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp E</td>
-              <td>50.000.000</td>
-              <td>10/11/2022 09:55</td>
-              <td>
-                <span className="button3_ListImportSlip">Từ chối</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp A</td>
-              <td>50.000.000</td>
-              <td>10/11/2022 08:30</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>11</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp A</td>
-              <td>50.000.000</td>
-              <td>09/11/2022 17:27</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>12</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp C</td>
-              <td>50.000.000</td>
-              <td>09/11/2022 07:30</td>
-              <td>
-                <span className="button4_ListImportSlip">Hoàn hàng</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>13</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp F</td>
-              <td>50.000.000</td>
-              <td>08/11/2022 15:30</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>14</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp B</td>
-              <td>50.000.000</td>
-              <td>08/11/2022 12:06</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>15</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp A</td>
-              <td>50.000.000</td>
-              <td>07/11/2022 09:30</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>16</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp E</td>
-              <td>50.000.000</td>
-              <td>07/11/2022 09:30</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>17</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp D</td>
-              <td>50.000.000</td>
-              <td>06/11/2022 14:30</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>18</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp C</td>
-              <td>50.000.000</td>
-              <td>02/11/2022 18:30</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>19</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp B</td>
-              <td>50.000.000</td>
-              <td>02/11/2022 12:30</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>20</td>
-              <td>XXXXX </td>
-              <td>Nhà cung cấp A</td>
-              <td>50.000.000</td>
-              <td>02/11/2022 07:30</td>
-              <td>
-                <span className="button2_ListImportSlip">Đã nhập</span>
-              </td>
-              <td className="purple">
-                <span className="pen_ListImportSlip">
-                  <i class="fa-solid fa-pen"></i>
-                </span>
-                <span className="bin_ListImportSlip">
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-              </td>
-            </tr>
+            <tbody>
+              <tr className="ListImportSlip_tr">
+                <th className="ListImportSlip_th_1">STT</th>
+                <th className="ListImportSlip_th">Mã phiếu</th>
+                <th className="ListImportSlip_th_2">Nguồn nhập</th>
+                <th className="ListImportSlip_th">Giá trị</th>
+                <th className="ListImportSlip_th">Thời gian</th>
+                <th className="ListImportSlip_th">Tình trạng</th>
+                <th className="ListImportSlip_th">Thao tác</th>
+              </tr>
+              {
+                importSlips.length > 0 && importSlips.map((importSlip, index) => (
+                  <tr key={importSlip._id}>
+                    <td className="ListImportSlip_item">{ (page - 1) * limit + index + 1}</td>
+                    <td className="ListImportSlip_item">{importSlip.importSlipCode} </td>
+                    <td className="ListImportSlip_item_1">{importSlip.providerId?.providerName}</td>
+                    <td className="ListImportSlip_item">{importSlip.importPrice}</td>
+                    <td className="ListImportSlip_item">{formatDate(importSlip.createdAt)}</td>
+                    <td className="ListImportSlip_item">
+                      <select
+                        className={importSlip.status === "PENDING" ? "button1_ListImportSlip" : (importSlip.status === "DONE" ? "button2_ListImportSlip" : (importSlip.status === "REJECTED" ? "button3_ListImportSlip" : (importSlip.status === "CONFIRMED" ? "button_ListImportSlip" : "")))}
+                      >
+                        <option
+                          className={importSlip.status === "PENDING" ? "button1_ListImportSlip" : (importSlip.status === "DONE" ? "button2_ListImportSlip" : (importSlip.status === "REJECTED" ? "button3_ListImportSlip" : (importSlip.status === "CONFIRMED" ? "button_ListImportSlip" : "")))}
+                          value={importSlip.status}>
+                          {importSlip.status === "PENDING" ? "Chờ duyệt" : (importSlip.status === "DONE" ? "Đã nhập" : (importSlip.status === "REJECTED" ? "Từ chối" : (importSlip.status === "CONFIRMED" ? "Đã duyệt" : "")))}
+                        </option>
+                        <option className="button1_ListImportSlip" value="PENDING">Chờ duyệt</option>
+                        <option className="button2_ListImportSlip" value="DONE">Đã nhập</option>
+                        <option className="button3_ListImportSlip" value="REJECTED">Từ chối</option>
+                        <option className="button_ListImportSlip" value="CONFIRMED">Đã duyệt</option>
+                      </select>
+                    </td>
+                    <td className="purple">
+                      <span className="pen_ListImportSlip">
+                        <i className="fa-solid fa-pen"></i>
+                      </span>
+                      <span className="bin_ListImportSlip">
+                        <i className="fa-solid fa-trash"></i>
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
           </table>
+          <Pagination
+            total={total}
+            pageSize={limit}
+            current={page}
+            onChange={handleChangePage}
+            style={{ "position": "absolute", "bottom": "50px", "right": "50px", "position": "fixed" }}
+          />
         </div>
       </div>
     </>

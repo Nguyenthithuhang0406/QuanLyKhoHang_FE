@@ -99,7 +99,7 @@ const App = () => {
       element: <EditImportSlip />
     },
     {
-      path: '/list-importSlip',
+      path: '/list-importSlip/:type',
       element: <ListImportSlip />
     },
     {
