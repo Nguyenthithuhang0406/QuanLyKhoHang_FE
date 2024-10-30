@@ -71,6 +71,10 @@ const ListImportSlip = () => {
                 <option value="">Đã duyệt</option>
                 <option value="">Hoàn hàng</option>
               </select>
+              <span className="date_ListImportSlip1">Từ ngày</span>
+              <input type="date" className="date_ListImportSlip"/>
+              <span className="date_ListImportSlip2">Đến ngày</span>
+              <input type="date" className="date_ListImportSlip3"/>
             </div>
           </div>
           <div className="sub_2_ListImportSlip">
