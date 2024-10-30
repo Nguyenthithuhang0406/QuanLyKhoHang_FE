@@ -3,7 +3,7 @@
     background-color: #ffffff;
     max-height: 90vh;
     position: relative;
-    z-index: 20;
+    z-index: 9;
     overflow: auto;
 }
 .Frame::-webkit-scrollbar{

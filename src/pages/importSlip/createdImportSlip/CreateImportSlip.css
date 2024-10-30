@@ -286,3 +286,11 @@
     color: white;
     cursor: pointer;
 }
+
+.item-upload{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90vh;
+}
