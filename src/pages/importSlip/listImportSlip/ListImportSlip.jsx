@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import "./ListImportSlip.css";
 import Header from "@/components/header/Header";
 import NavBar from "@/components/navBar/NavBar";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getImportSlipByType } from "@/api/importSlipApi/importSlip";
 import { Pagination } from "antd";
 const ListImportSlip = () => {
@@ -14,6 +14,8 @@ const ListImportSlip = () => {
   const [limit, setLimit] = useState(10);
   const [importSlips, setImportSlips] = useState([]);
   const [total, setTotal] = useState(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getListImportSlip = async () => {
@@ -72,9 +74,9 @@ const ListImportSlip = () => {
                 <option value="">Hoàn hàng</option>
               </select>
               <span className="date_ListImportSlip1">Từ ngày</span>
-              <input type="date" className="date_ListImportSlip"/>
+              <input type="date" className="date_ListImportSlip" placeholder=""/>
               <span className="date_ListImportSlip2">Đến ngày</span>
-              <input type="date" className="date_ListImportSlip3"/>
+              <input type="date" className="date_ListImportSlip3" placeholder=""/>
             </div>
           </div>
           <div className="sub_2_ListImportSlip">
@@ -84,7 +86,7 @@ const ListImportSlip = () => {
           </div>
         </div>
         <div className="sub_3_ListImportSlip">
-          <p>+ Tạo phiếu nhập kho</p>
+          <p onClick={() => navigate(`/created-importSlip/Provider`)}>+ Tạo phiếu nhập kho</p>
         </div>
         <div className="table_ListImportSlip">
           <table className="table2_ListImportSlip">

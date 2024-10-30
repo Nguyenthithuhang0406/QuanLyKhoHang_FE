@@ -1,19 +1,30 @@
 /* eslint-disable */
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
 import Header from '@/components/header/Header'
 import NavBar from '@/components/navBar/NavBar'
-import React from 'react'
-
 import './CreateImportSlip.css';
+import UploadProductFromLocal from '@/components/uploadProduct/uploadProductFromLocal/UploadProductFromLocal';
 const CreatedImportSlip = () => {
+  const [showUploadFromLocal, setShowUploadFromLocal] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleCancelUploadLocal = () => {
+    setShowUploadFromLocal(false);
+  };
+
   return (
     <div>
       <Header className='headerListP' />
       <NavBar />
       <div className='cis-body'>
-        <div className='cis-address'>Xuất-nhập với NCC &gt; Tạo mới phiếu nhập kho</div>
+        <div className='cis-address'><span onClick={() => navigate(`/list-importSlip/Provider`)}>Xuất-nhập với NCC </span> &gt; Tạo mới phiếu nhập kho</div>
         <div className='cis-addbutton'>
           <button>+Thêm hàng từ File ngoài</button>
-          <button>+Thêm hàng từ hệ thống</button>
+          <button onClick={() => setShowUploadFromLocal(true)}>+Thêm hàng từ hệ thống</button>
         </div>
         <div className='cis-frame'>
           <div className='cis-title'>PHIẾU NHẬP KHO</div>
@@ -112,6 +123,20 @@ const CreatedImportSlip = () => {
           <div className='cis-button'><button className='cis-cancel'>Huỷ</button><button className='cis-save'>Lưu</button></div>
         </div>
       </div>
+
+      {showUploadFromLocal && (
+        <div className='overlay' onClick={handleCancelUploadLocal}>
+          <motion.div
+            className='item-upload'
+            onClick={(e) => e.stopPropagation()}
+            animate={{ opacity: 1, scal: 1 }}
+            initial={{ opacity: 0, scal: 0.5 }}
+            transition={{ duration: 0.3 }}
+          >
+            <UploadProductFromLocal onCancel={ handleCancelUploadLocal} />
+          </motion.div>
+        </div>
+      )}
     </div>
   )
 }

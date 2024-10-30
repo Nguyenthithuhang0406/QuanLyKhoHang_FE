@@ -87,7 +87,7 @@ const App = () => {
       element: <InforAgency />
     },
     {
-      path: '/created-importSlip',
+      path: '/created-importSlip/:type',
       element: <CreatedImportSlip />
     },
     {
