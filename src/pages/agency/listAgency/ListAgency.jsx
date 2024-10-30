@@ -31,7 +31,7 @@ const ListAgency = () => {
       try {
         const res = await getSupplies(limit, page);
         setSupplies(res.supplies);
-        setTotal(res.supplies.length);
+        setTotal(res.totalResult);
       } catch (error) {
         console.error(error);
       }
@@ -153,7 +153,7 @@ const ListAgency = () => {
             {
               supplies.length > 0 ? supplies.map((supply, index) => (
                 <div className="table-row" key={supply._id}>
-                  <div className="table-cell_1">{(page-1) * limit + index + 1}</div>
+                  <div className="table-cell_1">{(page - 1) * limit + index + 1}</div>
                   <div className="table-cell nameSupply" onClick={() => handleClickName(supply._id, supply.providerName ? "provider" : "agency")}>{supply.providerName || supply.agencyName}</div>
                   <div className="table-cell_1">{supply.providerName ? "Nhà cung cấp" : "Đại lý"}</div>
                   <div className="table-cell_1">{supply.providerCode || supply.agencyCode}</div>
@@ -177,6 +177,7 @@ const ListAgency = () => {
           />
         </div>
       </div>
+
       {
         isDelete && (
           <div className='overlay' onClick={handleCancelDelete}>
