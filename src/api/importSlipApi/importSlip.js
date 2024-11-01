@@ -57,10 +57,10 @@ export const getImportSlipByType = async (type, page, limit) => {
   return res.data.data;
 }
 
-export const searchImportSlip = async (importSlipCode="", providerId="", agencyId="",customerId="", status="", timeStart, timeEnd, page, limit) => {
+export const searchImportSlip = async (importSlipCode="", providerId="", agencyId="",customerId="", status="", timeStart, timeEnd, page, limit, type) => {
   const res = await requestWithToken(authInstance, {
-    url: `/importSlip/searchImportSlips?page=${page}&limit=${limit}&importSlipCode=${importSlipCode}&providerId=${providerId}&agencyId=${agencyId}&customerId=${customerId}&status=${status}&timeStart=${timeStart}&timeEnd=${timeEnd}`,
-    method: "post",
+    url: `/importSlip/searchImportSlips?page=${page}&limit=${limit}&importSlipCode=${importSlipCode}&providerId=${providerId}&agencyId=${agencyId}&customerId=${customerId}&status=${status}&timeStart=${timeStart}&timeEnd=${timeEnd}&type=${type}`,
+    method: "get",
   });
 
   return res.data.data;

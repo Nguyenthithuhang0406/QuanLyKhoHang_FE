@@ -5,8 +5,9 @@ import "./ListImportSlip.css";
 import Header from "@/components/header/Header";
 import NavBar from "@/components/navBar/NavBar";
 import { useNavigate, useParams } from "react-router-dom";
-import { getImportSlipByType } from "@/api/importSlipApi/importSlip";
+import { getImportSlipByType, searchImportSlip } from "@/api/importSlipApi/importSlip";
 import { Pagination } from "antd";
+import { searchSupply } from "@/api/suppliesAPI/supply";
 const ListImportSlip = () => {
 
   const { type } = useParams();
@@ -15,6 +16,24 @@ const ListImportSlip = () => {
   const [importSlips, setImportSlips] = useState([]);
   const [total, setTotal] = useState(0);
 
+  const [inforSearch, setInforSearch] = useState({
+    importSlipCode: "",
+    providerId: "",
+    status: "",
+    timeStart: "",
+    timeEnd: "",
+  });
+
+  const [listProvider, setListProvider] = useState([]);
+  useEffect(() => {
+    const getProvider = async () => {
+      const res = await searchSupply("", "", "", "provider", 1, 100);
+      setListProvider(res.supplies);
+    };
+
+    getProvider();
+  }, []);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,10 +41,17 @@ const ListImportSlip = () => {
       const res = await getImportSlipByType(type, page, limit);
       setImportSlips(res.importSlip);
       setTotal(res.totalResult);
-      console.log(res.importSlip);
     };
     getListImportSlip();
   }, []);
+
+  const handleChangeFieldSearch = (e) => {
+    const { name, value } = e.target;
+    setInforSearch({
+      ...inforSearch,
+      [name]: value,
+    });
+  };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -45,6 +71,32 @@ const ListImportSlip = () => {
   const formatCurrency = (value) => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
   };
+
+  const handleSearch = async () => {
+    const data = {
+      importSlipCode: inforSearch.importSlipCode,
+      providerId: inforSearch.providerId,
+      status: inforSearch.status,
+      timeStart: inforSearch.timeStart ? new Date(inforSearch.timeStart).toISOString() : "",
+      timeEnd: inforSearch.timeEnd ? new Date(inforSearch.timeEnd).toISOString() : "",
+      type: "Provider",
+    };
+
+    try {
+      const res = await searchImportSlip(data.importSlipCode, data.providerId, "", "", data.status, data.timeStart, data.timeEnd, page, limit, data.type);
+      setImportSlips(res.importSlips);
+      setTotal(res.totalResult);
+      setInforSearch({
+        importSlipCode: "",
+        providerId: "",
+        status: "",
+        timeStart: "",
+        timeEnd: "",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <Header className="ListImportSlip" />
@@ -54,35 +106,33 @@ const ListImportSlip = () => {
           <div className="sub_1_ListImportSlip">
             <div>
               <span>Mã phiếu</span>
-              <input type="text" className="input_ListImportSlip" />
+              <input type="text" className="input_ListImportSlip" value={inforSearch.importSlipCode} name="importSlipCode" onChange={(e) => handleChangeFieldSearch(e)} />
               <span>Nguồn xuất</span>
-              <select name="" id="" className="input1_ListImportSlip">
-                <option value=""></option>
-                <option value="">Nhà cung cấp A</option>
-                <option value="">Nhà cung cấp B</option>
-                <option value="">Nhà cung cấp C</option>
-                <option value="">Nhà cung cấp D</option>
-                <option value="">Nhà cung cấp E</option>
-                <option value="">Nhà cung cấp F</option>
+              <select name="providerId" className="input1_ListImportSlip" value={inforSearch.providerId} onChange={(e) => handleChangeFieldSearch(e)}>
+                <option value="">-Chọn nguồn xuất-</option>
+                {
+                  listProvider.length > 0 && listProvider.map((provider) => (
+                    <option value={provider._id} key={provider._id}>{provider.providerName}</option>
+                  ))
+                }
               </select>
             </div>
             <div>
               <span>Tình trạng</span>
-              <select name="" id="" className="input2_ListImportSlip">
+              <select name="status" value={inforSearch.status} onChange={(e) => handleChangeFieldSearch(e)} id="" className="input2_ListImportSlip">
                 <option value=""></option>
-                <option value="">Chờ duyệt</option>
-                <option value="">Đã nhập</option>
-                <option value="">Từ chối</option>
-                <option value="">Đã duyệt</option>
-                <option value="">Hoàn hàng</option>
+                <option value="PENDING">Chờ duyệt</option>
+                <option value="DONE">Đã nhập</option>
+                <option value="REJECTED">Từ chối</option>
+                <option value="CONFIRMED">Đã duyệt</option>
               </select>
               <span className="date_ListImportSlip1">Từ ngày</span>
-              <input type="date" className="date_ListImportSlip" placeholder=""/>
+              <input type="date" className="date_ListImportSlip" placeholder="" name="timeStart" value={inforSearch.timeStart} onChange={(e) => handleChangeFieldSearch(e)}/>
               <span className="date_ListImportSlip2">Đến ngày</span>
-              <input type="date" className="date_ListImportSlip3" placeholder=""/>
+              <input type="date" className="date_ListImportSlip3" placeholder="" name="timeEnd" value={inforSearch.timeEnd} onChange={(e) => handleChangeFieldSearch(e)}/>
             </div>
           </div>
-          <div className="sub_2_ListImportSlip">
+          <div className="sub_2_ListImportSlip" onClick={handleSearch}>
             <span>
               Tìm kiếm <i className="fa fa-search" aria-hidden="true"></i>
             </span>
@@ -106,7 +156,7 @@ const ListImportSlip = () => {
               {
                 importSlips.length > 0 && importSlips.map((importSlip, index) => (
                   <tr key={importSlip._id}>
-                    <td className="ListImportSlip_item">{ (page - 1) * limit + index + 1}</td>
+                    <td className="ListImportSlip_item">{(page - 1) * limit + index + 1}</td>
                     <td className="ListImportSlip_item">{importSlip.importSlipCode} </td>
                     <td className="ListImportSlip_item_1">{importSlip.providerId?.providerName}</td>
                     <td className="ListImportSlip_item">{formatCurrency(importSlip.importPrice)}</td>
