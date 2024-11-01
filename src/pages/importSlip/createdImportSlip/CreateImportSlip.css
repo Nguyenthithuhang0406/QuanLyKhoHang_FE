@@ -143,67 +143,27 @@
     color: #888888;
     border: 1px solid #888888;
 }
-.cis-frame .cis-table{
+.cis-frame .cis-data{
     margin: 20px 0px;
     background-color:#FFFFFF;
-    display: grid;
-    grid-template-columns: 1fr 5fr 3fr 2fr 3fr 2fr 3fr 3fr 2fr;
-    overflow-x: auto;
+    overflow: auto;
+    border: 1px solid #000000;
+    border-collapse: collapse;
+}
+.cis-table{
+    overflow: x;
 }
 .cis-frame .cis-table::-webkit-scrollbar{
     display: none;
 }
-.cis-table .th{
-    font-weight: bold;
-    font-size: 15px;
-    background-color: #0B08AB;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    text-align: center;
-    border: 0.5px solid #888888;
-    
-}
-.cis-table .td{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    text-align: center;
-    border: 0.5px solid #888888;
-}
-.cis-table .td i{
-    color: red;
-    cursor: pointer;
-    font-size: 25px;
-}
-.cis-table .total{
-    grid-column: span 7; /* Kéo dài qua 8 cột cho ô "Tổng" */
-    background-color: #FFFFFF;
-    color: black;
-    font-weight: bold;
-    text-align: left;
-    padding: 10px;
-    padding-left: 7%;
-    border: 0.5px solid #888888;
-}
-.cis-table .total-amount{
-    grid-column: span 2;
-    background-color: #FFFFFF;
-    color: black;
-    font-weight: bold;
-    text-align: left;
-    padding: 10px;
-    padding-left: 7%;
-    border: 0.5px solid #888888;
-}
+
+
 .cis-frame .cis-contract{
     border: 5px solid #888888;
     margin: 20px 0px;
     padding: 20px;
     background-color: #E5E5E5;
+    
 }
 .cis-contract .c-title{
     display: flex;
@@ -293,4 +253,8 @@
     align-items: center;
     width: 60%;
     height: 80vh;
+}
+
+.list-item-product{
+    grid-template-columns: 1fr 5fr 3fr 2fr 3fr 2fr 3fr 3fr 2fr;
 }
