@@ -42,6 +42,9 @@ const ListImportSlip = () => {
     setPage(page);
   };
 
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+  };
   return (
     <>
       <Header className="ListImportSlip" />
@@ -106,7 +109,7 @@ const ListImportSlip = () => {
                     <td className="ListImportSlip_item">{ (page - 1) * limit + index + 1}</td>
                     <td className="ListImportSlip_item">{importSlip.importSlipCode} </td>
                     <td className="ListImportSlip_item_1">{importSlip.providerId?.providerName}</td>
-                    <td className="ListImportSlip_item">{importSlip.importPrice}</td>
+                    <td className="ListImportSlip_item">{formatCurrency(importSlip.importPrice)}</td>
                     <td className="ListImportSlip_item">{formatDate(importSlip.createdAt)}</td>
                     <td className="ListImportSlip_item">
                       <select
