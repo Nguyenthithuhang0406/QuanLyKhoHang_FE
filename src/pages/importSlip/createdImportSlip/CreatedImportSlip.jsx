@@ -1,13 +1,16 @@
 /* eslint-disable */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import Header from '@/components/header/Header'
 import NavBar from '@/components/navBar/NavBar'
 import UploadProductFromLocal from '@/components/uploadProduct/uploadProductFromLocal/UploadProductFromLocal';
 import { searchSupply } from '@/api/suppliesAPI/supply';
+import { createdContract } from '@/api/contractApi/contract';
+import { createdImportSlip } from '@/api/importSlipApi/importSlip';
 
 import './CreateImportSlip.css';
 const CreatedImportSlip = () => {
@@ -76,34 +79,36 @@ const CreatedImportSlip = () => {
       });
     }
   };
+  
+  const handleChangeField = (e, productId) => {
+    const { name, value } = e.target;
 
-  const handleChangeQuantity = (e, productId) => {
-    const newQuantity = parseInt(e.target.value) || 0;
-    setNewImportSlip(prev => ({
-      ...prev,
-      products: prev.products.map((p) => {
-        if (p.productId === productId) {
-          return { ...p, quantity: newQuantity }
-        }
-        return p;
-      })
-    }))
+    if (name === 'quantity') {
+      setNewImportSlip(prev => ({
+        ...prev,
+        products: prev.products.map((p) => {
+          if (p.productId === productId) {
+            return { ...p, quantity: parseInt(value) || 0 }
+          }
+          return p;
+        })
+      }))
+    }
+
+    if (name === 'discount') {
+      const discountValue = value.replace('%', '');
+      const newDiscount = parseInt(discountValue) || 0;
+      setNewImportSlip(prev => ({
+        ...prev,
+        products: prev.products.map((p) => {
+          if (p.productId === productId) {
+            return { ...p, discount: newDiscount }
+          }
+          return p;
+        })
+      }))
+    }
   };
-
-  const handleChangeDiscount = (e, productId) => {
-    const discountValue = e.target.value.replace('%', '');
-    const newDiscount = parseInt(discountValue) || 0;
-    setNewImportSlip(prev => ({
-      ...prev,
-      products: prev.products.map((p) => {
-        if (p.productId === productId) {
-          return { ...p, discount: newDiscount }
-        }
-        return p;
-      })
-    }))
-  };
-
   const calculateLineTotal = (product) => {
     const item = newImportSlip.products.find((p) => p.productId === product._id);
     if (item) {
@@ -114,20 +119,19 @@ const CreatedImportSlip = () => {
     }
   };
 
-  const calculateTotalPrice = () => {
-    let totalPrice = 0;
-    if (newImportSlip.products.length > 0) {
-      newImportSlip.products.forEach((product) => {
-        const productPrice = selectedProducts.find((p) => p._id === product.productId)?.productPrice;
-        totalPrice += +productPrice * product.quantity * (1 - product.discount / 100);
-      });
-    }
+  const calculateTotalPrice = useMemo(() => {
+    return newImportSlip.products.reduce((total, product) => {
+      const productPrice = selectedProducts.find((p) => p._id === product.productId)?.productPrice;
+      return total + +productPrice * product.quantity * (1 - product.discount / 100);
+    }, 0);
+  }, [newImportSlip.products, selectedProducts]);
+
+  useEffect(() => {
     setNewImportSlip(prev => ({
       ...prev,
-      importPrice: `${totalPrice}`
+      importPrice: `${calculateTotalPrice}`
     }));
-    return totalPrice;
-  };
+  }, [calculateTotalPrice]);
 
   const formatCurrency = (value) => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
@@ -136,10 +140,6 @@ const CreatedImportSlip = () => {
   const handleFileChange = (e) => {
     const selectedFile = Array.from(e.target.files);
     const newRawFile = [...contract.contractMedia, ...selectedFile];
-
-    // for (const file of selectedFile) {
-    //   newRawFile.push(file);
-    // };
     setContract({ ...contract, contractMedia: newRawFile });
     setFileNames([...fileNames, ...selectedFile.map((file) => file.name)]);
   };
@@ -153,8 +153,27 @@ const CreatedImportSlip = () => {
   };
 
   const handleSubmit = async () => {
-    // console.log("contract", contract);
-    console.log("newImportSlip", newImportSlip);
+    try {
+      const newContract = await createdContract(contract);
+      const data = {
+        ...newImportSlip,
+        contracts: newContract.newContract._id,
+      };
+      if (!data.newProducts || data.newProducts.length === 0) {
+        delete data.newProducts;
+      }
+      
+      await createdImportSlip(data);
+      toast.success('Tạo phiếu nhập kho thành công');
+      navigate('/list-importSlip/Provider');
+    } catch (error) {
+      console.log(error);
+      toast.error('Tạo phiếu nhập kho thất bại');
+    }
+  };
+
+  const handleCancelCreateImportSlip = () => {
+    navigate('/list-importSlip/Provider');
   };
   return (
     <div>
@@ -235,7 +254,7 @@ const CreatedImportSlip = () => {
                         <input
                           type='number'
                           name='quantity'
-                          onChange={(e) => handleChangeQuantity(e, product._id)}
+                          onChange={(e) => handleChangeField(e, product._id)}
                           style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", border: "none" }}
                           placeholder='nhập số lượng'
                         />
@@ -244,7 +263,7 @@ const CreatedImportSlip = () => {
                         <input
                           type='text'
                           name='discount'
-                          onChange={(e) => handleChangeDiscount(e, product._id)}
+                          onChange={(e) => handleChangeField(e, product._id)}
                           style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", border: "none" }}
                           placeholder='nhập % chiết khấu'
                         />
@@ -256,7 +275,7 @@ const CreatedImportSlip = () => {
                 }
                 <tr>
                   <td colSpan={7}>Tổng</td>
-                  <td colSpan={2} >{calculateTotalPrice() ? formatCurrency(calculateTotalPrice()) : formatCurrency(0)}</td>
+                  <td colSpan={2} >{formatCurrency(calculateTotalPrice)}</td>
                 </tr>
               </tbody>
 
@@ -303,7 +322,7 @@ const CreatedImportSlip = () => {
           </div> */}
 
           <div className='cis-button'>
-            <button className='cis-cancel'>Huỷ</button>
+            <button className='cis-cancel' onClick={handleCancelCreateImportSlip}>Huỷ</button>
             <button className='cis-save' type='submit' onClick={handleSubmit}>Lưu</button>
           </div>
         </div>

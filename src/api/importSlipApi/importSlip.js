@@ -1,7 +1,7 @@
 import { authInstance, requestWithToken } from "@/utils/axios-http";
 
 export const createdImportSlip = async (data) => {
-  const { importSlipCode, providerId, userId, status, products, newProducts, contracts, type, reason } = data;
+  const { importSlipCode, providerId, userId, status, products, newProducts, contracts, type, reason, importPrice } = data;
   
   await requestWithToken(authInstance,{
     url: "/importSlip/createImportSlip",
@@ -16,6 +16,7 @@ export const createdImportSlip = async (data) => {
       contracts,
       type,
       reason,
+      importPrice
     }
   });
 
