@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import { setUser } from '@/store/userSlice';
 import { useNavigate } from 'react-router-dom';
-import { loginValidation } from '@/utils/validation.js/userValidation';
+import { loginValidation } from '@/utils/validation/userValidation';
 import { login } from '@/api/userApi/user';
 import loginImage from "../../../assets/images/login.png";
 import Header from '../../../components/header/Header';

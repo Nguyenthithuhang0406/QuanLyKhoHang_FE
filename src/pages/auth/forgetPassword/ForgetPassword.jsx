@@ -6,7 +6,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import Header from '../../../components/header/Header';
 import { forgetPassword } from '@/api/userApi/user';
 import { toast } from 'react-toastify';
-import { forgetPasswordValidation } from '@/utils/validation.js/userValidation';
+import { forgetPasswordValidation } from '@/utils/validation/userValidation';
 
 const ForgetPassword = () => {
   const initialState = {

@@ -8,7 +8,7 @@ import "./ResetPassword.css";
 import { updatePassword } from "@/api/userApi/user";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { resetPasswordValidation } from "@/utils/validation.js/userValidation";
+import { resetPasswordValidation } from "@/utils/validation/userValidation";
 const ResetPassword = () => {
 
   const [showPassword, setShowPassword] = useState(false);
