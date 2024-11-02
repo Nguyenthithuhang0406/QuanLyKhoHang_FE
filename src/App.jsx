@@ -20,13 +20,18 @@ import InforProduct from './pages/product/inforProduct/InforProduct';
 import CreatedImportSlip from './pages/importSlip/createdImportSlip/CreatedImportSlip';
 import InforImportSlip from './pages/importSlip/inforImportSlip/InforImportSlip';
 import CreatedExportSlip from './pages/exportSlip/createdExportSlip/CreatedExportSlip';
-import EditExportSlip from './pages/exportSlip/editExportSlip/EditExportSlip';
 import InforExportSlip from './pages/exportSlip/inforExportSlip/InforExportSlip';
 import ListImportSlip from './pages/importSlip/listImportSlip/ListImportSlip';
 import ListExportSlip from './pages/exportSlip/listExportSlip/ListExportSlip';
 import UploadProductFromLocal from './components/uploadProduct/uploadProductFromLocal/UploadProductFromLocal';
 import UploadProductFromExcel from './components/uploadProduct/uploadProductFromExcel/UploadProductFromExcel';
 import InforAgency from './pages/agency/editAgency/InforAgency';
+import ListInventory from './pages/inventory/listInventory/ListInventory';
+import CreatedInventory from './pages/inventory/createdInventory/CreatedInventory';
+import IEIReport from './pages/report/IEIReport/IEIReport';
+import ImportReport from './pages/report/importReport/ImportReport';
+import InventoryReport from './pages/report/inventoryReport/InventoryReport';
+import ReportTable from './components/reportTable/ReportTable';
 const App = () => {
   const routes = useRoutes([
     {
@@ -68,7 +73,7 @@ const App = () => {
     {
       path: '/list-product',
       element: <ListProduct />
-    },  
+    },
     {
       path: '/createAgency',
       element: <CreateAgency />
@@ -102,10 +107,6 @@ const App = () => {
       element: <CreatedExportSlip />
     },
     {
-      path: '/edit-exportSlip',
-      element: <EditExportSlip />
-    },
-    {
       path: '/infor-exportSlip',
       element: <InforExportSlip />
     },
@@ -120,6 +121,34 @@ const App = () => {
     {
       path: '/upload-excel',
       element: <UploadProductFromExcel />
+    },
+    {
+      path: '/list-inventory',
+      element: <ListInventory />
+    },
+    {
+      path: '/created-inventory',
+      element: <CreatedInventory />
+    },
+    {
+      path: '/infor-inventory',
+      element: <InforAgency />
+    },
+    {
+      path: '/import-export-inventory-report',
+      element: <IEIReport />
+    },
+    {
+      path: '/import-report',
+      element: <ImportReport />
+    },
+    {
+      path: '/inventory-report',
+      element: <InventoryReport />
+    },
+    {
+      path: '/report-table',
+      element: <ReportTable />
     },
     {
       path: '*',
