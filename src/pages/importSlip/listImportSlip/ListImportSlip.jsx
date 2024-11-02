@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Pagination } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import Header from "@/components/header/Header";
 import NavBar from "@/components/navBar/NavBar";
@@ -10,6 +11,7 @@ import { searchSupply } from "@/api/suppliesAPI/supply";
 import { formatCurrency, formatDate } from "@/utils/funtion/slipFuntion";
 
 import "./ListImportSlip.css";
+import ConfirmDeleteProduct from "@/components/confirmDeleteProduct/ConfirmDeleteProduct";
 const ListImportSlip = () => {
 
   const { type } = useParams();
@@ -18,6 +20,11 @@ const ListImportSlip = () => {
   const [importSlips, setImportSlips] = useState([]);
   const [total, setTotal] = useState(0);
   const [isRefresh, setIsRefresh] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
+  const [infoDelete, setInfoDelete] = useState({
+    type: "importSlip",
+    id: "",
+  });
 
   const [inforSearch, setInforSearch] = useState({
     importSlipCode: "",
@@ -99,6 +106,18 @@ const ListImportSlip = () => {
     navigate(`/infor-importSlip/${importSlipId}`);
   };
 
+  const handleClickBin = (importSlipId) => {
+    setShowDelete(true);
+    setInfoDelete({
+      type: "importSlip",
+      id: importSlipId,
+    });
+  };
+
+  const handleCancelDelete = () => {
+    setShowDelete(false);
+  };
+
   return (
     <>
       <Header className="ListImportSlip" />
@@ -129,9 +148,9 @@ const ListImportSlip = () => {
                 <option value="CONFIRMED">Đã duyệt</option>
               </select>
               <span className="date_ListImportSlip1">Từ ngày</span>
-              <input type="date" className="date_ListImportSlip" placeholder="" name="timeStart" value={inforSearch.timeStart} onChange={(e) => handleChangeFieldSearch(e)}/>
+              <input type="date" className="date_ListImportSlip" placeholder="" name="timeStart" value={inforSearch.timeStart} onChange={(e) => handleChangeFieldSearch(e)} />
               <span className="date_ListImportSlip2">Đến ngày</span>
-              <input type="date" className="date_ListImportSlip3" placeholder="" name="timeEnd" value={inforSearch.timeEnd} onChange={(e) => handleChangeFieldSearch(e)}/>
+              <input type="date" className="date_ListImportSlip3" placeholder="" name="timeEnd" value={inforSearch.timeEnd} onChange={(e) => handleChangeFieldSearch(e)} />
             </div>
           </div>
           <div className="sub_2_ListImportSlip" onClick={handleSearch}>
@@ -183,7 +202,7 @@ const ListImportSlip = () => {
                       <span className="pen_ListImportSlip" onClick={() => handleClickPen(importSlip._id)}>
                         <i className="fa-solid fa-pen"></i>
                       </span>
-                      <span className="bin_ListImportSlip">
+                      <span className="bin_ListImportSlip" onClick={() => handleClickBin(importSlip._id)}>
                         <i className="fa-solid fa-trash"></i>
                       </span>
                     </td>
@@ -201,6 +220,21 @@ const ListImportSlip = () => {
           />
         </div>
       </div>
+      {
+        showDelete && (
+          <div className='overlay' onClick={handleCancelDelete}>
+            <motion.div
+              className='itemDelete'
+              onClick={(e) => e.stopPropagation()}
+              animate={{ opacity: 1, scal: 1 }}
+              initial={{ opacity: 0, scal: 0.5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ConfirmDeleteProduct type={infoDelete.type} onCancel={handleCancelDelete} id={infoDelete.id} isRefresh={isRefresh} setIsRefresh={setIsRefresh} />
+            </motion.div>
+          </div>
+        )
+      }
     </>
   );
 };
