@@ -91,7 +91,7 @@ const App = () => {
       element: <CreatedImportSlip />
     },
     {
-      path: '/infor-importSlip',
+      path: '/infor-importSlip/:importSlipId',
       element: <InforImportSlip />
     },
     {

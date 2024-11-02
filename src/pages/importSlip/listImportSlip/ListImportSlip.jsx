@@ -107,6 +107,11 @@ const ListImportSlip = () => {
       console.log(error);
     }
   };
+
+  const handleClickPen = (importSlipId) => {
+    navigate(`/infor-importSlip/${importSlipId}`);
+  };
+
   return (
     <>
       <Header className="ListImportSlip" />
@@ -188,7 +193,7 @@ const ListImportSlip = () => {
                       </select>
                     </td>
                     <td className="purple">
-                      <span className="pen_ListImportSlip">
+                      <span className="pen_ListImportSlip" onClick={() => handleClickPen(importSlip._id)}>
                         <i className="fa-solid fa-pen"></i>
                       </span>
                       <span className="bin_ListImportSlip">

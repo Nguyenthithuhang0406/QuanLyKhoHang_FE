@@ -1,175 +1,188 @@
 /* eslint-disable */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
 
-import './InforImportSlip.css';
+import { getImportSlipById } from '@/api/importSlipApi/importSlip';
 import Header from '@/components/header/Header';
 import NavBar from '@/components/navBar/NavBar';
 import Imagecontract from '@/assets/images/contract.png'
+
+import './InforImportSlip.css';
 const InforImportSlip = () => {
+  const [importSlip, setImportSlip] = useState({});
+
+  const { importSlipId } = useParams();
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    const getImportSlip = async () => {
+      const res = await getImportSlipById(importSlipId);
+      console.log(res.importSlip);
+      setImportSlip(res.importSlip);
+    }
+
+    getImportSlip();
+  }, [importSlipId]);
+
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+  };
+
+  const calculateLineTotal = (product) => {
+    return product.productId.productPrice * product.quantity * (1 - product.discount / 100);
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
+  }
   return (
     <>
       <Header className="header_infim" />
-      <NavBar/>
+      <NavBar />
       <div className='container_infim'>
-          <div className='lef_infim'>
-            <div className='top_sub_infim'>
-            <p className='h1_top_sub_infim'>Xuất - nhập với NCC<span><i className="fa-solid fa-chevron-right"></i></span> Xem phiếu nhập kho</p>
+        <div className='lef_infim'>
+          <div className='top_sub_infim'>
+            <p className='h1_top_sub_infim'>
+              <span onClick={() => navigate(`/list-importSlip/Provider`)}>
+                Xuất - nhập với NCC
+              </span>
+              <span>
+                <i className="fa-solid fa-chevron-right"></i>
+              </span>
+              Xem phiếu nhập kho
+            </p>
+          </div>
+          <div className='sub_infim'>
+            <div className='f1_infim'>
+              <p className='cen_inf'>PHIẾU NHẬP KHO <span className='icon_x_inf'><i className="fa-solid fa-x" onClick={() => navigate(`/list-importSlip/Provider`)}></i></span></p>
             </div>
-            <div className='sub_infim'>
-              <div className='f1_infim'>
-              <p className='cen_inf'>PHIẾU NHẬP KHO <span className='icon_x_inf'><i className="fa-solid fa-x"></i></span></p>
+            <div className='box1_infim'>
+              <p className='inf_inf' style={{ fontSize: "20px", fontWeight: '700' }}>Thông tin chung</p>
+              <div className='sub_box1_infim'>
+                <div className='flecx_inf'>
+                  <p>Nguồn xuất</p>
+                  <div className='inp1_inf'>{importSlip.providerId?.providerName}</div>
+                </div>
+                <div className='flecx_inf'>
+                  <p>Mã phiếu</p>
+                  <div className='inp1_inf'>{importSlip.importSlipCode}</div>
+                </div>
+                <div className='flecx_inf'>
+                  <p>Mã nguồn</p>
+                  <div className='inp1_inf'>{importSlip.providerId?.providerCode}</div>
+                </div>
+                {/* <div className='flecx_inf'>
+                  <p>Nhập tại kho</p>
+                  <div className='inp1_inf'></div>
+                </div> */}
+                <div className='flecx_inf'>
+                  <p>Số điện thoại</p>
+                  <div className='inp1_inf'>{importSlip.providerId?.providerPhone}</div>
+                </div>
+                {/* <div className='flecx_inf'>
+                  <p>Mã kho</p>
+                  <div className='inp1_inf'></div>
+                </div> */}
+                <div className='flecx_inf'>
+                  <p>Địa chỉ</p>
+                  <div className='inp2_inf'>{importSlip.providerId?.providerAddress}</div>
+                </div>
+                <div className='flecx_inf'>
+                  <p>Lí do</p>
+                  <div className='inp2_inf'>{importSlip.reason}</div>
+                </div>
               </div>
-              <div className='box1_infim'>
-                  <p className='inf_inf'><h3>Thông tin chung</h3></p>
-                  <div className='sub_box1_infim'>
-                    <div className='flecx_inf'>
-                      <p>Nguồn xuất</p>
-                      <div className='inp1_inf'></div>
-                    </div>
-                    <div  className='flecx_inf'>
-                      <p>Mã phiếu</p>
-                      <div className='inp1_inf'></div>
-                    </div>
-                    <div  className='flecx_inf'>
-                      <p>Mã nguồn</p>
-                      <div className='inp1_inf'></div>
-                    </div> 
-                    <div  className='flecx_inf'>
-                      <p>Nhập tại kho</p>
-                      <div className='inp1_inf'></div>
-                    </div> 
-                    <div  className='flecx_inf'>
-                      <p>Số điện thoại</p>
-                      <div className='inp1_inf'></div>
-                    </div>
-                    <div  className='flecx_inf'>
-                      <p>Mã kho</p>
-                      <div className='inp1_inf'></div>
-                    </div>
-                    <div  className='flecx_inf'>
-                      <p>Địa chỉ</p>
-                      <div className='inp2_inf'></div>
-                    </div>
-                    <div  className='flecx_inf'>
-                      <p>Lí do</p>
-                      <div className='inp2_inf'></div>
-                    </div>
-                  </div>
-              </div>
-              <div className='box2_infim'>
+            </div>
+            <div className='box2_infim'>
               <table className='List_infim'>
-            <tr className='tr_infim'> 
-              <th className='centerinfim'>STT</th>
-              <th className='centerinfim'>Tên hàng hoá</th>
-              <th className='centerinfim'>Mã hàng</th>  
-              <th className='centerinfim'>Đơn vị <div>tính</div></th>
-              <th className='centerinfim'>Đơn giá</th>
-              <th className='centerinfim'>Số<div>Lượng</div></th>
-              <th className='centerinfim'>Chiết khấu</th>
-              <th className='centerinfim'>Thành tiền</th>
-            </tr>
-            <tr className='tr_infim'>
-              <td>1</td>
-              <td>ĐT Samsung Galaxy </td>
-              <td>XXXXX </td>
-              <td>Cái</td>
-              <td>30.000.000</td>
-              <td>10</td>
-              <td>5%</td>
-              <td>285.000.000</td>
-            </tr>
-            <tr className='tr_infim'>
-              <td>1</td>
-              <td>ĐT Samsung Galaxy </td>
-              <td>XXXXX </td>
-              <td>Cái</td>
-              <td>30.000.000</td>
-              <td>10</td>
-              <td>5%</td>
-              <td>285.000.000</td>
-            </tr>
-            <tr className='tr_infim'>
-              <td>1</td>
-              <td>ĐT Samsung Galaxy </td>
-              <td>XXXXX </td>
-              <td>Cái</td>
-              <td>30.000.000</td>
-              <td>10</td>
-              <td>5%</td>
-              <td>285.000.000</td>
-            </tr>
-            <tr className='tr_infim'>
-              <td>1</td>
-              <td>ĐT Samsung Galaxy </td>
-              <td>XXXXX </td>
-              <td>Cái</td>
-              <td>30.000.000</td>
-              <td>10</td>
-              <td>5%</td>
-              <td>285.000.000</td>
-            </tr>
-            <tr className='tr_infim'>
-              <td>1</td>
-              <td>ĐT Samsung Galaxy </td>
-              <td>XXXXX </td>
-              <td>Cái</td>
-              <td>30.000.000</td>
-              <td>10</td>
-              <td>5%</td>
-              <td>285.000.000</td>
-            </tr>
-            <tr className='tr_infim'>
-              <th className='sum_inf_1' colSpan={7}>Tổng</th>
-              <th className='sum_inf_2'>315.154.168</th>
-            </tr>
-          </table>
-              </div>
-              <div className='box3_infim'>
-                  <p><i class="fa-solid fa-file-contract"></i>    <span>Hợp đồng</span></p>
-                  <div className='img_contract'>
-                      <img className='img_contract' src={Imagecontract} alt="" />
-                      <img className='img_contract' src={Imagecontract} alt="" />
-                  </div>
+                <tbody>
+                  <tr className='tr_infim'>
+                    <th className='centerinfim'>STT</th>
+                    <th className='centerinfim'>Tên hàng hoá</th>
+                    <th className='centerinfim'>Mã hàng</th>
+                    <th className='centerinfim'>Đơn vị <div>tính</div></th>
+                    <th className='centerinfim'>Đơn giá</th>
+                    <th className='centerinfim'>Số<div>Lượng</div></th>
+                    <th className='centerinfim'>Chiết khấu</th>
+                    <th className='centerinfim'>Thành tiền</th>
+                  </tr>
+                  {
+                    importSlip.products?.length > 0 && importSlip.products.map((product, index) => (
+                      <tr className='tr_infim' key={product._id}>
+                        <td>{index + 1}</td>
+                        <td>{product.productId.productName}</td>
+                        <td>{product.productId.productCode}</td>
+                        <td>{product.productId.productDVT}</td>
+                        <td>{formatCurrency(product.productId.productPrice)}</td>
+                        <td>{product.quantity}</td>
+                        <td>{product.discount} %</td>
+                        <td>{formatCurrency(calculateLineTotal(product))}</td>
+                      </tr>
+                    ))
+                  }
+                  <tr className='tr_infim'>
+                    <th className='sum_inf_1' colSpan={7}>Tổng</th>
+                    <th className='sum_inf_2'>{formatCurrency(importSlip.importPrice)}</th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className='box3_infim'>
+              <p><i className="fa-solid fa-file-contract"></i>    <span>Hợp đồng</span></p>
+              <div className='img_contract'>
+                {
+                  importSlip.contracts?.contractMedia.length > 0 && importSlip.contracts?.contractMedia.map((contractMedia, index) => (
+                    <img className='img_contract' src={contractMedia} alt="" key={index} />
+                  ))
+                }
               </div>
             </div>
           </div>
-          <div className='rig_infim'>
-              <div>
-                <p>Tình trạng</p>
-              </div>
-              <div className='status_infim'>
-              <div className='flex2_inf'>
-                <p>Tạo bởi</p>
-                <button className='b1_infim'>Xóa <span><i class="fa-solid fa-key"></i></span></button>
-              </div>
-              <div className='out_inf'></div>
-              <div className='out_inf'></div>
-              </div>
-              <div className='status_infim'>
-              <div className='flex2_inf'>
-                <p>Duyệt bởi</p>
-                <button className='b2_infim'>Duyệt <span><i class="fa-solid fa-key"></i></span></button>
-              </div>
-              <div className='out_inf'></div>
-              <div className='out_inf'></div>
-              </div>
-              <div className='status_infim'>
-              <div className='flex2_inf'>
-                <p>Từ chối bởi</p>
-                <button className='b3_infim'>Từ chối <span><i class="fa-solid fa-key"></i></span></button>
-              </div>
-              <div className='out_inf'></div>
-              <div className='out_inf'></div>
-              </div>
-              <div className='status_infim'>
-              <div className='flex2_inf'>
-                <p>Đã nhận bởi</p>
-                <button className='b4_infim'>Đã nhận</button>
-              </div>
-              <div className='out_inf'></div>
-              <div className='out_inf'></div>
-              </div>
+        </div>
+        <div className='rig_infim'>
+          <div>
+            <p>Tình trạng</p>
           </div>
+          <div className='status_infim'>
+            <div className='flex2_inf'>
+              <p>Tạo bởi</p>
+              <button className='b1_infim'>Xóa <span><i className="fa-solid fa-key"></i></span></button>
+            </div>
+            <div className='out_inf'>{importSlip.userId?.fullName}</div>
+            <div className='out_inf'>{formatDate(importSlip.createdAt)}</div>
+          </div>
+          <div className='status_infim'>
+            <div className='flex2_inf'>
+              <p>Duyệt bởi</p>
+              <button className='b2_infim'>Duyệt <span><i className="fa-solid fa-key"></i></span></button>
+            </div>
+            <div className='out_inf'>{importSlip.status === 'CONFIRMED' && importSlip.userEditStatus?.fullName}</div>
+            <div className='out_inf'>{importSlip.status === 'CONFIRMED' && formatDate(importSlip.updatedAt)}</div>
+          </div>
+          <div className='status_infim'>
+            <div className='flex2_inf'>
+              <p>Từ chối bởi</p>
+              <button className='b3_infim'>Từ chối <span><i className="fa-solid fa-key"></i></span></button>
+            </div>
+            <div className='out_inf'>{importSlip.status === 'REJECTED' && importSlip.userEditStatus?.fullName}</div>
+            <div className='out_inf'>{importSlip.status === 'REJECTED' && formatDate(importSlip.updatedAt)}</div>
+          </div>
+          <div className='status_infim'>
+            <div className='flex2_inf'>
+              <p>Đã nhập bởi</p>
+              <button className='b4_infim'>Đã nhập</button>
+            </div>
+            <div className='out_inf'>{importSlip.status === 'DONE' && importSlip.userEditStatus?.fullName}</div>
+            <div className='out_inf'>{importSlip.status === 'DONE' && formatDate(importSlip.updatedAt)}</div>
+          </div>
+        </div>
       </div>
     </>
   )
