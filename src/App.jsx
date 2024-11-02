@@ -19,7 +19,6 @@ import ListAgency from './pages/agency/listAgency/ListAgency';
 import InforProduct from './pages/product/inforProduct/InforProduct';
 import CreatedImportSlip from './pages/importSlip/createdImportSlip/CreatedImportSlip';
 import InforImportSlip from './pages/importSlip/inforImportSlip/InforImportSlip';
-import EditImportSlip from './pages/importSlip/editImportSlip/EditImportSlip';
 import CreatedExportSlip from './pages/exportSlip/createdExportSlip/CreatedExportSlip';
 import EditExportSlip from './pages/exportSlip/editExportSlip/EditExportSlip';
 import InforExportSlip from './pages/exportSlip/inforExportSlip/InforExportSlip';
@@ -93,10 +92,6 @@ const App = () => {
     {
       path: '/infor-importSlip/:importSlipId',
       element: <InforImportSlip />
-    },
-    {
-      path: '/edit-importSlip',
-      element: <EditImportSlip />
     },
     {
       path: '/list-importSlip/:type',
