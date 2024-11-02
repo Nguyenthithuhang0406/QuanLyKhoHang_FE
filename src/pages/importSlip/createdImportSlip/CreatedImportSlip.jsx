@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
+import { formatCurrency } from '@/utils/funtion/slipFuntion';
 import Header from '@/components/header/Header'
 import NavBar from '@/components/navBar/NavBar'
 import UploadProductFromLocal from '@/components/uploadProduct/uploadProductFromLocal/UploadProductFromLocal';
@@ -133,10 +134,6 @@ const CreatedImportSlip = () => {
     }));
   }, [calculateTotalPrice]);
 
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
-  };
-
   const handleFileChange = (e) => {
     const selectedFile = Array.from(e.target.files);
     const newRawFile = [...contract.contractMedia, ...selectedFile];
@@ -162,7 +159,7 @@ const CreatedImportSlip = () => {
       if (!data.newProducts || data.newProducts.length === 0) {
         delete data.newProducts;
       }
-      
+
       await createdImportSlip(data);
       toast.success('Tạo phiếu nhập kho thành công');
       navigate('/list-importSlip/Provider');

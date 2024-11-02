@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getImportSlipById } from '@/api/importSlipApi/importSlip';
 import Header from '@/components/header/Header';
 import NavBar from '@/components/navBar/NavBar';
-import Imagecontract from '@/assets/images/contract.png'
+import { formatCurrency, formatDate } from '@/utils/funtion/slipFuntion';
 
 import './InforImportSlip.css';
 const InforImportSlip = () => {
@@ -24,24 +24,10 @@ const InforImportSlip = () => {
     getImportSlip();
   }, [importSlipId]);
 
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
-  };
-
   const calculateLineTotal = (product) => {
     return product.productId.productPrice * product.quantity * (1 - product.discount / 100);
   };
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-
-    return `${day}/${month}/${year} ${hours}:${minutes}`;
-  }
   return (
     <>
       <Header className="header_infim" />
