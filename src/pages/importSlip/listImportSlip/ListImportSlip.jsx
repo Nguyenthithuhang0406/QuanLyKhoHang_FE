@@ -5,7 +5,7 @@ import "./ListImportSlip.css";
 import Header from "@/components/header/Header";
 import NavBar from "@/components/navBar/NavBar";
 import { useNavigate, useParams } from "react-router-dom";
-import { getImportSlipByType, searchImportSlip } from "@/api/importSlipApi/importSlip";
+import { getImportSlipByType, searchImportSlip, updateStatusImportSlip } from "@/api/importSlipApi/importSlip";
 import { Pagination } from "antd";
 import { searchSupply } from "@/api/suppliesAPI/supply";
 const ListImportSlip = () => {
@@ -15,6 +15,7 @@ const ListImportSlip = () => {
   const [limit, setLimit] = useState(10);
   const [importSlips, setImportSlips] = useState([]);
   const [total, setTotal] = useState(0);
+  const [isRefresh, setIsRefresh] = useState(false);
 
   const [inforSearch, setInforSearch] = useState({
     importSlipCode: "",
@@ -43,7 +44,7 @@ const ListImportSlip = () => {
       setTotal(res.totalResult);
     };
     getListImportSlip();
-  }, []);
+  }, [isRefresh, page]);
 
   const handleChangeFieldSearch = (e) => {
     const { name, value } = e.target;
@@ -93,6 +94,15 @@ const ListImportSlip = () => {
         timeStart: "",
         timeEnd: "",
       });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUpdateStatus = async (importSlipId, status) => {
+    try {
+      await updateStatusImportSlip(importSlipId, status);
+      setIsRefresh(!isRefresh);
     } catch (error) {
       console.log(error);
     }
@@ -164,6 +174,7 @@ const ListImportSlip = () => {
                     <td className="ListImportSlip_item">
                       <select
                         className={importSlip.status === "PENDING" ? "button1_ListImportSlip" : (importSlip.status === "DONE" ? "button2_ListImportSlip" : (importSlip.status === "REJECTED" ? "button3_ListImportSlip" : (importSlip.status === "CONFIRMED" ? "button_ListImportSlip" : "")))}
+                        onChange={(e) => handleUpdateStatus(importSlip._id, e.target.value)}
                       >
                         <option
                           className={importSlip.status === "PENDING" ? "button1_ListImportSlip" : (importSlip.status === "DONE" ? "button2_ListImportSlip" : (importSlip.status === "REJECTED" ? "button3_ListImportSlip" : (importSlip.status === "CONFIRMED" ? "button_ListImportSlip" : "")))}
