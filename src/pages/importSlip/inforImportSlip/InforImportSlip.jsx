@@ -18,10 +18,10 @@ const InforImportSlip = () => {
   useEffect(() => {
     const getImportSlip = async () => {
       const res = await getImportSlipById(importSlipId);
-      if (res.importSlip.agencyId._id) {
+      if (res.importSlip.agencyId?._id) {
         setType("Agency");
       } else {
-        if (res.importSlip.providerId._id) {
+        if (res.importSlip.providerId?._id) {
           setType("Provider");
         }
       }
