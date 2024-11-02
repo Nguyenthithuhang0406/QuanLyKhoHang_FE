@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -15,6 +15,7 @@ import { createdImportSlip } from '@/api/importSlipApi/importSlip';
 
 import './CreateImportSlip.css';
 const CreatedImportSlip = () => {
+  const { type } = useParams();
   const [showUploadFromLocal, setShowUploadFromLocal] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [fileNames, setFileNames] = useState([]);
@@ -35,7 +36,7 @@ const CreatedImportSlip = () => {
     products: [],
     newProducts: [],
     contracts: "",
-    type: "Provider",
+    type: type,
     reason: "",
     importPrice: "0",
   });
@@ -53,7 +54,14 @@ const CreatedImportSlip = () => {
 
   useEffect(() => {
     const getProvider = async () => {
-      const res = await searchSupply("", "", "", "provider", 1, 100);
+      let res;
+      if (type === "Provider") {
+        res = await searchSupply("", "", "", "provider", 1, 100);
+      } else {
+        if (type === "Agency") {
+          res = await searchSupply("", "", "", "agency", 1, 100);
+        }
+      }
       setListProvider(res.supplies);
     };
 
@@ -74,13 +82,13 @@ const CreatedImportSlip = () => {
     const provider = listProvider.find((p) => p._id === value);
     if (provider) {
       setProviderInfor({
-        providerCode: provider.providerCode,
-        providerPhone: provider.providerPhone,
-        providerAddress: provider.providerAddress,
+        providerCode: provider.providerCode || provider.agencyCode,
+        providerPhone: provider.providerPhone || provider.agencyPhone,
+        providerAddress: provider.providerAddress || provider.agencyAddress,
       });
     }
   };
-  
+
   const handleChangeField = (e, productId) => {
     const { name, value } = e.target;
 
@@ -162,7 +170,7 @@ const CreatedImportSlip = () => {
 
       await createdImportSlip(data);
       toast.success('Tạo phiếu nhập kho thành công');
-      navigate('/list-importSlip/Provider');
+      navigate(`/list-importSlip/${type}`);
     } catch (error) {
       console.log(error);
       toast.error('Tạo phiếu nhập kho thất bại');
@@ -170,14 +178,18 @@ const CreatedImportSlip = () => {
   };
 
   const handleCancelCreateImportSlip = () => {
-    navigate('/list-importSlip/Provider');
+    navigate(`/list-importSlip/${type}`);
   };
   return (
     <div>
       <Header className='headerListP' />
       <NavBar />
       <div className='cis-body'>
-        <div className='cis-address'><span onClick={() => navigate(`/list-importSlip/Provider`)}>Xuất-nhập với NCC </span> &gt; Tạo mới phiếu nhập kho</div>
+        <div className='cis-address'>
+          <span onClick={() => navigate(`/list-importSlip/${type}`)}>
+            Xuất-nhập với {(type === "Provider" && "NCC") || (type === "Agency" && "Nội bộ")}</span>
+          &gt; Tạo mới phiếu nhập kho
+        </div>
         <div className='cis-addbutton'>
           <button>+Thêm hàng từ File ngoài</button>
           <button onClick={() => setShowUploadFromLocal(true)}>+Thêm hàng từ hệ thống</button>
@@ -193,7 +205,7 @@ const CreatedImportSlip = () => {
                   <option value=""> -Chọn nguồn- </option>
                   {
                     listProvider.length > 0 && listProvider.map((provider) => (
-                      <option key={provider._id} value={provider._id} >{provider.providerName}</option>
+                      <option key={provider._id} value={provider._id} >{provider.providerName || provider.agencyName}</option>
                     ))
                   }
                 </select>

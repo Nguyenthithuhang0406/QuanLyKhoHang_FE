@@ -37,12 +37,19 @@ const ListImportSlip = () => {
   const [listProvider, setListProvider] = useState([]);
   useEffect(() => {
     const getProvider = async () => {
-      const res = await searchSupply("", "", "", "provider", 1, 100);
+      let res;
+      if (type === "Provider") {
+        res = await searchSupply("", "", "", "provider", 1, 100);
+      } else {
+        if (type === "Agency") {
+          res = await searchSupply("", "", "", "agency", 1, 100);
+        }
+      }
       setListProvider(res.supplies);
     };
 
     getProvider();
-  }, []);
+  }, [type]);
 
   const navigate = useNavigate();
 
@@ -53,7 +60,7 @@ const ListImportSlip = () => {
       setTotal(res.totalResult);
     };
     getListImportSlip();
-  }, [isRefresh, page]);
+  }, [isRefresh, page, type]);
 
   const handleChangeFieldSearch = (e) => {
     const { name, value } = e.target;
@@ -70,15 +77,22 @@ const ListImportSlip = () => {
   const handleSearch = async () => {
     const data = {
       importSlipCode: inforSearch.importSlipCode,
-      providerId: inforSearch.providerId,
+      providerId: inforSearch.providerId ,
       status: inforSearch.status,
       timeStart: inforSearch.timeStart ? new Date(inforSearch.timeStart).toISOString() : "",
       timeEnd: inforSearch.timeEnd ? new Date(inforSearch.timeEnd).toISOString() : "",
-      type: "Provider",
+      type: type,
     };
 
     try {
-      const res = await searchImportSlip(data.importSlipCode, data.providerId, "", "", data.status, data.timeStart, data.timeEnd, page, limit, data.type);
+      let res;
+      if (type === "Provider") {
+        res = await searchImportSlip(data.importSlipCode, data.providerId, "", "", data.status, data.timeStart, data.timeEnd, page, limit, data.type);
+      } else {
+        if(type === "Agency") {
+          res = await searchImportSlip(data.importSlipCode, "", data.providerId, "", data.status, data.timeStart, data.timeEnd, page, limit, data.type);
+        }
+      }
       setImportSlips(res.importSlips);
       setTotal(res.totalResult);
       setInforSearch({
@@ -127,13 +141,24 @@ const ListImportSlip = () => {
           <div className="sub_1_ListImportSlip">
             <div>
               <span>Mã phiếu</span>
-              <input type="text" className="input_ListImportSlip" value={inforSearch.importSlipCode} name="importSlipCode" onChange={(e) => handleChangeFieldSearch(e)} />
+              <input
+                type="text"
+                className="input_ListImportSlip"
+                value={inforSearch.importSlipCode}
+                name="importSlipCode"
+                onChange={(e) => handleChangeFieldSearch(e)} 
+                />
               <span>Nguồn xuất</span>
-              <select name="providerId" className="input1_ListImportSlip" value={inforSearch.providerId} onChange={(e) => handleChangeFieldSearch(e)}>
+              <select
+                name="providerId"
+                className="input1_ListImportSlip"
+                value={inforSearch.providerId}
+                onChange={(e) => handleChangeFieldSearch(e)}
+              >
                 <option value="">-Chọn nguồn xuất-</option>
                 {
                   listProvider.length > 0 && listProvider.map((provider) => (
-                    <option value={provider._id} key={provider._id}>{provider.providerName}</option>
+                    <option value={provider._id} key={provider._id}>{provider.providerName || provider.agencyName}</option>
                   ))
                 }
               </select>
@@ -160,7 +185,7 @@ const ListImportSlip = () => {
           </div>
         </div>
         <div className="sub_3_ListImportSlip">
-          <p onClick={() => navigate(`/created-importSlip/Provider`)}>+ Tạo phiếu nhập kho</p>
+          <p onClick={() => navigate(`/created-importSlip/${type}`)}>+ Tạo phiếu nhập kho</p>
         </div>
         <div className="table_ListImportSlip">
           <table className="table2_ListImportSlip">
@@ -179,8 +204,8 @@ const ListImportSlip = () => {
                   <tr key={importSlip._id}>
                     <td className="ListImportSlip_item">{(page - 1) * limit + index + 1}</td>
                     <td className="ListImportSlip_item">{importSlip.importSlipCode} </td>
-                    <td className="ListImportSlip_item_1">{importSlip.providerId?.providerName}</td>
-                    <td className="ListImportSlip_item">{formatCurrency(importSlip.importPrice)}</td>
+                    <td className="ListImportSlip_item_1">{(type === "Provider" && importSlip.providerId?.providerName) || (type === "Agency" && importSlip.agencyId?.agencyName)}</td>
+                    <td className="ListImportSlip_item">{formatCurrency(importSlip.importPrice || 0)}</td>
                     <td className="ListImportSlip_item">{formatDate(importSlip.createdAt)}</td>
                     <td className="ListImportSlip_item">
                       <select

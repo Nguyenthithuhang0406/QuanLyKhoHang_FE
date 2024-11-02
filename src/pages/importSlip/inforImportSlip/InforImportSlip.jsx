@@ -10,6 +10,7 @@ import { formatCurrency, formatDate } from '@/utils/funtion/slipFuntion';
 import './InforImportSlip.css';
 const InforImportSlip = () => {
   const [importSlip, setImportSlip] = useState({});
+  const [type, setType] = useState("");
 
   const { importSlipId } = useParams();
 
@@ -17,6 +18,13 @@ const InforImportSlip = () => {
   useEffect(() => {
     const getImportSlip = async () => {
       const res = await getImportSlipById(importSlipId);
+      if (res.importSlip.agencyId._id) {
+        setType("Agency");
+      } else {
+        if (res.importSlip.providerId._id) {
+          setType("Provider");
+        }
+      }
       console.log(res.importSlip);
       setImportSlip(res.importSlip);
     }
@@ -25,7 +33,7 @@ const InforImportSlip = () => {
   }, [importSlipId]);
 
   const calculateLineTotal = (product) => {
-    return product.productId.productPrice * product.quantity * (1 - product.discount / 100);
+    return product.productId?.productPrice * product.quantity * (1 - product.discount / 100);
   };
 
   return (
@@ -36,8 +44,8 @@ const InforImportSlip = () => {
         <div className='lef_infim'>
           <div className='top_sub_infim'>
             <p className='h1_top_sub_infim'>
-              <span onClick={() => navigate(`/list-importSlip/Provider`)}>
-                Xuất - nhập với NCC
+              <span onClick={() => navigate(`/list-importSlip/${type}`)}>
+                Xuất - nhập với {(type === "Provider" && "NCC") || (type === "Agency" && "Nội bộ") }
               </span>
               <span>
                 <i className="fa-solid fa-chevron-right"></i>
@@ -47,14 +55,21 @@ const InforImportSlip = () => {
           </div>
           <div className='sub_infim'>
             <div className='f1_infim'>
-              <p className='cen_inf'>PHIẾU NHẬP KHO <span className='icon_x_inf'><i className="fa-solid fa-x" onClick={() => navigate(`/list-importSlip/Provider`)}></i></span></p>
+              <p className='cen_inf'>
+                PHIẾU NHẬP KHO
+                <span className='icon_x_inf'>
+                  <i className="fa-solid fa-x" onClick={() => navigate(`/list-importSlip/${type}`)}></i>
+                </span>
+              </p>
             </div>
             <div className='box1_infim'>
               <p className='inf_inf' style={{ fontSize: "20px", fontWeight: '700' }}>Thông tin chung</p>
               <div className='sub_box1_infim'>
                 <div className='flecx_inf'>
                   <p>Nguồn xuất</p>
-                  <div className='inp1_inf'>{importSlip.providerId?.providerName}</div>
+                  <div className='inp1_inf'>
+                    {(type === "Provider" && importSlip.providerId?.providerName) || (type === "Agency" && importSlip.agencyId?.agencyName)}
+                  </div>
                 </div>
                 <div className='flecx_inf'>
                   <p>Mã phiếu</p>
@@ -62,7 +77,9 @@ const InforImportSlip = () => {
                 </div>
                 <div className='flecx_inf'>
                   <p>Mã nguồn</p>
-                  <div className='inp1_inf'>{importSlip.providerId?.providerCode}</div>
+                  <div className='inp1_inf'>
+                    {(type === "Provider" && importSlip.providerId?.providerCode) || (type === "Agency" && importSlip.agencyId?.agencyCode)}
+                  </div>
                 </div>
                 {/* <div className='flecx_inf'>
                   <p>Nhập tại kho</p>
@@ -70,7 +87,9 @@ const InforImportSlip = () => {
                 </div> */}
                 <div className='flecx_inf'>
                   <p>Số điện thoại</p>
-                  <div className='inp1_inf'>{importSlip.providerId?.providerPhone}</div>
+                  <div className='inp1_inf'>
+                    {(type === "Provider" && importSlip.providerId?.providerPhone) || (type === "Agency" && importSlip.agencyId?.agencyPhone)}
+                  </div>
                 </div>
                 {/* <div className='flecx_inf'>
                   <p>Mã kho</p>
@@ -78,11 +97,15 @@ const InforImportSlip = () => {
                 </div> */}
                 <div className='flecx_inf'>
                   <p>Địa chỉ</p>
-                  <div className='inp2_inf'>{importSlip.providerId?.providerAddress}</div>
+                  <div className='inp2_inf'>
+                    {(type === "Provider" && importSlip.providerId?.providerAddress) || (type === "Agency" && importSlip.agencyId?.agencyAddress)}
+                  </div>
                 </div>
                 <div className='flecx_inf'>
                   <p>Lí do</p>
-                  <div className='inp2_inf'>{importSlip.reason}</div>
+                  <div className='inp2_inf'>
+                    {importSlip.reason}
+                  </div>
                 </div>
               </div>
             </div>
@@ -103,10 +126,10 @@ const InforImportSlip = () => {
                     importSlip.products?.length > 0 && importSlip.products.map((product, index) => (
                       <tr className='tr_infim' key={product._id}>
                         <td>{index + 1}</td>
-                        <td>{product.productId.productName}</td>
-                        <td>{product.productId.productCode}</td>
-                        <td>{product.productId.productDVT}</td>
-                        <td>{formatCurrency(product.productId.productPrice)}</td>
+                        <td>{product.productId?.productName}</td>
+                        <td>{product.productId?.productCode}</td>
+                        <td>{product.productId?.productDVT}</td>
+                        <td>{formatCurrency(product.productId?.productPrice || 0)}</td>
                         <td>{product.quantity}</td>
                         <td>{product.discount} %</td>
                         <td>{formatCurrency(calculateLineTotal(product))}</td>
