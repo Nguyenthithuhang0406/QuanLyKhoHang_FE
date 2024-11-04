@@ -103,15 +103,15 @@ const App = () => {
       element: <ListImportSlip />
     },
     {
-      path: '/created-exportSlip',
+      path: '/created-exportSlip/:type',
       element: <CreatedExportSlip />
     },
     {
-      path: '/infor-exportSlip',
+      path: '/infor-exportSlip/:exportSlipId',
       element: <InforExportSlip />
     },
     {
-      path: '/list-exportSlip',
+      path: '/list-exportSlip/:type',
       element: <ListExportSlip />
     },
     {

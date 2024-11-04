@@ -34,7 +34,7 @@ const NavBar = () => {
               <p><i className="fa-solid fa-clipboard"></i>Xuất - nhập với NCC</p>
               <div className='p2'>
                 <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho  <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
-                <div className='p3'>
+                <div className='p3' onClick={() => navigate('/list-exportSlip/Provider')}>
                   <p >Phiếu xuất kho</p>
                 </div>
               </div>
@@ -53,7 +53,7 @@ const NavBar = () => {
                 <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
                 <div className='p3'>
                   <p>Lệnh xuất kho</p>
-                  <p>Phiếu xuất kho</p>
+                  <p onClick={() => navigate('/list-exportSlip/Agency')}>Phiếu xuất kho</p>
                 </div>
               </div>
               <div className='p2'>
@@ -69,7 +69,7 @@ const NavBar = () => {
               <p><i className="fa-solid fa-clipboard"></i>Xuất - nhập với NVBH</p>
               <div className='p2'>
                 <p> <i className="fa-solid fa-chevron-right"></i>Xuất kho <span className='p4'><i className="fa-solid fa-minus"></i></span></p>
-                <div className='p3'>
+                <div className='p3' onClick={() => navigate('/list-exportSlip/Customer')}>
                   <p>Phiếu xuất kho</p>
                 </div>
               </div>
