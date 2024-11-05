@@ -32,6 +32,7 @@ import IEIReport from './pages/report/IEIReport/IEIReport';
 import ImportReport from './pages/report/importReport/ImportReport';
 import InventoryReport from './pages/report/inventoryReport/InventoryReport';
 import ReportTable from './components/reportTable/ReportTable';
+import InfoInventory from './pages/inventory/infoInventory/InfoInventory';
 const App = () => {
   const routes = useRoutes([
     {
@@ -132,7 +133,7 @@ const App = () => {
     },
     {
       path: '/infor-inventory',
-      element: <InforAgency />
+      element: <InfoInventory />
     },
     {
       path: '/import-export-inventory-report',
