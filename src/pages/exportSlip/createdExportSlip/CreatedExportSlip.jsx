@@ -183,11 +183,11 @@ const CreatedExportSlip = () => {
       }
 
       await createdExportSlip(data);
-      toast.success("Tạo phiếu nhập kho thành công");
+      toast.success("Tạo phiếu xuất kho thành công");
       navigate(`/list-exportSlip/${type}`);
     } catch (error) {
       console.log(error);
-      toast.error("Tạo phiếu nhập kho thất bại");
+      toast.error("Tạo phiếu xuất kho thất bại");
     }
   };
 
