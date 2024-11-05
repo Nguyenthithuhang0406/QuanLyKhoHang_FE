@@ -17,10 +17,12 @@
     position: absolute;
     /* flex-direction: column; */
     width: 80%;
-    height: auto;
+    max-height: 90vh;
+    overflow: auto;
     top: 100px;
     left: 18%;
     border-left: 1px solid darkgray;
+    margin-bottom: 50px;
   }
   
   .main-content {

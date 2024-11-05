@@ -217,7 +217,7 @@ const CreatedExportSlip = () => {
           <div className="cis-info">
             <div className="i-title">Thông tin chung</div>
             <div className="i-line1">
-              <div className="i-o">
+              <div className="i-o-create">
                 <div className="i-name">Nguồn nhận</div>
                 <select
                   name="providerId"
@@ -233,7 +233,7 @@ const CreatedExportSlip = () => {
                     ))}
                 </select>
               </div>
-              <div className="i-o">
+              <div className="i-o-create">
                 <div className="i-name">Mã phiếu</div>
                 <input
                   name="idslip"
@@ -245,7 +245,7 @@ const CreatedExportSlip = () => {
               </div>
             </div>
             <div className="i-line2">
-              <div className="i-o">
+              <div className="i-o-create">
                 <div className="i-name">Mã nguồn</div>
                 <input
                   style={{ width: "100%", height: "40px", paddingLeft: "10px" }}
@@ -255,10 +255,10 @@ const CreatedExportSlip = () => {
                   readOnly
                 />
               </div>
-              <div className="i-o"></div>
+              <div className="i-o-create"></div>
             </div>
             <div className="i-line3">
-              <div className="i-o">
+              <div className="i-o-create">
                 <div className="i-name">Số điện thoại</div>{" "}
                 <input
                   type="text"
@@ -266,10 +266,10 @@ const CreatedExportSlip = () => {
                   readOnly
                 />
               </div>
-              <div className="i-o"></div>
+              <div className="i-o-create"></div>
             </div>
             <div className="i-line4">
-              <div className="i-o">
+              <div className="i-o-create">
                 <div className="i-name">Địa chỉ</div>
                 <textarea
                   name="s-address"
@@ -280,7 +280,7 @@ const CreatedExportSlip = () => {
                   readOnly
                 ></textarea>
               </div>
-              <div className="i-o">
+              <div className="i-o-create">
                 <div className="i-name">Lý do xuất</div>
                 <textarea
                   name="reason"
