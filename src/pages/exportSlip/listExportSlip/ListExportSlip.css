@@ -148,11 +148,11 @@
 }
 .pen_ListExportSlip {
   color: blue;
-  padding-right: 20px;
+  /* padding-right: 10px; */
 }
-.bin_ListExportSlip {
+/* .bin_ListExportSlip {
   padding-right: 45px;
-}
+} */
 
 .date_ListExportSlip {
   background: #e9e9e9;
