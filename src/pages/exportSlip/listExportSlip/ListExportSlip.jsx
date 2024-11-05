@@ -25,7 +25,7 @@ const ListExportSlip = () => {
   const [isRefresh, setIsRefresh] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [infoDelete, setInfoDelete] = useState({
-    type: "importSlip",
+    type: "exportSlip",
     id: "",
   });
 
