@@ -36,7 +36,7 @@ import InfoInventory from './pages/inventory/infoInventory/InfoInventory';
 const App = () => {
   const routes = useRoutes([
     {
-      path: '/',
+      path: '/home',
       element: <Home />
     },
     {
