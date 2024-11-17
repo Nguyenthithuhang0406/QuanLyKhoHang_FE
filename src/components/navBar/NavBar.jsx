@@ -26,7 +26,7 @@ const NavBar = () => {
           <div className='Menu'>
 
             <div className='p1'>
-              <p><i className="fa-solid fa-chart-pie"></i>Tổng quan</p>
+              <p onClick={() => navigate("/")}><i className="fa-solid fa-chart-pie"></i>Tổng quan</p>
             </div>
 
             <div className='p1'>

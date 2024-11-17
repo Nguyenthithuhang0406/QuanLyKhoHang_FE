@@ -6,14 +6,17 @@ import { motion } from "framer-motion";
 
 import Header from "@/components/header/Header";
 import NavBar from "@/components/navBar/NavBar";
-import { getImportSlipByType, searchImportSlip, updateStatusImportSlip } from "@/api/importSlipApi/importSlip";
+import {
+  getImportSlipByType,
+  searchImportSlip,
+  updateStatusImportSlip,
+} from "@/api/importSlipApi/importSlip";
 import { searchSupply } from "@/api/suppliesAPI/supply";
 import { formatCurrency, formatDate } from "@/utils/funtion/slipFuntion";
 
 import "./ListImportSlip.css";
 import ConfirmDeleteProduct from "@/components/confirmDeleteProduct/ConfirmDeleteProduct";
 const ListImportSlip = () => {
-
   const { type } = useParams();
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -77,20 +80,46 @@ const ListImportSlip = () => {
   const handleSearch = async () => {
     const data = {
       importSlipCode: inforSearch.importSlipCode,
-      providerId: inforSearch.providerId ,
+      providerId: inforSearch.providerId,
       status: inforSearch.status,
-      timeStart: inforSearch.timeStart ? new Date(inforSearch.timeStart).toISOString() : "",
-      timeEnd: inforSearch.timeEnd ? new Date(inforSearch.timeEnd).toISOString() : "",
+      timeStart: inforSearch.timeStart
+        ? new Date(inforSearch.timeStart).toISOString()
+        : "",
+      timeEnd: inforSearch.timeEnd
+        ? new Date(inforSearch.timeEnd).toISOString()
+        : "",
       type: type,
     };
 
     try {
       let res;
       if (type === "Provider") {
-        res = await searchImportSlip(data.importSlipCode, data.providerId, "", "", data.status, data.timeStart, data.timeEnd, page, limit, data.type);
+        res = await searchImportSlip(
+          data.importSlipCode,
+          data.providerId,
+          "",
+          "",
+          data.status,
+          data.timeStart,
+          data.timeEnd,
+          page,
+          limit,
+          data.type
+        );
       } else {
-        if(type === "Agency") {
-          res = await searchImportSlip(data.importSlipCode, "", data.providerId, "", data.status, data.timeStart, data.timeEnd, page, limit, data.type);
+        if (type === "Agency") {
+          res = await searchImportSlip(
+            data.importSlipCode,
+            "",
+            data.providerId,
+            "",
+            data.status,
+            data.timeStart,
+            data.timeEnd,
+            page,
+            limit,
+            data.type
+          );
         }
       }
       setImportSlips(res.importSlips);
@@ -146,8 +175,8 @@ const ListImportSlip = () => {
                 className="input_ListImportSlip"
                 value={inforSearch.importSlipCode}
                 name="importSlipCode"
-                onChange={(e) => handleChangeFieldSearch(e)} 
-                />
+                onChange={(e) => handleChangeFieldSearch(e)}
+              />
               <span>Nguồn xuất</span>
               <select
                 name="providerId"
@@ -156,16 +185,23 @@ const ListImportSlip = () => {
                 onChange={(e) => handleChangeFieldSearch(e)}
               >
                 <option value="">-Chọn nguồn xuất-</option>
-                {
-                  listProvider.length > 0 && listProvider.map((provider) => (
-                    <option value={provider._id} key={provider._id}>{provider.providerName || provider.agencyName}</option>
-                  ))
-                }
+                {listProvider.length > 0 &&
+                  listProvider.map((provider) => (
+                    <option value={provider._id} key={provider._id}>
+                      {provider.providerName || provider.agencyName}
+                    </option>
+                  ))}
               </select>
             </div>
             <div>
               <span>Tình trạng</span>
-              <select name="status" value={inforSearch.status} onChange={(e) => handleChangeFieldSearch(e)} id="" className="input2_ListImportSlip">
+              <select
+                name="status"
+                value={inforSearch.status}
+                onChange={(e) => handleChangeFieldSearch(e)}
+                id=""
+                className="input2_ListImportSlip"
+              >
                 <option value=""></option>
                 <option value="PENDING">Chờ duyệt</option>
                 <option value="DONE">Đã nhập</option>
@@ -173,9 +209,23 @@ const ListImportSlip = () => {
                 <option value="CONFIRMED">Đã duyệt</option>
               </select>
               <span className="date_ListImportSlip1">Từ ngày</span>
-              <input type="date" className="date_ListImportSlip" placeholder="" name="timeStart" value={inforSearch.timeStart} onChange={(e) => handleChangeFieldSearch(e)} />
+              <input
+                type="date"
+                className="date_ListImportSlip"
+                placeholder=""
+                name="timeStart"
+                value={inforSearch.timeStart}
+                onChange={(e) => handleChangeFieldSearch(e)}
+              />
               <span className="date_ListImportSlip2">Đến ngày</span>
-              <input type="date" className="date_ListImportSlip3" placeholder="" name="timeEnd" value={inforSearch.timeEnd} onChange={(e) => handleChangeFieldSearch(e)} />
+              <input
+                type="date"
+                className="date_ListImportSlip3"
+                placeholder=""
+                name="timeEnd"
+                value={inforSearch.timeEnd}
+                onChange={(e) => handleChangeFieldSearch(e)}
+              />
             </div>
           </div>
           <div className="sub_2_ListImportSlip" onClick={handleSearch}>
@@ -185,7 +235,9 @@ const ListImportSlip = () => {
           </div>
         </div>
         <div className="sub_3_ListImportSlip">
-          <p onClick={() => navigate(`/created-importSlip/${type}`)}>+ Tạo phiếu nhập kho</p>
+          <p onClick={() => navigate(`/created-importSlip/${type}`)}>
+            + Tạo phiếu nhập kho
+          </p>
         </div>
         <div className="table_ListImportSlip">
           <table className="table2_ListImportSlip">
@@ -199,41 +251,106 @@ const ListImportSlip = () => {
                 <th className="ListImportSlip_th">Tình trạng</th>
                 <th className="ListImportSlip_th">Thao tác</th>
               </tr>
-              {
-                importSlips.length > 0 && importSlips.map((importSlip, index) => (
+              {importSlips.length > 0 &&
+                importSlips.map((importSlip, index) => (
                   <tr key={importSlip._id}>
-                    <td className="ListImportSlip_item">{(page - 1) * limit + index + 1}</td>
-                    <td className="ListImportSlip_item">{importSlip.importSlipCode} </td>
-                    <td className="ListImportSlip_item_1">{(type === "Provider" && importSlip.providerId?.providerName) || (type === "Agency" && importSlip.agencyId?.agencyName)}</td>
-                    <td className="ListImportSlip_item">{formatCurrency(importSlip.importPrice || 0)}</td>
-                    <td className="ListImportSlip_item">{formatDate(importSlip.createdAt)}</td>
+                    <td className="ListImportSlip_item">
+                      {(page - 1) * limit + index + 1}
+                    </td>
+                    <td className="ListImportSlip_item">
+                      {importSlip.importSlipCode}{" "}
+                    </td>
+                    <td className="ListImportSlip_item_1">
+                      {(type === "Provider" &&
+                        importSlip.providerId?.providerName) ||
+                        (type === "Agency" && importSlip.agencyId?.agencyName)}
+                    </td>
+                    <td className="ListImportSlip_item">
+                      {formatCurrency(importSlip.importPrice || 0)}
+                    </td>
+                    <td className="ListImportSlip_item">
+                      {formatDate(importSlip.createdAt)}
+                    </td>
                     <td className="ListImportSlip_item">
                       <select
-                        className={importSlip.status === "PENDING" ? "button1_ListImportSlip" : (importSlip.status === "DONE" ? "button2_ListImportSlip" : (importSlip.status === "REJECTED" ? "button3_ListImportSlip" : (importSlip.status === "CONFIRMED" ? "button_ListImportSlip" : "")))}
-                        onChange={(e) => handleUpdateStatus(importSlip._id, e.target.value)}
+                        className={
+                          importSlip.status === "PENDING"
+                            ? "button1_ListImportSlip"
+                            : importSlip.status === "DONE"
+                            ? "button2_ListImportSlip"
+                            : importSlip.status === "REJECTED"
+                            ? "button3_ListImportSlip"
+                            : importSlip.status === "CONFIRMED"
+                            ? "button_ListImportSlip"
+                            : ""
+                        }
+                        onChange={(e) =>
+                          handleUpdateStatus(importSlip._id, e.target.value)
+                        }
                       >
                         <option
-                          className={importSlip.status === "PENDING" ? "button1_ListImportSlip" : (importSlip.status === "DONE" ? "button2_ListImportSlip" : (importSlip.status === "REJECTED" ? "button3_ListImportSlip" : (importSlip.status === "CONFIRMED" ? "button_ListImportSlip" : "")))}
-                          value={importSlip.status}>
-                          {importSlip.status === "PENDING" ? "Chờ duyệt" : (importSlip.status === "DONE" ? "Đã nhập" : (importSlip.status === "REJECTED" ? "Từ chối" : (importSlip.status === "CONFIRMED" ? "Đã duyệt" : "")))}
+                          className={
+                            importSlip.status === "PENDING"
+                              ? "button1_ListImportSlip"
+                              : importSlip.status === "DONE"
+                              ? "button2_ListImportSlip"
+                              : importSlip.status === "REJECTED"
+                              ? "button3_ListImportSlip"
+                              : importSlip.status === "CONFIRMED"
+                              ? "button_ListImportSlip"
+                              : ""
+                          }
+                          value={importSlip.status}
+                        >
+                          {importSlip.status === "PENDING"
+                            ? "Chờ duyệt"
+                            : importSlip.status === "DONE"
+                            ? "Đã nhập"
+                            : importSlip.status === "REJECTED"
+                            ? "Từ chối"
+                            : importSlip.status === "CONFIRMED"
+                            ? "Đã duyệt"
+                            : ""}
                         </option>
-                        <option className="button1_ListImportSlip" value="PENDING">Chờ duyệt</option>
-                        <option className="button2_ListImportSlip" value="DONE">Đã nhập</option>
-                        <option className="button3_ListImportSlip" value="REJECTED">Từ chối</option>
-                        <option className="button_ListImportSlip" value="CONFIRMED">Đã duyệt</option>
+                        <option
+                          className="button1_ListImportSlip"
+                          value="PENDING"
+                        >
+                          Chờ duyệt
+                        </option>
+                        <option className="button2_ListImportSlip" value="DONE">
+                          Đã nhập
+                        </option>
+                        <option
+                          className="button3_ListImportSlip"
+                          value="REJECTED"
+                        >
+                          Từ chối
+                        </option>
+                        <option
+                          className="button_ListImportSlip"
+                          value="CONFIRMED"
+                        >
+                          Đã duyệt
+                        </option>
                       </select>
                     </td>
                     <td className="purple">
-                      <span className="pen_ListImportSlip" onClick={() => handleClickPen(importSlip._id)}>
+                      <span
+                        className="pen_ListImportSlip"
+                        onClick={() => handleClickPen(importSlip._id)}
+                      >
                         <i className="fa-solid fa-pen"></i>
                       </span>
-                      <span className="bin_ListImportSlip" onClick={() => handleClickBin(importSlip._id)}>
+                      <span
+                        className="bin_ListImportSlip"
+                        onClick={() => handleClickBin(importSlip._id)}
+                      >
                         <i className="fa-solid fa-trash"></i>
                       </span>
                     </td>
                   </tr>
-                ))
-              }
+                ))}
             </tbody>
           </table>
           <Pagination
@@ -241,25 +358,34 @@ const ListImportSlip = () => {
             pageSize={limit}
             current={page}
             onChange={handleChangePage}
-            style={{ "position": "absolute", "bottom": "50px", "right": "50px", "position": "fixed" }}
+            style={{
+              position: "absolute",
+              bottom: "50px",
+              right: "50px",
+              position: "fixed",
+            }}
           />
         </div>
       </div>
-      {
-        showDelete && (
-          <div className='overlay' onClick={handleCancelDelete}>
-            <motion.div
-              className='itemDelete'
-              onClick={(e) => e.stopPropagation()}
-              animate={{ opacity: 1, scal: 1 }}
-              initial={{ opacity: 0, scal: 0.5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ConfirmDeleteProduct type={infoDelete.type} onCancel={handleCancelDelete} id={infoDelete.id} isRefresh={isRefresh} setIsRefresh={setIsRefresh} />
-            </motion.div>
-          </div>
-        )
-      }
+      {showDelete && (
+        <div className="overlay" onClick={handleCancelDelete}>
+          <motion.div
+            className="itemDelete"
+            onClick={(e) => e.stopPropagation()}
+            animate={{ opacity: 1, scal: 1 }}
+            initial={{ opacity: 0, scal: 0.5 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ConfirmDeleteProduct
+              type={infoDelete.type}
+              onCancel={handleCancelDelete}
+              id={infoDelete.id}
+              isRefresh={isRefresh}
+              setIsRefresh={setIsRefresh}
+            />
+          </motion.div>
+        </div>
+      )}
     </>
   );
 };
