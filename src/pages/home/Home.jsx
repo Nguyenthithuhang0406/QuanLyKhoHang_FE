@@ -37,7 +37,6 @@ const Home = () => {
     const getData1 = async () => {
       const data1 = await importExportRatio(time1.timeStart1, time1.timeEnd1);
       setDataOverView(data1);
-      console.log("data1", data1);
     };
 
     getData1();
@@ -47,7 +46,6 @@ const Home = () => {
     const getData2 = async () => {
       const data2 = await exportWithSource(time2.timeStart2, time2.timeEnd2);
       setDataExport(data2);
-      console.log("data2", data2);
     };
 
     getData2();
@@ -57,7 +55,6 @@ const Home = () => {
     const getData3 = async () => {
       const data3 = await importWithSource(time3.timeStart3, time3.timeEnd3);
       setDataImport(data3);
-      console.log("data3", data3);
     };
 
     getData3();
