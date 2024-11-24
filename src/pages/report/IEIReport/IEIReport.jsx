@@ -144,7 +144,7 @@ const IEIReport = () => {
         stackedBarChart.current = null;
       }
     };
-  }, [labels, dataExports, dataInventorys]);
+  }, [labels, dataExports, dataInventorys, type]);
 
   const handleChangeTime = (e) => {
     const { name, value } = e.target;
@@ -212,7 +212,7 @@ const IEIReport = () => {
             {type === "chart" ? (
               <canvas ref={chartRef}></canvas>
             ) : (
-              <ReportTable list={list} type={type} setType={setType} />
+              <ReportTable list={list} />
             )}
           </div>
         </div>

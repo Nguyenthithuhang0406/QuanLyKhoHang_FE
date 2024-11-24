@@ -151,15 +151,19 @@ const InventoryReport = () => {
               <option value="table">Bảng</option>
             </select>
           </div>
-          <div className="RI-caption">
-            <div className="RI-caption-text"></div>
-            <p>Số lượng hàng hoá</p>
-          </div>
+          {type === "chart" ? (
+            <div className="RI-caption">
+              <div className="RI-caption-text"></div>
+              <p>Số lượng hàng hoá</p>
+            </div>
+          ) : (
+            <div></div>
+          )}
           <div className="IR-barchart">
             {type === "chart" ? (
               <Bar data={data} options={options} />
             ) : (
-                <ReportTable list={list} type={type} setType={setType} style={{"width": "100%", "height": "100%"}} />
+              <ReportTable list={list} />
             )}
           </div>
         </div>

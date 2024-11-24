@@ -145,20 +145,24 @@ const ImportReport = () => {
               className="reportImport-select"
               onChange={handleChangeType}
             >
-              <option>{ type === "chart" ? "Biểu đồ" : "Bảng"}</option>
+              <option>{type === "chart" ? "Biểu đồ" : "Bảng"}</option>
               <option value="chart">Biểu đồ</option>
               <option value="table">Bảng</option>
             </select>
           </div>
-          <div className="RI-caption">
-            <div className="RI-caption-text"></div>
-            <p>Số lượng hàng hoá</p>
-          </div>
+          {type === "chart" ? (
+            <div className="RI-caption">
+              <div className="RI-caption-text"></div>
+              <p>Số lượng hàng hoá</p>
+            </div>
+          ) : (
+            <div></div>
+          )}
           <div className="IR-barchart">
             {type === "chart" ? (
               <Bar data={data} options={options} />
             ) : (
-                <ReportTable list={list} setType={setType} type={type} />
+              <ReportTable list={list} />
             )}
           </div>
         </div>

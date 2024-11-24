@@ -2,21 +2,11 @@
 import React from "react";
 
 import "./ReportTable.css";
-const ReportTable = ({ list, type, setType }) => {
-  const handleChangeType = (e) => {
-    setType(e.target.value);
-  };
+const ReportTable = ({ list}) => {
 
   return (
     <>
       <div className="rtbody">
-        <div className="rtselect">
-          <select name="rtoption" id="rcoption" onChange={handleChangeType}>
-            <option>{type === "chart" ? "Xem biểu đồ" : "Xem bảng"}</option>
-            <option value="chart">Xem biểu đồ</option>
-            <option value="table">Xem bảng</option>
-          </select>
-        </div>
         <div className="rtTable">
           <table className="rtInside">
             <tbody>
