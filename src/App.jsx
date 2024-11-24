@@ -132,7 +132,7 @@ const App = () => {
       element: <CreatedInventory />
     },
     {
-      path: '/infor-inventory',
+      path: '/infor-inventory/:recordInventoryId',
       element: <InfoInventory />
     },
     {
