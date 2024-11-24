@@ -18,6 +18,8 @@
     position: relative;
 }
 .rcbody .rcframe{
+    height: 85vh;
+    overflow: auto;
     background-color: white;
     width: 98%;
     text-align: center;
@@ -93,6 +95,9 @@
     background-color: #181656;
 }
 .rcChart{
+    height: 70%;
+    width: 100%;
+    overflow: auto;
     display: flex;
     justify-content: center;
     margin: 20px;

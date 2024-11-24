@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   BarElement,
@@ -16,16 +16,25 @@ import { Bar } from "react-chartjs-2";
 import "./ImportReport.css";
 import { reportExportImportInventory } from "@/api/reportApi/Report";
 const ImportReport = () => {
-  const [labels, setLabels] = React.useState([]);
-  const [datas, setDatas] = React.useState([]);
+  const [labels, setLabels] = useState([]);
+  const [datas, setDatas] = useState([]);
+  const [time, setTime] = useState({
+    timeStart: "",
+    timeEnd: "",
+  });
 
   useEffect(() => {
     const getData = async () => {
       try {
         const res = await reportExportImportInventory();
-        console.log(res);
-        const labels = res.map((item) => item.productName);
-        const datas = res.map((item) => item.importQuantity);
+        const filterData = res.filter(
+          (item) =>
+            item.exportQuantity >= 0 &&
+            item.inventoryQuantity >= 0 &&
+            item.importQuantity >= 0
+        );
+        const labels = filterData.map((item) => item.productName);
+        const datas = filterData.map((item) => item.importQuantity);
         setLabels(labels);
         setDatas(datas);
       } catch (error) {
@@ -33,7 +42,7 @@ const ImportReport = () => {
       }
     };
     getData();
-  }, []);
+  }, [time.timeEnd, time.timeStart]);
 
   ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
   const data = {
@@ -85,6 +94,17 @@ const ImportReport = () => {
       maxBarThickness: 100,
     },
   };
+
+  const handleChangeTime = (e) => {
+    const { name, value } = e.target;
+    setTime({
+      ...time,
+      [name]: value,
+    });
+
+    console.log(time);
+  };
+
   return (
     <>
       <Header />
@@ -94,8 +114,21 @@ const ImportReport = () => {
           <h2 className="reportImport-h2">BIỂU ĐỒ BÁO CÁO NHẬP KHO</h2>
           <div className="date-ImportReport">
             <span className="date-ImportReport1">Từ ngày</span>
-            <input type="date" className="date-ImportReport3" />
-            <span className="date-ImportReport2">Đến ngày</span>
+            <input
+              type="date"
+              className="date-ImportReport3"
+              name="timeStart"
+              value={time.timeStart}
+              onChange={(e) => handleChangeTime(e)}
+            />
+            <span
+              className="date-ImportReport2"
+              name="timeEnd"
+              value={time.timeEnd}
+              onChange={(e) => handleChangeTime(e)}
+            >
+              Đến ngày
+            </span>
             <input type="date" className="date-ImportReport3" />
             <span className="reportImport-type">Loại báo cáo</span>
             <select name="" id="" className="reportImport-select">
