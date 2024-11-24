@@ -1,80 +1,52 @@
 /* eslint-disable */
-import React from 'react'
-import Header from '@/components/header/Header'
-import NavBar from '@/components/navBar/NavBar'
-import './ReportTable.css';
-const ReportTable = () => {
-  return (
-    <div>
-      <Header className='headerListP' />
-      <NavBar />
-      <div className='rtbody'>
-        <div className='rtSearch'>
-          <div className='rtInput'>
-            <div className='rtbox1'>
-              <div className='rtbox2'>
-                <span className='rtID'>Mã hàng hoá</span>
-              </div>
-              <div className='rtbox3'>
-                <input type="text" className='rtiID' />
-              </div>
-              <div className='rtbox2'>
-                <span className='rtname'>Tên hàng hoá</span>
-              </div>
-              <div className='rtbox3'> <input type="text" className='rtiName' />
-              </div>
-            </div>
+import React from "react";
+import Header from "@/components/header/Header";
+import NavBar from "@/components/navBar/NavBar";
+import "./ReportTable.css";
+const ReportTable = ({ list, type, setType }) => {
+  console.log("list", list);
+  const handleChangeType = (e) => {
+    setType(e.target.value);
+  };
 
-            <div className='rtbox1'>
-              <div className='rtbox2'>
-                <span className='rtfrom'>Từ ngày</span>
-              </div>
-              <div className='rtbox3'>
-                <input type="date" className="rtdate" placeholder="" />
-              </div>
-              <div className='rtbox2'>
-                <span className='rtto'>Đến ngày</span>
-              </div>
-              <div className='rtbox3'>
-                <input type="date" className="rtdate" placeholder="" />
-              </div>
-            </div>
-          </div>
-          <div className='rtbbox'> <button className='rtfButton'> Tìm kiếm </button>
-          </div>
+  return (
+    <>
+      <div className="rtbody">
+        <div className="rtselect">
+          <select name="rtoption" id="rcoption" onChange={handleChangeType}>
+            <option>{type === "chart" ? "Xem biểu đồ" : "Xem bảng"}</option>
+            <option value="chart">Xem biểu đồ</option>
+            <option value="table">Xem bảng</option>
+          </select>
         </div>
-        <div className='rtselect'>
-            <select name="rtoption" id="rcoption">
-              <option value="rtchart">Xem biểu đồ</option>
-              <option value="rttable">Xem bảng</option>
-            </select>
-        </div>
-        <div className='rtTable'>
-          <table className='rtInside'>
-          <tbody>
-            <tr>
-              <th>STT</th>
-              <th>Tên sản phẩm</th>
-              <th>Mã sản phẩm</th>
-              <th>Số lượng nhập</th>
-              <th>Số lượng xuất</th>
-              <th>Số lượng tồn</th>
-            </tr>
-            <tr>
-              <td className='rtnum'>1</td>
-              <td>Điện thoại Iphone 7 Plus</td>
-              <td>hang0111</td>
-              <td className='rtnum'>2000</td>
-              <td className='rtnum'>300</td>
-              <td className='rtnum'>1700</td>
-            </tr>
-          </tbody>
+        <div className="rtTable">
+          <table className="rtInside">
+            <tbody>
+              <tr>
+                <th>STT</th>
+                <th>Tên sản phẩm</th>
+                <th>Mã sản phẩm</th>
+                <th>Số lượng nhập</th>
+                <th>Số lượng xuất</th>
+                <th>Số lượng tồn</th>
+              </tr>
+              {list.length > 0 &&
+                list.map((item, index) => (
+                  <tr key={item.productId}>
+                    <td className="rtnum">{index + 1}</td>
+                    <td>{item.productName}</td>
+                    <td>{item.productCode}</td>
+                    <td className="rtnum">{item.importQuantity}</td>
+                    <td className="rtnum">{item.exportQuantity}</td>
+                    <td className="rtnum">{item.inventoryQuantity}</td>
+                  </tr>
+                ))}
+            </tbody>
           </table>
-         
         </div>
       </div>
-    </div>
-  )
-}
+    </>
+  );
+};
 
 export default ReportTable;

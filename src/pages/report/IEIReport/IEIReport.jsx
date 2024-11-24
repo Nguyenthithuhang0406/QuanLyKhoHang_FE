@@ -5,6 +5,7 @@ import NavBar from "@/components/navBar/NavBar";
 import Chart from "chart.js/auto";
 import "./IEIReport.css";
 import { reportExportImportInventory } from "@/api/reportApi/Report";
+import ReportTable from "@/components/reportTable/ReportTable";
 
 const IEIReport = () => {
   const chartRef = useRef(null);
@@ -18,6 +19,9 @@ const IEIReport = () => {
     timeEnd: "",
   });
 
+  const [list, setList] = useState([]);
+  const [type, setType] = useState("chart");
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -28,6 +32,7 @@ const IEIReport = () => {
             item.inventoryQuantity >= 0 &&
             item.importQuantity >= 0
         );
+        setList(filterData);
         const labels = filterData.map((item) => item.productName);
         const dataExports = filterData.map((item) => item.exportQuantity);
         const dataInventorys = filterData.map((item) => item.inventoryQuantity);
@@ -151,6 +156,10 @@ const IEIReport = () => {
     console.log(time);
   };
 
+  const handleChangeType = (e) => {
+    setType(e.target.value);
+  };
+
   return (
     <div>
       <Header className="headerListP" />
@@ -188,14 +197,23 @@ const IEIReport = () => {
               </div>
             </div>
             <div className="rcbbox">
-              <select name="rcoption" id="rcoption">
-                <option value="rcchart">Xem biểu đồ</option>
-                <option value="rctable">Xem bảng</option>
+              <select
+                name="rcoption"
+                id="rcoption"
+                onChange={(e) => handleChangeType(e)}
+              >
+                <option>{type === "chart" ? "Xem biểu đồ" : "Xem bảng"}</option>
+                <option value="chart">Xem biểu đồ</option>
+                <option value="table">Xem bảng</option>
               </select>
             </div>
           </div>
           <div className="rcChart">
-            <canvas ref={chartRef}></canvas>
+            {type === "chart" ? (
+              <canvas ref={chartRef}></canvas>
+            ) : (
+              <ReportTable list={list} type={type} setType={setType} />
+            )}
           </div>
         </div>
       </div>

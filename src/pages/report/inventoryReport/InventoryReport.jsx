@@ -15,6 +15,7 @@ import { Bar } from "react-chartjs-2";
 
 import { reportExportImportInventory } from "@/api/reportApi/Report";
 import "./InventoryReport.css";
+import ReportTable from "@/components/reportTable/ReportTable";
 
 const InventoryReport = () => {
   const [labels, setLabels] = useState([]);
@@ -23,6 +24,9 @@ const InventoryReport = () => {
     timeStart: "",
     timeEnd: "",
   });
+
+  const [list, setList] = useState([]);
+  const [type, setType] = useState("chart");
 
   useEffect(() => {
     const getData = async () => {
@@ -34,6 +38,7 @@ const InventoryReport = () => {
             item.inventoryQuantity >= 0 &&
             item.importQuantity >= 0
         );
+        setList(filterData);
         const labels = filterData.map((item) => item.productName);
         const datas = filterData.map((item) => item.inventoryQuantity);
         setLabels(labels);
@@ -106,6 +111,9 @@ const InventoryReport = () => {
     console.log(time);
   };
 
+  const handleChangeType = (e) => {
+    setType(e.target.value);
+  };
   return (
     <>
       <Header />
@@ -132,9 +140,15 @@ const InventoryReport = () => {
             </span>
             <input type="date" className="date-ImportReport3" />
             <span className="reportImport-type">Loại báo cáo</span>
-            <select name="" id="" className="reportImport-select">
-              <option value="">Biểu đồ tròn</option>
-              <option value="">Biểu đồ cột</option>
+            <select
+              name=""
+              id=""
+              className="reportImport-select"
+              onChange={(e) => handleChangeType(e)}
+            >
+              <option>{type === "chart" ? "Biểu đồ" : "Bảng"}</option>
+              <option value="chart">Biểu đồ</option>
+              <option value="table">Bảng</option>
             </select>
           </div>
           <div className="RI-caption">
@@ -142,7 +156,11 @@ const InventoryReport = () => {
             <p>Số lượng hàng hoá</p>
           </div>
           <div className="IR-barchart">
-            <Bar data={data} options={options} />
+            {type === "chart" ? (
+              <Bar data={data} options={options} />
+            ) : (
+                <ReportTable list={list} type={type} setType={setType} style={{"width": "100%", "height": "100%"}} />
+            )}
           </div>
         </div>
       </div>
