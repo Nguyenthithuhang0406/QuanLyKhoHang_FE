@@ -1,10 +1,8 @@
 /* eslint-disable */
 import React from "react";
-import Header from "@/components/header/Header";
-import NavBar from "@/components/navBar/NavBar";
+
 import "./ReportTable.css";
 const ReportTable = ({ list, type, setType }) => {
-  console.log("list", list);
   const handleChangeType = (e) => {
     setType(e.target.value);
   };
