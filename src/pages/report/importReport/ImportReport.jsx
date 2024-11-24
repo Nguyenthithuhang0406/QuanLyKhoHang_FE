@@ -1,8 +1,5 @@
 /* eslint-disable */
-import React from "react";
-import Header from "@/components/header/Header";
-import NavBar from "@/components/navBar/NavBar";
-import { Bar } from "react-chartjs-2";
+import React, { useEffect } from "react";
 import {
   Chart as ChartJS,
   BarElement,
@@ -11,26 +8,52 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+
+import Header from "@/components/header/Header";
+import NavBar from "@/components/navBar/NavBar";
+import { Bar } from "react-chartjs-2";
+
 import "./ImportReport.css";
+import { reportExportImportInventory } from "@/api/reportApi/Report";
 const ImportReport = () => {
+  const [labels, setLabels] = React.useState([]);
+  const [datas, setDatas] = React.useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await reportExportImportInventory();
+        console.log(res);
+        const labels = res.map((item) => item.productName);
+        const datas = res.map((item) => item.importQuantity);
+        setLabels(labels);
+        setDatas(datas);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
+
+  ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
   const data = {
-    labels: ["Hàng hoá 1", "Hàng hoá 2", "Hàng hoá 3", "Hàng hoá 4"],
+    labels: labels,
     datasets: [
       {
         label: "Số lượng hàng hoá",
-        data: [1620, 1700, 1600, 1000],
+        data: datas,
         backgroundColor: "#0b08ab",
         borderColor: "black",
         borderWidth: 1,
-        barThickness: 50,
-        maxBarThickness: 50,
+        // barThickness: 50,
+        // maxBarThickness: 50,
       },
     ],
   };
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
@@ -39,13 +62,14 @@ const ImportReport = () => {
     scales: {
       x: {
         ticks: {
-          color: "black",
+          // color: "black",
           font: {
-            size: 14,
+            size: 11,
           },
+          maxRotation: 45,
         },
-        categoryPercentage: 0.6,
-        barPercentage: 0.7,
+        categoryPercentage: 1,
+        barPercentage: 1,
       },
       y: {
         ticks: {
@@ -57,8 +81,8 @@ const ImportReport = () => {
       },
     },
     datasets: {
-      barThickness: 10,
-      maxBarThickness: 30,
+      barThickness: 100,
+      maxBarThickness: 100,
     },
   };
   return (

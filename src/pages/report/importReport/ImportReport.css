@@ -73,11 +73,22 @@
 }
 .IR-barchart {
   margin-top: 20px;
+  height: 70%;
+  width: 100%;
+  overflow: auto;
 }
 .RI-frame {
+  height: 85vh;
   background-color: white;
   width: 98%;
   text-align: center;
   padding: 20px;
   border-radius: 10px;
+}
+
+.IR-barchart canvas {
+  width: auto !important;
+  /* Cho phép canvas mở rộng theo nội dung */
+  min-width: 100%;
+  /* Đặt kích thước tối thiểu */
 }

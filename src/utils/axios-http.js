@@ -19,7 +19,7 @@ const createAuthInstance = (baseURL) => {
         try {
           //api refreshToken
           const data = await getRefreshToken();
-          console.log("data", data);
+          // console.log("data", data);
           localStorage.setItem('accessToken', data.accessToken);
           localStorage.setItem('refreshToken', data.refreshToken);
 

@@ -150,15 +150,15 @@ const NavBar = () => {
                 <i className="fa-solid fa-chart-simple"></i>Báo cáo thống kê
               </p>
               <div className="p2">
-                <p>
+                <p onClick={() => navigate("/import-report")}>
                   {" "}
                   <i className="fa-solid fa-chevron-right"></i>Báo cáo nhập kho
                 </p>
-                <p>
+                <p onClick={() => navigate("/inventory-report")}>
                   {" "}
-                  <i className="fa-solid fa-chevron-right"></i>Báo cáo xuất kho
+                  <i className="fa-solid fa-chevron-right"></i>Báo cáo tồn kho
                 </p>
-                <p>
+                <p onClick={() => navigate("/import-export-inventory-report")}>
                   {" "}
                   <i className="fa-solid fa-chevron-right"></i>Báo cáo xuất nhập
                   tồn
